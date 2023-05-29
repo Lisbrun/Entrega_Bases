@@ -32,7 +32,7 @@ CREATE TABLE `academico_espacio` (
   PRIMARY KEY (`Id_espacio`),
   KEY `academico_espacio_Grupo_id_1c94d6c3_fk_Grupo_Id_grupo` (`Grupo_id`),
   CONSTRAINT `academico_espacio_Grupo_id_1c94d6c3_fk_Grupo_Id_grupo` FOREIGN KEY (`Grupo_id`) REFERENCES `grupo` (`Id_grupo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,10 +337,10 @@ DROP TABLE IF EXISTS `departamento`;
 CREATE TABLE `departamento` (
   `Id_departamento` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
-  `Sede_id` int NOT NULL,
+  `Facultad_id` int NOT NULL,
   PRIMARY KEY (`Id_departamento`),
-  KEY `Departamento_Sede_id_82743289_fk_Sede_ID_sede` (`Sede_id`),
-  CONSTRAINT `Departamento_Sede_id_82743289_fk_Sede_ID_sede` FOREIGN KEY (`Sede_id`) REFERENCES `sede` (`ID_sede`)
+  KEY `Departamento_Facultad_id_f0a961df_fk_Facultad_Id_Facultad` (`Facultad_id`),
+  CONSTRAINT `Departamento_Facultad_id_f0a961df_fk_Facultad_Id_Facultad` FOREIGN KEY (`Facultad_id`) REFERENCES `facultad` (`Id_Facultad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -428,7 +428,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -437,7 +437,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-05-27 00:33:15.665498'),(2,'auth','0001_initial','2023-05-27 00:33:16.095240'),(3,'academico','0001_initial','2023-05-27 00:33:17.462070'),(4,'admin','0001_initial','2023-05-27 00:33:17.595842'),(5,'admin','0002_logentry_remove_auto_add','2023-05-27 00:33:17.617019'),(6,'admin','0003_logentry_add_action_flag_choices','2023-05-27 00:33:17.636404'),(7,'contenttypes','0002_remove_content_type_name','2023-05-27 00:33:17.766234'),(8,'auth','0002_alter_permission_name_max_length','2023-05-27 00:33:17.845069'),(9,'auth','0003_alter_user_email_max_length','2023-05-27 00:33:17.894074'),(10,'auth','0004_alter_user_username_opts','2023-05-27 00:33:17.908075'),(11,'auth','0005_alter_user_last_login_null','2023-05-27 00:33:18.015600'),(12,'auth','0006_require_contenttypes_0002','2023-05-27 00:33:18.022128'),(13,'auth','0007_alter_validators_add_error_messages','2023-05-27 00:33:18.042137'),(14,'auth','0008_alter_user_username_max_length','2023-05-27 00:33:18.132480'),(15,'auth','0009_alter_user_last_name_max_length','2023-05-27 00:33:18.221419'),(16,'auth','0010_alter_group_name_max_length','2023-05-27 00:33:18.292592'),(17,'auth','0011_update_proxy_permissions','2023-05-27 00:33:18.345458'),(18,'auth','0012_alter_user_first_name_max_length','2023-05-27 00:33:18.433849'),(19,'sessions','0001_initial','2023-05-27 00:33:18.472911'),(20,'academico','0002_notas_remove_inscripcion_cancelacion_grupo','2023-05-27 00:52:03.527986'),(21,'academico','0003_inscripcion_cancelacion_grupo_notas_inscripcion','2023-05-27 00:53:18.429160'),(22,'academico','0004_notas_historial','2023-05-27 00:56:27.486571'),(23,'academico','0005_alter_notas_options_alter_notas_nota_definitiva_and_more','2023-05-27 01:12:48.273235'),(24,'academico','0006_alter_cupo_creditos_creditos_disponibles_and_more','2023-05-27 03:04:11.705573'),(25,'academico','0007_alter_resumen_creditos_creditos_aprobados_and_more','2023-05-27 04:16:19.242005'),(26,'academico','0008_alter_cupo_creditos_creditos_adicionales_and_more','2023-05-27 18:37:52.020769'),(27,'academico','0009_alter_cupo_creditos_creditos_disponibles','2023-05-27 19:49:30.592608'),(28,'academico','0010_pago_semestre','2023-05-27 22:12:59.084313'),(29,'academico','0011_alter_espacio_dia','2023-05-28 22:33:47.497866');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-05-27 00:33:15.665498'),(2,'auth','0001_initial','2023-05-27 00:33:16.095240'),(3,'academico','0001_initial','2023-05-27 00:33:17.462070'),(4,'admin','0001_initial','2023-05-27 00:33:17.595842'),(5,'admin','0002_logentry_remove_auto_add','2023-05-27 00:33:17.617019'),(6,'admin','0003_logentry_add_action_flag_choices','2023-05-27 00:33:17.636404'),(7,'contenttypes','0002_remove_content_type_name','2023-05-27 00:33:17.766234'),(8,'auth','0002_alter_permission_name_max_length','2023-05-27 00:33:17.845069'),(9,'auth','0003_alter_user_email_max_length','2023-05-27 00:33:17.894074'),(10,'auth','0004_alter_user_username_opts','2023-05-27 00:33:17.908075'),(11,'auth','0005_alter_user_last_login_null','2023-05-27 00:33:18.015600'),(12,'auth','0006_require_contenttypes_0002','2023-05-27 00:33:18.022128'),(13,'auth','0007_alter_validators_add_error_messages','2023-05-27 00:33:18.042137'),(14,'auth','0008_alter_user_username_max_length','2023-05-27 00:33:18.132480'),(15,'auth','0009_alter_user_last_name_max_length','2023-05-27 00:33:18.221419'),(16,'auth','0010_alter_group_name_max_length','2023-05-27 00:33:18.292592'),(17,'auth','0011_update_proxy_permissions','2023-05-27 00:33:18.345458'),(18,'auth','0012_alter_user_first_name_max_length','2023-05-27 00:33:18.433849'),(19,'sessions','0001_initial','2023-05-27 00:33:18.472911'),(20,'academico','0002_notas_remove_inscripcion_cancelacion_grupo','2023-05-27 00:52:03.527986'),(21,'academico','0003_inscripcion_cancelacion_grupo_notas_inscripcion','2023-05-27 00:53:18.429160'),(22,'academico','0004_notas_historial','2023-05-27 00:56:27.486571'),(23,'academico','0005_alter_notas_options_alter_notas_nota_definitiva_and_more','2023-05-27 01:12:48.273235'),(24,'academico','0006_alter_cupo_creditos_creditos_disponibles_and_more','2023-05-27 03:04:11.705573'),(25,'academico','0007_alter_resumen_creditos_creditos_aprobados_and_more','2023-05-27 04:16:19.242005'),(26,'academico','0008_alter_cupo_creditos_creditos_adicionales_and_more','2023-05-27 18:37:52.020769'),(27,'academico','0009_alter_cupo_creditos_creditos_disponibles','2023-05-27 19:49:30.592608'),(28,'academico','0010_pago_semestre','2023-05-27 22:12:59.084313'),(29,'academico','0011_alter_espacio_dia','2023-05-28 22:33:47.497866'),(30,'academico','0012_alter_departamento_sede_alter_facultad_departamento','2023-05-28 23:13:07.498294'),(31,'academico','0013_rename_sede_departamento_facultad_and_more','2023-05-28 23:15:53.072811'),(32,'academico','0014_alter_facultad_nombre','2023-05-28 23:33:54.533319');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -532,12 +532,12 @@ DROP TABLE IF EXISTS `facultad`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `facultad` (
   `Id_Facultad` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(60) NOT NULL,
-  `Departamento_id` int NOT NULL,
+  `Nombre` varchar(120) NOT NULL,
+  `Sede_id` int NOT NULL,
   PRIMARY KEY (`Id_Facultad`),
-  KEY `Facultad_Departamento_id_576e4037_fk_Departame` (`Departamento_id`),
-  CONSTRAINT `Facultad_Departamento_id_576e4037_fk_Departame` FOREIGN KEY (`Departamento_id`) REFERENCES `departamento` (`Id_departamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `Facultad_Sede_id_6a437dd7_fk_Sede_ID_sede` (`Sede_id`),
+  CONSTRAINT `Facultad_Sede_id_6a437dd7_fk_Sede_ID_sede` FOREIGN KEY (`Sede_id`) REFERENCES `sede` (`ID_sede`)
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +546,7 @@ CREATE TABLE `facultad` (
 
 LOCK TABLES `facultad` WRITE;
 /*!40000 ALTER TABLE `facultad` DISABLE KEYS */;
-INSERT INTO `facultad` VALUES (1,'Ingenieria',1);
+INSERT INTO `facultad` VALUES (1,'Ingenieria',1),(2,'Antropología',1),(3,'Arquitectura',1),(4,'Arquitectura',3),(5,'Arquitectura',2),(6,'Artes Plásticas',1),(7,'Artes Plásticas',2),(8,'Cine y Televisión',1),(9,'Diseño Gráfico',1),(10,'Diseño Industrial',1),(11,'Diseño Industrial',6),(12,'Música',1),(13,'Música Instrumental',1),(14,'Construcción',2),(15,'Estudios Literarios',1),(16,'Filología e Idiomas',1),(17,'Filología e Idiomas',1),(18,'Filología e Idiomas',1),(19,'Filosofía',1),(20,'Español y Filología Clásica',1),(21,'Física',1),(22,'Biología',1),(24,'Estadística',8),(25,'Biología',8),(26,'Economía',2),(27,'Economía',1),(28,'Contaduría Pública',1),(29,'Administración de Empresas',1),(30,'Administración de Empresas',6),(31,'Administración de Empresas',3),(32,'Administración de Empresas',3),(33,'Administración de Sistemas Informáticos',3),(34,'Gestión Cultural y Comunicativa',3),(35,'Gestión Cultural y Comunicativa',8),(36,'Medicina',1),(37,'Medicina Veterinaria',1),(38,'Nutrición y Dietética',1),(39,'Fonoaudiología',1),(40,'Terapia Ocupacional',1),(41,'Fisioterapia',1),(42,'Odontología',1),(43,'Zootecnia',2),(44,'Zootecnia',6),(45,'Zootecnia',1),(46,'Ingeniería Agronómica',1),(47,'Ingeniería Agronómica',6),(48,'Ingeniería Agronómica',2),(49,'Enfermería',1),(50,'Derecho',1),(51,'Ciencia Política',2),(52,'Ciencia Política',1),(53,'Ingeniería Administrativa',2),(54,'Ingeniería Agrícola',6),(55,'Ingeniería Agrícola',1),(56,'Ingeniería Agrícola',2),(57,'Ingeniería Agroindustrial',6),(58,'Ingeniería Ambiental',2),(59,'Ingeniería Ambiental',6),(60,'Ingeniería Biológica',2),(61,'Ingeniería Biológica',8),(62,'Ingeniería Civil',2),(63,'Ingeniería Civil',1),(64,'Ingeniería Civil',3),(65,'Ingeniería de Control',2),(66,'Ingeniería de Minas y Metalurgia',2),(67,'Ingeniería de Petróleos',2),(68,'Ingeniería de Sistemas e Informática',2),(69,'Ingeniería de Sistemas y Computación',1),(70,'Ingeniería Eléctrica',2),(71,'Ingeniería Eléctrica',1),(72,'Ingeniería Eléctrica',3),(73,'Ingeniería Electrónica',1),(74,'Ingeniería Electrónica',3),(75,'Ingeniería Física',3),(76,'Ingeniería Física',2),(77,'Ingeniería Forestal',2),(78,'Ingeniería Geológica',2),(79,'Ingeniería Industrial',2),(80,'Ingeniería Industrial',1),(81,'Ingeniería Industrial',3),(82,'Ingeniería Mecánica',2),(83,'Ingeniería Mecánica',1),(84,'Ingeniería Mecatrónica',1),(85,'Ingeniería Mecatrónica',8),(86,'Ingeniería Química',2),(87,'Ingeniería Química',1),(88,'Ingeniería Química',3);
 /*!40000 ALTER TABLE `facultad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -890,7 +890,7 @@ CREATE TABLE `sede` (
   `ID_sede` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(60) NOT NULL,
   PRIMARY KEY (`ID_sede`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -899,7 +899,7 @@ CREATE TABLE `sede` (
 
 LOCK TABLES `sede` WRITE;
 /*!40000 ALTER TABLE `sede` DISABLE KEYS */;
-INSERT INTO `sede` VALUES (1,'Bogota');
+INSERT INTO `sede` VALUES (1,'Bogota'),(2,'Medellin'),(3,'Manizales'),(4,'Amazonas'),(5,'Orinoquia'),(6,'Palmira'),(7,'Tumaco'),(8,'La Paz');
 /*!40000 ALTER TABLE `sede` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -953,4 +953,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-28 17:42:37
+-- Dump completed on 2023-05-28 18:44:12
