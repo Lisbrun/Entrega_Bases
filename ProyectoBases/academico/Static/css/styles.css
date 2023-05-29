@@ -1,0 +1,77 @@
+:root{
+    --text_color: #000;
+    --background_color:rgba(158 , 179,62,100);
+    --h2_letras: 'Poppins', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background:rgba(158 , 179,62,100);
+}
+
+.login-card{
+    position: relative;
+    width: 400px;
+    height: 550px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 10px 10px 9px -3px rgba(105,105,105,.7);
+}
+.login-card-text h2{
+    font-size: 1.1rem;
+    font-weight: 6700;
+    color:var(--text_color);
+    text-align: center;
+    font-family: var(--h2_letras); 
+
+}
+.inputbox input{
+
+    outline: none;
+}
+.inputbox #email{
+    margin-bottom: 15px;
+}
+.login-card-form{
+    width: 90%;
+    text-align: center;
+}
+
+button {
+
+    width: 55%;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: none;
+    background: var(--background_color);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.inputbox input{
+    width: 70%;
+    height: 30px;
+    outline: none;
+    padding: 5px 5px;
+    
+}
+.img-logo{
+    width: 250px;
+}
