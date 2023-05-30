@@ -92,24 +92,24 @@ class Decano (models.Model):
         verbose_name = 'Decano'
         verbose_name_plural= 'Decanos'
 
-class Departamento (models.Model):
-    Id_departamento = models.AutoField(primary_key=True,unique=True)
-    Nombre = models.CharField(max_length=100)
-    Sede = models.ForeignKey(Sede,on_delete=models.CASCADE)    
-    class Meta: 
-        db_table ='Departamento'
-        verbose_name = 'Departamento'
-        verbose_name_plural= 'Departamentos'
-        
-        
+
 class Facultad(models.Model):
     Id_Facultad = models.AutoField(primary_key=True)
-    Nombre = models.CharField(max_length=60)
-    Departamento= models.ForeignKey(Departamento,on_delete=models.CASCADE)
+    Nombre = models.CharField(max_length=120)
+    Sede= models.ForeignKey(Sede,on_delete=models.CASCADE)
     class Meta: 
         db_table ='Facultad'
         verbose_name = 'Facultad'
         verbose_name_plural= 'Facultades'
+        
+class Departamento (models.Model):
+    Id_departamento = models.AutoField(primary_key=True,unique=True)
+    Nombre = models.CharField(max_length=100)
+    Facultad = models.ForeignKey(Facultad,on_delete=models.CASCADE)    
+    class Meta: 
+        db_table ='Departamento'
+        verbose_name = 'Departamento'
+        verbose_name_plural= 'Departamentos'
         
         
 class Programa(models.Model):
