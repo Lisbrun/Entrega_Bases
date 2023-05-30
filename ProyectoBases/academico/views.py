@@ -2,13 +2,14 @@ from django.shortcuts import render,redirect
 from django.db import connection
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout, authenticate
-from django.http import HttpResponse
+from django.http import HttpResponse    
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 #trae user
 # Create your views here.
 def proceso(id):
     with connection.cursor() as cursor:
-        cursor.execute("call mostrar_Datos(%s)",[id])
+        cursor.execute("call personavinculada(%s)",[id])
         resultado = cursor.fetchone()
         return resultado
 
@@ -34,3 +35,8 @@ def registro(request):
             
     form=AuthenticationForm()
     return render(request,'academico/login.html',{'form':form})
+
+
+def salir(request):
+    logout(request)
+    return redirect('inicio')

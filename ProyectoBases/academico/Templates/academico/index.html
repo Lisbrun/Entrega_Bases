@@ -1,9 +1,125 @@
-<h1>Pagina de Inicio</h1>
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
 
-<ul>
-    {% for item in Datos %}
-        <li>{{ item }}</li>
-    {% endfor %}
-</ul>
-<p></p>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- or -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+</head>
+
+<body>
+    <div class="fondo">
+        <header class="header">
+            <div class="header-contain">
+                <div class="img-contain">
+                    <img src="{% static 'images/logo2.png' %}" alt="">
+                </div>
+
+                <ul class="menu-horizontal">
+                    <li>
+                        <a href="">Datos Personales</a>
+                    </li>
+
+                    <li>
+                        <a href="">Informacion Academica</a>
+                        <ul class="menu-vertical">
+                            <li><a href="">Historia Academica</a></li>
+                            <li><a href="">Calificaciones</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li>
+                        <a href="">Buscador de cursos</a>
+                        <ul class="menu-vertical">
+                            <li><a href="">Buscador de Cursos</a></li>
+                            <li><a href="">Contenido Asignaturas</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="">Procesos de inscripcion </a>
+                        <ul class="menu-vertical">
+                            <li><a href="">Cita Inscripcion</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="logout">
+                <a href="{% url 'salir' %}"> <i class='bx bx-user'></i> </a>
+            </div>
+        </header>
+    </div>
+
+
+    <footer>
+        <div class="contact">
+            <div class="main">
+                <div class="col">
+                    <h2> Ayudas </h2>
+                    <ul>
+
+                        <li> <a href="">Talento Humano</a></li>
+                        <li> <a href="">Ofertas de empleo</a></li>
+                        <li> <a href="">Concurso docente</a></li>
+                        <li> <a href="">Control interno</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h2>
+                        Contacto
+                    </h2>
+                    <ul>
+                        <li>
+                            <p>Carrera 45 # 26-85</p>
+                        </li>
+                        <li>
+                            <p>Edif. Uriel Gutiérrez
+                            </p>
+                        </li>
+                        <li>
+                            <p>Bogotá D.C., Colombia</p>
+                        </li>
+                        <li>
+                            <p>(+57 1) 316 5000
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="col">
+                    <h2> Redes Sociales</h2>
+                    <div class="social-media">
+                        <a href=""><i class='bx bxl-facebook-circle'></i></a>
+                        <a href=""><i class='bx bxl-twitter'></i></a>
+                        <a href=""><i class='bx bxl-instagram-alt'></i></a>
+                        <a href=""><i class='bx bxl-linkedin-square'></i></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
