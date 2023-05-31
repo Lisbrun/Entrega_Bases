@@ -16,9 +16,14 @@ def proceso(id):
 def main(request):
     user_id = request.user.id
     resultado =proceso(user_id)
-    print(request.user.groups.name)
+    if request.user.groups.filter(name__in=['Estudiante']):
+        return render(request,'academico/Estudiante.html',{'Datos':resultado})
+    elif request.user.groups.filter(name__in=['Profesor']):
+        
+        return render(request,'academico/Profesor.html',{'Datos':resultado})
 
-    return render(request,'academico/Profesor.html',{'Datos':resultado})
+    else: 
+        HttpResponse("No tiene permisos para acceder a esta pagina")
 
 
 
@@ -42,3 +47,11 @@ def registro(request):
 def salir(request):
     logout(request)
     return redirect('inicio')
+
+
+def DatosPersonales(request):
+    pass
+def Historia_Academica(request):
+    pass
+def Calificaciones(request):
+    pass

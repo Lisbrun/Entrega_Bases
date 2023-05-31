@@ -121,16 +121,27 @@ BEGIN
 END $$
 DELIMITER ;
 
+
 -- Apenas se cree persona vinculada con el usuario asignar a el usuario el correo institucional de persona vinculada 
 DELIMITER $$
 CREATE TRIGGER Correo_Usuario
-AFTER INSERT ON persona_vinculada
+BEFORE INSERT ON persona_vinculada
 FOR EACH ROW
 BEGIN
-	declare miemail varchar(50);
-    select Correo_institucional into miemail from persona_vinculada as persona where persona.Usuario_id=new.Usuario_id;
-	update auth_user set auth_user.email=miemail where auth_user.id=new.Usuario_id ;
-
+    DECLARE siglasemail VARCHAR(30);
+    DECLARE apellidocuanto FLOAT(2);
+    SET apellidocuanto = LOCATE(' ', NEW.Apellido);
+    
+    IF apellidocuanto > 0 THEN
+        SET siglasemail = CONCAT(LEFT(NEW.Nombre, 2), SUBSTRING(NEW.Apellido, 1, LOCATE(' ', NEW.Apellido) - 1), FLOOR(RAND() * (10 - 1 + 1)) + 1, '@unal.edu.co');
+        SET NEW.Correo_institucional = siglasemail;
+        UPDATE auth_user SET email = siglasemail WHERE id = NEW.Usuario_id;
+    ELSE 
+        SET siglasemail = CONCAT(LEFT(NEW.Nombre, 2), NEW.Apellido, FLOOR(RAND() * (10 - 1 + 1)) + 1, '@unal.edu.co');
+        SET NEW.Correo_institucional = siglasemail;
+        UPDATE auth_user SET email = siglasemail WHERE id = NEW.Usuario_id;
+    END IF;
 END $$
 DELIMITER ;
+
 
