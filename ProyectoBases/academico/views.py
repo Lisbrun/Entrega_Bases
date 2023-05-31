@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout, authenticate
 from django.http import HttpResponse    
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 #trae user
 # Create your views here.
 def proceso(id):
@@ -16,7 +16,9 @@ def proceso(id):
 def main(request):
     user_id = request.user.id
     resultado =proceso(user_id)
-    return render(request,'academico/index.html',{'Datos':resultado})
+    print(request.user.groups.name)
+
+    return render(request,'academico/Profesor.html',{'Datos':resultado})
 
 
 
