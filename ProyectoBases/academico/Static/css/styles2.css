@@ -3,6 +3,7 @@
     --text_color: #000;
     --background_color:rgba(158 , 179,62,100);
     --h2_letras: 'Poppins', sans-serif;
+    --h3_letras : 'Open Sans', sans-serif;
 }
 
 *{
@@ -236,7 +237,116 @@ header{
 }
 
 .Popup{
-    background-color: aqua;
-    
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 20px;
     max-width: 50vw;
+    max-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transform: translateY(-30px);
+
+}
+
+
+.Popup h2{
+    margin-bottom: 30px;
+    font-family: var(--h2_letras);
+    font-size: 1.5rem;
+    font-weight: 600;
+
+
+}
+
+.info-personal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+.info-personal > .info-img > img{
+    width: 250px;
+}
+
+.button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.button button{
+    border: none;
+    background-color: var(--background_color);
+    padding: 15px 40px;
+    border-radius: 20px;
+    position: absolute;
+    font-family: var(--h2_letras);
+    font-weight: 500;
+    left: 150px;
+    bottom: -20px;
+}
+
+.button button:hover{
+    transform: scale(1.08);
+    transition: transform .3s;
+    color: #fff;
+    cursor: pointer;
+}
+
+.info-texts{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.
+.info-texts > h5{
+    font-family: var(--h3_letras);
+    font-size: 1.5rem;
+    font-weight: 600;  
+}
+
+.info-inputs{
+    display: flex;
+    flex-direction: column;
+    gap:20px
+}
+.info-texts > input{
+    padding: 5px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    border: 1px solid gray;
+}
+
+
+.button-actualizar{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-actualizar button{
+    border: none;
+    background-color: var(--background_color);
+    padding: 15px 35px;
+    border-radius: 20px;
+    font-family: var(--h2_letras);
+    font-weight: 500;
+}
+
+.button-actualizar button:hover{
+    transform: scale(1.08);
+    transition: transform .3s;
+    color: #fff;
+    cursor: pointer;
 }

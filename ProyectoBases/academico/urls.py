@@ -9,6 +9,7 @@ urlpatterns = [
     path('Profesor/',Profesor,name='Profesor'),
     path('Estudiante/',Estudiante,name='Estudiante'),
     path('DatosPersonales/',DatosPersonales,name='DatosPersonales'),
+    path('ModPersonales/',mod_estudiante,name='modestudiante'),
     path ('Historia_Academica, Historia_Academica',Historia_Academica,name='Historia_Academica'),
     path ('Calificaciones',Calificaciones, name='Calificaciones'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

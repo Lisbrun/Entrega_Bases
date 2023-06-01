@@ -1,0 +1,37 @@
+{% extends "academico/Estudiante.html" %}
+
+{% load static %}
+
+
+{% block modinfo %}
+
+<h2>{{resultado.2}} {{resultado.3}}</h2>
+
+<form action="{% url 'DatosPersonales' %} " method="POST"> {% csrf_token %}
+    <div class="info-personal">
+
+        <div class="info-texts">
+            <h4>Calle:</h4>
+            <h4>Telefono:</h4>
+            <h4>Correo Personal:</h4>
+            <h4>Estrato:</h4>
+            <h4>Ciudad:</h4>
+        </div>
+
+        <div class="info-texts">
+
+                <input type="text" name="Direccion" id="Direccion" placeholder="Direccion" required>
+                <input type="number" name="Telefono" id="Telefono" placeholder="Celular"  maxlength="10" required>
+                <input type="email" name="Correo" id="Correoj" placeholder="Correo Personal" required>
+                <input type="number" name="Estrato" id="Estrato" placeholder="Estrato" required max="5" min="0">
+                <input type="text" name="Ciudad" id="Correoj" placeholder="Correo Personal" required>
+
+
+
+        </div>
+    </div>
+    <div class="button-actualizar">
+        <button type="submit">ACTUALIZAR</button>
+    </div>
+</form>
+{% endblock %}

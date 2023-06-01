@@ -1,11 +1,11 @@
 {% extends "academico/index.html" %}
 
-
+{% load static %}
 {% block content %}
 
 <ul class="menu-horizontal">
     <li>
-        <a href="">Datos Personales</a>
+        <a href="{% url 'DatosPersonales' %}">Datos Personales</a>
     </li>
 
     <li>
@@ -38,7 +38,13 @@
 
 {% endblock %}
 
-    {% block content2 %}
-    
-    {% endblock %}
+{% block informacion %}
+<div class="fondo">
+<div class="Popup">
+        {% block modinfo %}
 
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

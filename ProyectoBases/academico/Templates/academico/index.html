@@ -16,15 +16,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    
+
     <header class="header">
         <div class="header-contain">
             <div class="img-contain">
-                <img src="{% static 'images/logo2.png' %}" alt="">
+                <a href="{% url 'Estudiante' %}"><img src="{% static 'images/logo2.png' %}" alt=""></a>
             </div>
 
             {% block content %}
@@ -36,23 +39,9 @@
             <a href="{% url 'salir' %}"> <i class='bx bx-user'></i> </a>
         </div>
 
-    </header>   
-    <div class="fondo">
-        <div class="Popup" id="Queso">
-            <div>
-                Mscsrroness
-                asjkdhaskjd
-                <aside>as
-                    <datagrid><s><aside><datagrid>sd
-
-                        <aside><a href="d
-                            as
-                            asd"></a></aside>
-                    </datagrid></aside></s></datagrid>
-                </aside>
-            </div>
-        </div>
-    </div>
+    </header>
+            {% block informacion %}
+            {% endblock %}
     <footer>
         <div class="contact">
             <div class="main">
@@ -92,10 +81,10 @@
                 <div class="col">
                     <h2> Redes Sociales</h2>
                     <div class="social-media">
-                        <a href="https://www.facebook.com/UNALOficial"><i class='bx bxl-facebook-circle'></i></a>
-                        <a href="https://twitter.com/UNALOficial"><i class='bx bxl-twitter'></i></a>
-                        <a href="https://www.instagram.com/unaloficial/"><i class='bx bxl-instagram-alt'></i></a>
-                        <a href="https://www.linkedin.com/school/universidadnacionaldecolombia/"><i
+                        <a href="https://www.facebook.com/UNALOficial"target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="https://twitter.com/UNALOficial" target="_blank"><i class='bx bxl-twitter'></i></a>
+                        <a href="https://www.instagram.com/unaloficial/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+                        <a href="https://www.linkedin.com/school/universidadnacionaldecolombia/" target="_blank"><i
                                 class='bx bxl-linkedin-square'></i></a>
                     </div>
                 </div>

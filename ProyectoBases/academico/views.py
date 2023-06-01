@@ -7,12 +7,16 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 #trae user
 # Create your views here.
-def proceso(id):
+def procesoEstudiante(id):
     with connection.cursor() as cursor:
         cursor.execute("call mostrar_Datos(%s)",[id])
         resultado = cursor.fetchone()
         return resultado
 
+def actualizarestudiante(id,direccion,telefono,correo,estrato,ciudad):
+    with connection.cursor() as cursor:
+        cursor.execute("call Actualizar_Datos(%s,%s,%s,%s,%s,%s)",[id,correo,telefono,estrato,ciudad,direccion])
+        
 def main(request):
     
     if request.user.groups.filter(name__in=['Estudiante']):
@@ -26,9 +30,7 @@ def Profesor(request):
     return render(request,'academico/Profesor.html')
 
 def Estudiante(request):
-    user_id = request.user.id
-    resultado =proceso(user_id)
-    print(resultado)
+    
     return render(request,'academico/Estudiante.html')
 
 def registro(request):
@@ -54,8 +56,25 @@ def salir(request):
 
 
 def DatosPersonales(request):
-    pass
+    if request.method =="POST":
+        Direccion = request.POST['Direccion']
+        Telefono = request.POST['Telefono']
+        Correo = request.POST['Correo']
+        Estrato = request.POST['Estrato']
+        Ciudad = request.POST['Ciudad']
+        actualizarestudiante(request.user.id,Direccion,Telefono,Correo,Estrato,Ciudad)
+        resultado = procesoEstudiante(request.user.id)
+        
     
+    user_id = request.user.id
+    resultado =procesoEstudiante(user_id)
+    return render (request,'academico/DatosPersonales.html',{"resultado":resultado})
+
+    
+def mod_estudiante(request):
+    
+    
+    return render (request,'academico/modPersonales.html')    
     
 def Historia_Academica(request):
     pass
