@@ -69,7 +69,6 @@ CREATE TABLE `asignatura` (
 
 LOCK TABLES `asignatura` WRITE;
 /*!40000 ALTER TABLE `asignatura` DISABLE KEYS */;
-INSERT INTO `asignatura` VALUES (1,'Calculo Diferencial','Fundamental',3,313133);
 /*!40000 ALTER TABLE `asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +84,7 @@ CREATE TABLE `auth_group` (
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +93,7 @@ CREATE TABLE `auth_group` (
 
 LOCK TABLES `auth_group` WRITE;
 /*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+INSERT INTO `auth_group` VALUES (1,'Estudiante'),(2,'Prueba');
 /*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +183,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$390000$xdY2fdIHrev9qyHI2ueH1y$Vj5qi345oXXN5DrObTKPQ7YjT9GvmtPCaVqv9tGaL/8=','2023-05-28 22:14:02.184774',1,'root','','','root@gmail.com',1,1,'2023-05-27 00:37:13.155975'),(3,'pbkdf2_sha256$390000$YxlODGEPBUCI4ESJ1LtGzI$zgdPRW0xzqbeg2GNQyf2hjSwbXQdaeuNNy75l/ZtFLI=','2023-05-28 21:54:09.415034',0,'Sergio','','','Sergio@unal.edu.co',0,1,'2023-05-28 18:29:24.038115'),(4,'pbkdf2_sha256$390000$ObVDkLkzKHCDuO4pY3Evj5$599KxlSHuy0wXtgMB/wjOnlByU9MwlsqrgT7JOdZnM0=',NULL,0,'Daniel','','','',0,1,'2023-05-28 22:22:45.225823'),(5,'pbkdf2_sha256$390000$2hYMTSvjhhYmraeqf5mgWG$puIH5vI5LZ0HGxGCbwHEZXh3ce6iAsccQXRzv1DSRSA=',NULL,0,'Daniela','','','',0,1,'2023-05-28 22:23:10.697783'),(6,'pbkdf2_sha256$390000$qbD2EdtWJvW9DIienIoGyK$RjTY1EmH8jkcGzf+7qo+rjfnvEM00Pj4NUYcw/yScvM=',NULL,0,'Camilo','','','',0,1,'2023-05-28 22:23:22.922258'),(7,'pbkdf2_sha256$390000$RUpqDDamz3SgLU1HEmgbwM$iTOrO1SXuLZN/+qwosdpA4TmH/c8TDfXuyGMPpD5AgY=',NULL,0,'Diana','','','',0,1,'2023-05-28 22:23:47.911244'),(8,'pbkdf2_sha256$390000$cWXSclcLfC1Ti5g9ecd3qZ$Gyb5ZGq0K/wgWYyBWAD5immw/e8st7+hh8C3HIc8iSY=',NULL,0,'Elizabeth','','','',0,1,'2023-05-28 22:24:01.521827'),(9,'pbkdf2_sha256$390000$9feL7rnPgiN5HBNmGb07y1$LZ3bSPXKuBC0Qj05+mO1kMhygdj5YY9KhpIFSuyDJTE=',NULL,0,'Anna','','','',0,1,'2023-05-28 22:24:12.480686'),(10,'pbkdf2_sha256$390000$PHn2Iuj6qWhVW3I5xNe9uV$78K9a7sjJRjMrzGbZm7W81Fm6BBsI/gu4zv0IiZ65uM=',NULL,0,'Andrea','','','',0,1,'2023-05-28 22:24:23.096644'),(11,'pbkdf2_sha256$390000$oTG4mQDsrNwpExmGrccApd$SfGF/eALaub6UMrwvduD72DWflO3TcIo2uk5CcsIlz0=',NULL,0,'Alejandro','','','',0,1,'2023-05-28 22:24:29.358896'),(12,'pbkdf2_sha256$390000$9Uz9aYQGVvnkxOCa4vIryD$bJhyOcZEEZX0czY/cFIlwDz9y3Jt925jLrBN3LwovxU=',NULL,0,'Mauricio','','','',0,1,'2023-05-28 22:24:37.215484'),(13,'pbkdf2_sha256$390000$m1Mkg9rB5i9JI35ZqTl8Qz$yjw1+bxW2shB9ma2ACZKOrIiJi/aIhB9RjZ5YY1AwtQ=',NULL,0,'Antonia','','','',0,1,'2023-05-28 22:26:09.571971'),(14,'pbkdf2_sha256$390000$o78jsQPSpG2KeA2vRWnDLK$Z3N1db6YNd+ROhtPZfjMIXf81TPZKtWBr7cs6kiSgQs=',NULL,0,'Antonio','','','',0,1,'2023-05-28 22:26:24.683449'),(15,'pbkdf2_sha256$390000$xfLwx2bpaw3XCCREshEe4R$QHehnkYF4ONgalrybA0DHMeGV/dH33nhavgazjb/I7Q=',NULL,0,'Gonzalo','','','',0,1,'2023-05-28 22:26:44.472891'),(16,'pbkdf2_sha256$390000$Jh6OYKQaND9BWwaDNc4Yd9$DYJeFkDbJE22tTO5ixbEDlr2MQoemwddU62ob2s96PM=',NULL,0,'Leandro','','','',0,1,'2023-05-28 22:27:31.872265');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$390000$xdY2fdIHrev9qyHI2ueH1y$Vj5qi345oXXN5DrObTKPQ7YjT9GvmtPCaVqv9tGaL/8=','2023-05-30 23:36:58.000000',1,'root','','','root@gmail.com',1,1,'2023-05-27 00:37:13.000000'),(3,'pbkdf2_sha256$390000$YxlODGEPBUCI4ESJ1LtGzI$zgdPRW0xzqbeg2GNQyf2hjSwbXQdaeuNNy75l/ZtFLI=','2023-05-28 21:54:09.415034',0,'Sergio','','','Sergio@unal.edu.co',0,1,'2023-05-28 18:29:24.038115'),(4,'pbkdf2_sha256$390000$ObVDkLkzKHCDuO4pY3Evj5$599KxlSHuy0wXtgMB/wjOnlByU9MwlsqrgT7JOdZnM0=',NULL,0,'Daniel','','','',0,1,'2023-05-28 22:22:45.225823'),(5,'pbkdf2_sha256$390000$2hYMTSvjhhYmraeqf5mgWG$puIH5vI5LZ0HGxGCbwHEZXh3ce6iAsccQXRzv1DSRSA=',NULL,0,'Daniela','','','',0,1,'2023-05-28 22:23:10.697783'),(6,'pbkdf2_sha256$390000$qbD2EdtWJvW9DIienIoGyK$RjTY1EmH8jkcGzf+7qo+rjfnvEM00Pj4NUYcw/yScvM=',NULL,0,'Camilo','','','',0,1,'2023-05-28 22:23:22.922258'),(7,'pbkdf2_sha256$390000$RUpqDDamz3SgLU1HEmgbwM$iTOrO1SXuLZN/+qwosdpA4TmH/c8TDfXuyGMPpD5AgY=',NULL,0,'Diana','','','',0,1,'2023-05-28 22:23:47.911244'),(8,'pbkdf2_sha256$390000$cWXSclcLfC1Ti5g9ecd3qZ$Gyb5ZGq0K/wgWYyBWAD5immw/e8st7+hh8C3HIc8iSY=',NULL,0,'Elizabeth','','','',0,1,'2023-05-28 22:24:01.521827'),(9,'pbkdf2_sha256$390000$9feL7rnPgiN5HBNmGb07y1$LZ3bSPXKuBC0Qj05+mO1kMhygdj5YY9KhpIFSuyDJTE=',NULL,0,'Anna','','','',0,1,'2023-05-28 22:24:12.480686'),(10,'pbkdf2_sha256$390000$PHn2Iuj6qWhVW3I5xNe9uV$78K9a7sjJRjMrzGbZm7W81Fm6BBsI/gu4zv0IiZ65uM=',NULL,0,'Andrea','','','',0,1,'2023-05-28 22:24:23.096644'),(11,'pbkdf2_sha256$390000$oTG4mQDsrNwpExmGrccApd$SfGF/eALaub6UMrwvduD72DWflO3TcIo2uk5CcsIlz0=',NULL,0,'Alejandro','','','',0,1,'2023-05-28 22:24:29.358896'),(12,'pbkdf2_sha256$390000$9Uz9aYQGVvnkxOCa4vIryD$bJhyOcZEEZX0czY/cFIlwDz9y3Jt925jLrBN3LwovxU=',NULL,0,'Mauricio','','','',0,1,'2023-05-28 22:24:37.215484'),(13,'pbkdf2_sha256$390000$m1Mkg9rB5i9JI35ZqTl8Qz$yjw1+bxW2shB9ma2ACZKOrIiJi/aIhB9RjZ5YY1AwtQ=',NULL,0,'Antonia','','','',0,1,'2023-05-28 22:26:09.571971'),(14,'pbkdf2_sha256$390000$o78jsQPSpG2KeA2vRWnDLK$Z3N1db6YNd+ROhtPZfjMIXf81TPZKtWBr7cs6kiSgQs=',NULL,0,'Antonio','','','',0,1,'2023-05-28 22:26:24.683449'),(15,'pbkdf2_sha256$390000$xfLwx2bpaw3XCCREshEe4R$QHehnkYF4ONgalrybA0DHMeGV/dH33nhavgazjb/I7Q=',NULL,0,'Gonzalo','','','',0,1,'2023-05-28 22:26:44.472891'),(16,'pbkdf2_sha256$390000$Jh6OYKQaND9BWwaDNc4Yd9$DYJeFkDbJE22tTO5ixbEDlr2MQoemwddU62ob2s96PM=',NULL,0,'Leandro','','','',0,1,'2023-05-28 22:27:31.872265');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `auth_user_groups` (
   KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
   CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
   CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,6 +212,7 @@ CREATE TABLE `auth_user_groups` (
 
 LOCK TABLES `auth_user_groups` WRITE;
 /*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+INSERT INTO `auth_user_groups` VALUES (1,1,1),(2,1,2);
 /*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +268,6 @@ CREATE TABLE `cita_inscripcion` (
 
 LOCK TABLES `cita_inscripcion` WRITE;
 /*!40000 ALTER TABLE `cita_inscripcion` DISABLE KEYS */;
-INSERT INTO `cita_inscripcion` VALUES (2,'2023-05-27','19:56:47.000000',5);
 /*!40000 ALTER TABLE `cita_inscripcion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +297,6 @@ CREATE TABLE `cupo_credito` (
 
 LOCK TABLES `cupo_credito` WRITE;
 /*!40000 ALTER TABLE `cupo_credito` DISABLE KEYS */;
-INSERT INTO `cupo_credito` VALUES (2,0,0,36,0,5);
 /*!40000 ALTER TABLE `cupo_credito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,7 +349,6 @@ CREATE TABLE `departamento` (
 
 LOCK TABLES `departamento` WRITE;
 /*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
-INSERT INTO `departamento` VALUES (1,'SIstemas e industrial',1);
 /*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,7 +374,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,7 +383,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2023-05-27 01:08:42.529901','3213131','Nombre: Juan ',1,'[{\"added\": {}}]',19,1),(2,'2023-05-27 01:08:49.379293','1','estudiante object (1)',1,'[{\"added\": {}}]',11,1),(3,'2023-05-27 01:09:05.964099','1','Sede object (1)',1,'[{\"added\": {}}]',15,1),(4,'2023-05-27 01:09:12.326499','1','Departamento object (1)',1,'[{\"added\": {}}]',9,1),(5,'2023-05-27 01:09:15.731276','1','Facultad object (1)',1,'[{\"added\": {}}]',12,1),(6,'2023-05-27 01:09:29.848128','313133','Programa object (313133)',1,'[{\"added\": {}}]',18,1),(7,'2023-05-27 01:09:33.142457','1','Historial_Academico object (1)',1,'[{\"added\": {}}]',14,1),(8,'2023-05-27 01:09:35.129070','1','Cita_Inscripcion object (1)',1,'[{\"added\": {}}]',8,1),(9,'2023-05-27 01:09:43.958513','1','Inscripcion_cancelacion object (1)',1,'[{\"added\": {}}]',20,1),(10,'2023-05-27 01:10:08.627194','2','Pedro15',1,'[{\"added\": {}}]',4,1),(11,'2023-05-27 01:10:24.081315','1323133','Nombre: Lucila ',1,'[{\"added\": {}}]',19,1),(12,'2023-05-27 01:10:29.487614','1','Docente object (1)',1,'[{\"added\": {}}]',10,1),(13,'2023-05-27 01:10:49.601078','1','Asignatura object (1)',1,'[{\"added\": {}}]',7,1),(14,'2023-05-27 01:10:56.343133','1','Grupo object (1)',1,'[{\"added\": {}}]',13,1),(15,'2023-05-27 01:10:58.687262','1','Inscripcion_cancelacion_grupo object (1)',1,'[{\"added\": {}}]',25,1),(16,'2023-05-27 01:14:41.494317','7','Notas object (7)',1,'[{\"added\": {}}]',24,1),(17,'2023-05-27 01:14:45.909729','7','Notas object (7)',3,'',24,1),(18,'2023-05-27 01:15:13.677298','8','Notas object (8)',1,'[{\"added\": {}}]',24,1),(19,'2023-05-27 01:16:22.158146','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(20,'2023-05-27 01:34:11.364857','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\", \"Nota Definitiva\"]}}]',24,1),(21,'2023-05-27 01:34:51.092457','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(22,'2023-05-27 01:40:47.315289','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(23,'2023-05-27 01:44:18.059657','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(24,'2023-05-27 04:26:58.381068','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(25,'2023-05-27 04:27:04.264323','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(26,'2023-05-27 05:01:28.302853','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\"]}}]',24,1),(27,'2023-05-27 15:02:04.487584','2','Grupo object (2)',1,'[{\"added\": {}}]',13,1),(28,'2023-05-27 15:13:01.529980','2','Inscripcion_cancelacion_grupo object (2)',1,'[{\"added\": {}}]',25,1),(29,'2023-05-27 15:14:58.875261','2','Inscripcion_cancelacion_grupo object (2)',3,'',25,1),(30,'2023-05-27 15:39:05.550668','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\"]}}]',24,1),(31,'2023-05-27 15:39:15.683167','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(32,'2023-05-27 15:42:16.402404','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\"]}}]',24,1),(33,'2023-05-27 15:43:33.776908','3','Inscripcion_cancelacion_grupo object (3)',3,'',25,1),(34,'2023-05-27 15:43:38.593671','5','Inscripcion_cancelacion_grupo object (5)',1,'[{\"added\": {}}]',25,1),(35,'2023-05-27 15:44:37.217663','5','Inscripcion_cancelacion_grupo object (5)',3,'',25,1),(36,'2023-05-27 15:44:41.726251','6','Inscripcion_cancelacion_grupo object (6)',1,'[{\"added\": {}}]',25,1),(37,'2023-05-27 15:45:53.311487','6','Inscripcion_cancelacion_grupo object (6)',3,'',25,1),(38,'2023-05-27 15:45:57.703539','7','Inscripcion_cancelacion_grupo object (7)',1,'[{\"added\": {}}]',25,1),(39,'2023-05-27 15:46:44.370585','7','Inscripcion_cancelacion_grupo object (7)',3,'',25,1),(40,'2023-05-27 15:46:54.795362','8','Inscripcion_cancelacion_grupo object (8)',1,'[{\"added\": {}}]',25,1),(41,'2023-05-27 15:47:07.093164','9','Inscripcion_cancelacion_grupo object (9)',1,'[{\"added\": {}}]',25,1),(42,'2023-05-27 15:48:17.691919','9','Inscripcion_cancelacion_grupo object (9)',3,'',25,1),(43,'2023-05-27 15:48:21.581545','10','Inscripcion_cancelacion_grupo object (10)',1,'[{\"added\": {}}]',25,1),(44,'2023-05-27 15:49:07.416574','1','Inscripcion_cancelacion_grupo object (1)',3,'',25,1),(45,'2023-05-27 18:32:49.052681','9','Notas object (9)',1,'[{\"added\": {}}]',24,1),(46,'2023-05-27 18:32:58.022577','9','Notas object (9)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(47,'2023-05-27 18:33:26.500263','9','Notas object (9)',2,'[]',24,1),(48,'2023-05-27 18:35:24.920260','10','Notas object (10)',1,'[{\"added\": {}}]',24,1),(49,'2023-05-27 18:35:33.095508','10','Notas object (10)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\", \"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(50,'2023-05-27 18:36:27.655678','10','Notas object (10)',2,'[]',24,1),(51,'2023-05-27 18:38:03.376101','1','Cupo_Creditos object (1)',1,'[{\"added\": {}}]',23,1),(52,'2023-05-27 18:38:12.561535','10','Notas object (10)',3,'',24,1),(53,'2023-05-27 18:38:15.578794','9','Notas object (9)',3,'',24,1),(54,'2023-05-27 18:38:45.177504','1','Resumen_Creditos object (1)',2,'[{\"changed\": {\"fields\": [\"Creditos Exigidos\", \"Creditos Aprobados\", \"Pendientes\", \"Inscritos\", \"Cursados\"]}}]',16,1),(55,'2023-05-27 18:38:54.328619','11','Notas object (11)',1,'[{\"added\": {}}]',24,1),(56,'2023-05-27 18:39:00.617908','11','Notas object (11)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(57,'2023-05-27 18:39:12.855415','11','Notas object (11)',2,'[]',24,1),(58,'2023-05-27 18:39:36.834289','1','Resumen_Creditos object (1)',3,'',16,1),(59,'2023-05-27 18:40:22.175249','4','Resumen_Creditos object (4)',1,'[{\"added\": {}}]',16,1),(60,'2023-05-27 18:40:36.858697','11','Inscripcion_cancelacion_grupo object (11)',1,'[{\"added\": {}}]',25,1),(61,'2023-05-27 18:41:52.854185','11','Notas object (11)',3,'',24,1),(62,'2023-05-27 18:42:02.009310','12','Notas object (12)',1,'[{\"added\": {}}]',24,1),(63,'2023-05-27 18:42:07.284758','12','Notas object (12)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(64,'2023-05-27 18:42:47.399340','12','Notas object (12)',2,'[]',24,1),(65,'2023-05-27 18:43:21.885480','1','Cupo_Creditos object (1)',2,'[{\"changed\": {\"fields\": [\"Creditos Disponibles\"]}}]',23,1),(66,'2023-05-27 18:43:32.157728','12','Notas object (12)',3,'',24,1),(67,'2023-05-27 18:43:46.890781','13','Notas object (13)',1,'[{\"added\": {}}]',24,1),(68,'2023-05-27 18:43:56.699187','13','Notas object (13)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(69,'2023-05-27 18:44:28.746446','13','Notas object (13)',2,'[]',24,1),(70,'2023-05-27 18:44:46.103315','13','Notas object (13)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(71,'2023-05-27 18:45:40.311305','1','Cupo_Creditos object (1)',2,'[{\"changed\": {\"fields\": [\"Creditos Disponibles\"]}}]',23,1),(72,'2023-05-27 18:46:05.425165','14','Notas object (14)',1,'[{\"added\": {}}]',24,1),(73,'2023-05-27 18:46:11.370184','14','Notas object (14)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(74,'2023-05-27 19:38:56.582892','1','Historial_Academico object (1)',3,'',14,1),(75,'2023-05-27 19:39:07.469656','2','Historial_Academico object (2)',1,'[{\"added\": {}}]',14,1),(76,'2023-05-27 19:42:23.744693','2','Historial_Academico object (2)',3,'',14,1),(77,'2023-05-27 19:47:12.539452','3','Historial_Academico object (3)',1,'[{\"added\": {}}]',14,1),(78,'2023-05-27 19:50:23.157035','3','Historial_Academico object (3)',3,'',14,1),(79,'2023-05-27 19:50:28.152726','4','Historial_Academico object (4)',1,'[{\"added\": {}}]',14,1),(80,'2023-05-27 19:50:59.555005','4','Historial_Academico object (4)',3,'',14,1),(81,'2023-05-27 19:51:06.180655','5','Historial_Academico object (5)',1,'[{\"added\": {}}]',14,1),(82,'2023-05-27 19:56:48.089302','2','Cita_Inscripcion object (2)',1,'[{\"added\": {}}]',8,1),(83,'2023-05-27 19:57:03.145498','2','Inscripcion_cancelacion object (2)',1,'[{\"added\": {}}]',20,1),(84,'2023-05-27 20:02:36.964285','17','Inscripcion_cancelacion_grupo object (17)',1,'[{\"added\": {}}]',25,1),(85,'2023-05-27 20:05:26.498417','22','Inscripcion_cancelacion_grupo object (22)',1,'[{\"added\": {}}]',25,1),(86,'2023-05-27 20:06:51.772849','15','Notas object (15)',1,'[{\"added\": {}}]',24,1),(87,'2023-05-27 20:07:08.520360','15','Notas object (15)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(88,'2023-05-27 20:10:01.376561','22','Inscripcion_cancelacion_grupo object (22)',3,'',25,1),(89,'2023-05-28 18:29:24.248264','3','Sergio',1,'[{\"added\": {}}]',4,1),(90,'2023-05-28 18:31:17.105988','1215','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(91,'2023-05-28 18:31:34.531049','1215','Nombre: Sergio ',3,'',19,1),(92,'2023-05-28 18:32:02.833803','13131','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(93,'2023-05-28 18:32:17.251657','13131','Nombre: Sergio ',3,'',19,1),(94,'2023-05-28 18:33:27.340454','21321313','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(95,'2023-05-28 19:43:12.827116','21321313','Nombre: Sergio ',3,'',19,1),(96,'2023-05-28 19:43:28.313477','312313','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(97,'2023-05-28 21:47:16.890907','3','Sergio',2,'[{\"changed\": {\"fields\": [\"password\"]}}]',4,1),(98,'2023-05-28 22:18:10.749710','1','estudiante object (1)',2,'[{\"changed\": {\"fields\": [\"Persona Vinculada\"]}}]',11,1),(99,'2023-05-28 22:18:14.738194','5','Historial_Academico object (5)',2,'[]',14,1),(100,'2023-05-28 22:19:14.346937','1','Residencia object (1)',1,'[{\"added\": {}}]',17,1),(101,'2023-05-28 22:22:45.488724','4','Daniel',1,'[{\"added\": {}}]',4,1),(102,'2023-05-28 22:22:57.611420','2','Pedro15',3,'',4,1),(103,'2023-05-28 22:23:11.027132','5','Daniela',1,'[{\"added\": {}}]',4,1),(104,'2023-05-28 22:23:23.221128','6','Camilo',1,'[{\"added\": {}}]',4,1),(105,'2023-05-28 22:23:48.224630','7','Diana',1,'[{\"added\": {}}]',4,1),(106,'2023-05-28 22:24:01.825325','8','Elizabeth',1,'[{\"added\": {}}]',4,1),(107,'2023-05-28 22:24:12.755409','9','Anna',1,'[{\"added\": {}}]',4,1),(108,'2023-05-28 22:24:23.504357','10','Andrea',1,'[{\"added\": {}}]',4,1),(109,'2023-05-28 22:24:29.708942','11','Alejandro',1,'[{\"added\": {}}]',4,1),(110,'2023-05-28 22:24:37.475337','12','Mauricio',1,'[{\"added\": {}}]',4,1),(111,'2023-05-28 22:26:10.040898','13','Antonia',1,'[{\"added\": {}}]',4,1),(112,'2023-05-28 22:26:24.980250','14','Antonio',1,'[{\"added\": {}}]',4,1),(113,'2023-05-28 22:26:44.748006','15','Gonzalo',1,'[{\"added\": {}}]',4,1),(114,'2023-05-28 22:27:32.124911','16','Leandro',1,'[{\"added\": {}}]',4,1);
+INSERT INTO `django_admin_log` VALUES (1,'2023-05-27 01:08:42.529901','3213131','Nombre: Juan ',1,'[{\"added\": {}}]',19,1),(2,'2023-05-27 01:08:49.379293','1','estudiante object (1)',1,'[{\"added\": {}}]',11,1),(3,'2023-05-27 01:09:05.964099','1','Sede object (1)',1,'[{\"added\": {}}]',15,1),(4,'2023-05-27 01:09:12.326499','1','Departamento object (1)',1,'[{\"added\": {}}]',9,1),(5,'2023-05-27 01:09:15.731276','1','Facultad object (1)',1,'[{\"added\": {}}]',12,1),(6,'2023-05-27 01:09:29.848128','313133','Programa object (313133)',1,'[{\"added\": {}}]',18,1),(7,'2023-05-27 01:09:33.142457','1','Historial_Academico object (1)',1,'[{\"added\": {}}]',14,1),(8,'2023-05-27 01:09:35.129070','1','Cita_Inscripcion object (1)',1,'[{\"added\": {}}]',8,1),(9,'2023-05-27 01:09:43.958513','1','Inscripcion_cancelacion object (1)',1,'[{\"added\": {}}]',20,1),(10,'2023-05-27 01:10:08.627194','2','Pedro15',1,'[{\"added\": {}}]',4,1),(11,'2023-05-27 01:10:24.081315','1323133','Nombre: Lucila ',1,'[{\"added\": {}}]',19,1),(12,'2023-05-27 01:10:29.487614','1','Docente object (1)',1,'[{\"added\": {}}]',10,1),(13,'2023-05-27 01:10:49.601078','1','Asignatura object (1)',1,'[{\"added\": {}}]',7,1),(14,'2023-05-27 01:10:56.343133','1','Grupo object (1)',1,'[{\"added\": {}}]',13,1),(15,'2023-05-27 01:10:58.687262','1','Inscripcion_cancelacion_grupo object (1)',1,'[{\"added\": {}}]',25,1),(16,'2023-05-27 01:14:41.494317','7','Notas object (7)',1,'[{\"added\": {}}]',24,1),(17,'2023-05-27 01:14:45.909729','7','Notas object (7)',3,'',24,1),(18,'2023-05-27 01:15:13.677298','8','Notas object (8)',1,'[{\"added\": {}}]',24,1),(19,'2023-05-27 01:16:22.158146','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(20,'2023-05-27 01:34:11.364857','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\", \"Nota Definitiva\"]}}]',24,1),(21,'2023-05-27 01:34:51.092457','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(22,'2023-05-27 01:40:47.315289','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(23,'2023-05-27 01:44:18.059657','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\"]}}]',24,1),(24,'2023-05-27 04:26:58.381068','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(25,'2023-05-27 04:27:04.264323','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(26,'2023-05-27 05:01:28.302853','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\"]}}]',24,1),(27,'2023-05-27 15:02:04.487584','2','Grupo object (2)',1,'[{\"added\": {}}]',13,1),(28,'2023-05-27 15:13:01.529980','2','Inscripcion_cancelacion_grupo object (2)',1,'[{\"added\": {}}]',25,1),(29,'2023-05-27 15:14:58.875261','2','Inscripcion_cancelacion_grupo object (2)',3,'',25,1),(30,'2023-05-27 15:39:05.550668','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\"]}}]',24,1),(31,'2023-05-27 15:39:15.683167','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(32,'2023-05-27 15:42:16.402404','8','Notas object (8)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\"]}}]',24,1),(33,'2023-05-27 15:43:33.776908','3','Inscripcion_cancelacion_grupo object (3)',3,'',25,1),(34,'2023-05-27 15:43:38.593671','5','Inscripcion_cancelacion_grupo object (5)',1,'[{\"added\": {}}]',25,1),(35,'2023-05-27 15:44:37.217663','5','Inscripcion_cancelacion_grupo object (5)',3,'',25,1),(36,'2023-05-27 15:44:41.726251','6','Inscripcion_cancelacion_grupo object (6)',1,'[{\"added\": {}}]',25,1),(37,'2023-05-27 15:45:53.311487','6','Inscripcion_cancelacion_grupo object (6)',3,'',25,1),(38,'2023-05-27 15:45:57.703539','7','Inscripcion_cancelacion_grupo object (7)',1,'[{\"added\": {}}]',25,1),(39,'2023-05-27 15:46:44.370585','7','Inscripcion_cancelacion_grupo object (7)',3,'',25,1),(40,'2023-05-27 15:46:54.795362','8','Inscripcion_cancelacion_grupo object (8)',1,'[{\"added\": {}}]',25,1),(41,'2023-05-27 15:47:07.093164','9','Inscripcion_cancelacion_grupo object (9)',1,'[{\"added\": {}}]',25,1),(42,'2023-05-27 15:48:17.691919','9','Inscripcion_cancelacion_grupo object (9)',3,'',25,1),(43,'2023-05-27 15:48:21.581545','10','Inscripcion_cancelacion_grupo object (10)',1,'[{\"added\": {}}]',25,1),(44,'2023-05-27 15:49:07.416574','1','Inscripcion_cancelacion_grupo object (1)',3,'',25,1),(45,'2023-05-27 18:32:49.052681','9','Notas object (9)',1,'[{\"added\": {}}]',24,1),(46,'2023-05-27 18:32:58.022577','9','Notas object (9)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(47,'2023-05-27 18:33:26.500263','9','Notas object (9)',2,'[]',24,1),(48,'2023-05-27 18:35:24.920260','10','Notas object (10)',1,'[{\"added\": {}}]',24,1),(49,'2023-05-27 18:35:33.095508','10','Notas object (10)',2,'[{\"changed\": {\"fields\": [\"Primer Corte\", \"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(50,'2023-05-27 18:36:27.655678','10','Notas object (10)',2,'[]',24,1),(51,'2023-05-27 18:38:03.376101','1','Cupo_Creditos object (1)',1,'[{\"added\": {}}]',23,1),(52,'2023-05-27 18:38:12.561535','10','Notas object (10)',3,'',24,1),(53,'2023-05-27 18:38:15.578794','9','Notas object (9)',3,'',24,1),(54,'2023-05-27 18:38:45.177504','1','Resumen_Creditos object (1)',2,'[{\"changed\": {\"fields\": [\"Creditos Exigidos\", \"Creditos Aprobados\", \"Pendientes\", \"Inscritos\", \"Cursados\"]}}]',16,1),(55,'2023-05-27 18:38:54.328619','11','Notas object (11)',1,'[{\"added\": {}}]',24,1),(56,'2023-05-27 18:39:00.617908','11','Notas object (11)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(57,'2023-05-27 18:39:12.855415','11','Notas object (11)',2,'[]',24,1),(58,'2023-05-27 18:39:36.834289','1','Resumen_Creditos object (1)',3,'',16,1),(59,'2023-05-27 18:40:22.175249','4','Resumen_Creditos object (4)',1,'[{\"added\": {}}]',16,1),(60,'2023-05-27 18:40:36.858697','11','Inscripcion_cancelacion_grupo object (11)',1,'[{\"added\": {}}]',25,1),(61,'2023-05-27 18:41:52.854185','11','Notas object (11)',3,'',24,1),(62,'2023-05-27 18:42:02.009310','12','Notas object (12)',1,'[{\"added\": {}}]',24,1),(63,'2023-05-27 18:42:07.284758','12','Notas object (12)',2,'[{\"changed\": {\"fields\": [\"Segundo Corte\", \"Tercer Corte\"]}}]',24,1),(64,'2023-05-27 18:42:47.399340','12','Notas object (12)',2,'[]',24,1),(65,'2023-05-27 18:43:21.885480','1','Cupo_Creditos object (1)',2,'[{\"changed\": {\"fields\": [\"Creditos Disponibles\"]}}]',23,1),(66,'2023-05-27 18:43:32.157728','12','Notas object (12)',3,'',24,1),(67,'2023-05-27 18:43:46.890781','13','Notas object (13)',1,'[{\"added\": {}}]',24,1),(68,'2023-05-27 18:43:56.699187','13','Notas object (13)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(69,'2023-05-27 18:44:28.746446','13','Notas object (13)',2,'[]',24,1),(70,'2023-05-27 18:44:46.103315','13','Notas object (13)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(71,'2023-05-27 18:45:40.311305','1','Cupo_Creditos object (1)',2,'[{\"changed\": {\"fields\": [\"Creditos Disponibles\"]}}]',23,1),(72,'2023-05-27 18:46:05.425165','14','Notas object (14)',1,'[{\"added\": {}}]',24,1),(73,'2023-05-27 18:46:11.370184','14','Notas object (14)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(74,'2023-05-27 19:38:56.582892','1','Historial_Academico object (1)',3,'',14,1),(75,'2023-05-27 19:39:07.469656','2','Historial_Academico object (2)',1,'[{\"added\": {}}]',14,1),(76,'2023-05-27 19:42:23.744693','2','Historial_Academico object (2)',3,'',14,1),(77,'2023-05-27 19:47:12.539452','3','Historial_Academico object (3)',1,'[{\"added\": {}}]',14,1),(78,'2023-05-27 19:50:23.157035','3','Historial_Academico object (3)',3,'',14,1),(79,'2023-05-27 19:50:28.152726','4','Historial_Academico object (4)',1,'[{\"added\": {}}]',14,1),(80,'2023-05-27 19:50:59.555005','4','Historial_Academico object (4)',3,'',14,1),(81,'2023-05-27 19:51:06.180655','5','Historial_Academico object (5)',1,'[{\"added\": {}}]',14,1),(82,'2023-05-27 19:56:48.089302','2','Cita_Inscripcion object (2)',1,'[{\"added\": {}}]',8,1),(83,'2023-05-27 19:57:03.145498','2','Inscripcion_cancelacion object (2)',1,'[{\"added\": {}}]',20,1),(84,'2023-05-27 20:02:36.964285','17','Inscripcion_cancelacion_grupo object (17)',1,'[{\"added\": {}}]',25,1),(85,'2023-05-27 20:05:26.498417','22','Inscripcion_cancelacion_grupo object (22)',1,'[{\"added\": {}}]',25,1),(86,'2023-05-27 20:06:51.772849','15','Notas object (15)',1,'[{\"added\": {}}]',24,1),(87,'2023-05-27 20:07:08.520360','15','Notas object (15)',2,'[{\"changed\": {\"fields\": [\"Tercer Corte\"]}}]',24,1),(88,'2023-05-27 20:10:01.376561','22','Inscripcion_cancelacion_grupo object (22)',3,'',25,1),(89,'2023-05-28 18:29:24.248264','3','Sergio',1,'[{\"added\": {}}]',4,1),(90,'2023-05-28 18:31:17.105988','1215','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(91,'2023-05-28 18:31:34.531049','1215','Nombre: Sergio ',3,'',19,1),(92,'2023-05-28 18:32:02.833803','13131','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(93,'2023-05-28 18:32:17.251657','13131','Nombre: Sergio ',3,'',19,1),(94,'2023-05-28 18:33:27.340454','21321313','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(95,'2023-05-28 19:43:12.827116','21321313','Nombre: Sergio ',3,'',19,1),(96,'2023-05-28 19:43:28.313477','312313','Nombre: Sergio ',1,'[{\"added\": {}}]',19,1),(97,'2023-05-28 21:47:16.890907','3','Sergio',2,'[{\"changed\": {\"fields\": [\"password\"]}}]',4,1),(98,'2023-05-28 22:18:10.749710','1','estudiante object (1)',2,'[{\"changed\": {\"fields\": [\"Persona Vinculada\"]}}]',11,1),(99,'2023-05-28 22:18:14.738194','5','Historial_Academico object (5)',2,'[]',14,1),(100,'2023-05-28 22:19:14.346937','1','Residencia object (1)',1,'[{\"added\": {}}]',17,1),(101,'2023-05-28 22:22:45.488724','4','Daniel',1,'[{\"added\": {}}]',4,1),(102,'2023-05-28 22:22:57.611420','2','Pedro15',3,'',4,1),(103,'2023-05-28 22:23:11.027132','5','Daniela',1,'[{\"added\": {}}]',4,1),(104,'2023-05-28 22:23:23.221128','6','Camilo',1,'[{\"added\": {}}]',4,1),(105,'2023-05-28 22:23:48.224630','7','Diana',1,'[{\"added\": {}}]',4,1),(106,'2023-05-28 22:24:01.825325','8','Elizabeth',1,'[{\"added\": {}}]',4,1),(107,'2023-05-28 22:24:12.755409','9','Anna',1,'[{\"added\": {}}]',4,1),(108,'2023-05-28 22:24:23.504357','10','Andrea',1,'[{\"added\": {}}]',4,1),(109,'2023-05-28 22:24:29.708942','11','Alejandro',1,'[{\"added\": {}}]',4,1),(110,'2023-05-28 22:24:37.475337','12','Mauricio',1,'[{\"added\": {}}]',4,1),(111,'2023-05-28 22:26:10.040898','13','Antonia',1,'[{\"added\": {}}]',4,1),(112,'2023-05-28 22:26:24.980250','14','Antonio',1,'[{\"added\": {}}]',4,1),(113,'2023-05-28 22:26:44.748006','15','Gonzalo',1,'[{\"added\": {}}]',4,1),(114,'2023-05-28 22:27:32.124911','16','Leandro',1,'[{\"added\": {}}]',4,1),(115,'2023-05-28 23:46:23.109752','88','Facultad object (88)',3,'',12,1),(116,'2023-05-28 23:46:23.115755','87','Facultad object (87)',3,'',12,1),(117,'2023-05-28 23:46:23.120301','86','Facultad object (86)',3,'',12,1),(118,'2023-05-28 23:46:23.124305','85','Facultad object (85)',3,'',12,1),(119,'2023-05-28 23:46:23.127308','84','Facultad object (84)',3,'',12,1),(120,'2023-05-28 23:46:23.129822','83','Facultad object (83)',3,'',12,1),(121,'2023-05-28 23:46:23.133321','82','Facultad object (82)',3,'',12,1),(122,'2023-05-28 23:46:23.136320','81','Facultad object (81)',3,'',12,1),(123,'2023-05-28 23:46:23.139322','80','Facultad object (80)',3,'',12,1),(124,'2023-05-28 23:46:23.143985','79','Facultad object (79)',3,'',12,1),(125,'2023-05-28 23:46:23.146986','78','Facultad object (78)',3,'',12,1),(126,'2023-05-28 23:46:23.149985','77','Facultad object (77)',3,'',12,1),(127,'2023-05-28 23:46:23.153542','76','Facultad object (76)',3,'',12,1),(128,'2023-05-28 23:46:23.156542','75','Facultad object (75)',3,'',12,1),(129,'2023-05-28 23:46:23.160543','74','Facultad object (74)',3,'',12,1),(130,'2023-05-28 23:46:23.164175','73','Facultad object (73)',3,'',12,1),(131,'2023-05-28 23:46:23.167176','72','Facultad object (72)',3,'',12,1),(132,'2023-05-28 23:46:23.170176','71','Facultad object (71)',3,'',12,1),(133,'2023-05-28 23:46:23.174791','70','Facultad object (70)',3,'',12,1),(134,'2023-05-28 23:46:23.177791','69','Facultad object (69)',3,'',12,1),(135,'2023-05-28 23:46:23.181791','68','Facultad object (68)',3,'',12,1),(136,'2023-05-28 23:46:23.184353','67','Facultad object (67)',3,'',12,1),(137,'2023-05-28 23:46:23.188358','66','Facultad object (66)',3,'',12,1),(138,'2023-05-28 23:46:23.190358','65','Facultad object (65)',3,'',12,1),(139,'2023-05-28 23:46:23.193875','64','Facultad object (64)',3,'',12,1),(140,'2023-05-28 23:46:23.196361','63','Facultad object (63)',3,'',12,1),(141,'2023-05-28 23:46:23.199360','62','Facultad object (62)',3,'',12,1),(142,'2023-05-28 23:46:23.202361','61','Facultad object (61)',3,'',12,1),(143,'2023-05-28 23:46:23.206563','60','Facultad object (60)',3,'',12,1),(144,'2023-05-28 23:46:23.209562','59','Facultad object (59)',3,'',12,1),(145,'2023-05-28 23:46:23.212564','58','Facultad object (58)',3,'',12,1),(146,'2023-05-28 23:46:23.216108','57','Facultad object (57)',3,'',12,1),(147,'2023-05-28 23:46:23.220113','56','Facultad object (56)',3,'',12,1),(148,'2023-05-28 23:46:23.224114','55','Facultad object (55)',3,'',12,1),(149,'2023-05-28 23:46:23.227675','54','Facultad object (54)',3,'',12,1),(150,'2023-05-28 23:46:23.231676','53','Facultad object (53)',3,'',12,1),(151,'2023-05-28 23:46:23.236674','52','Facultad object (52)',3,'',12,1),(152,'2023-05-28 23:46:23.239746','51','Facultad object (51)',3,'',12,1),(153,'2023-05-28 23:46:23.242747','50','Facultad object (50)',3,'',12,1),(154,'2023-05-28 23:46:23.244748','49','Facultad object (49)',3,'',12,1),(155,'2023-05-28 23:46:23.245747','48','Facultad object (48)',3,'',12,1),(156,'2023-05-28 23:46:23.249279','47','Facultad object (47)',3,'',12,1),(157,'2023-05-28 23:46:23.251902','46','Facultad object (46)',3,'',12,1),(158,'2023-05-28 23:46:23.254903','45','Facultad object (45)',3,'',12,1),(159,'2023-05-28 23:46:23.256902','44','Facultad object (44)',3,'',12,1),(160,'2023-05-28 23:46:23.260005','43','Facultad object (43)',3,'',12,1),(161,'2023-05-28 23:46:23.265006','42','Facultad object (42)',3,'',12,1),(162,'2023-05-28 23:46:23.267005','41','Facultad object (41)',3,'',12,1),(163,'2023-05-28 23:46:23.271560','40','Facultad object (40)',3,'',12,1),(164,'2023-05-28 23:46:23.273559','39','Facultad object (39)',3,'',12,1),(165,'2023-05-28 23:46:23.276560','38','Facultad object (38)',3,'',12,1),(166,'2023-05-28 23:46:23.279071','37','Facultad object (37)',3,'',12,1),(167,'2023-05-28 23:46:23.281416','36','Facultad object (36)',3,'',12,1),(168,'2023-05-28 23:46:23.283416','35','Facultad object (35)',3,'',12,1),(169,'2023-05-28 23:46:23.286417','34','Facultad object (34)',3,'',12,1),(170,'2023-05-28 23:46:23.289931','33','Facultad object (33)',3,'',12,1),(171,'2023-05-28 23:46:23.293974','32','Facultad object (32)',3,'',12,1),(172,'2023-05-28 23:46:23.296973','31','Facultad object (31)',3,'',12,1),(173,'2023-05-28 23:46:23.298974','30','Facultad object (30)',3,'',12,1),(174,'2023-05-28 23:46:23.302525','29','Facultad object (29)',3,'',12,1),(175,'2023-05-28 23:46:23.304525','28','Facultad object (28)',3,'',12,1),(176,'2023-05-28 23:46:23.306527','27','Facultad object (27)',3,'',12,1),(177,'2023-05-28 23:46:23.308527','26','Facultad object (26)',3,'',12,1),(178,'2023-05-28 23:46:23.311038','25','Facultad object (25)',3,'',12,1),(179,'2023-05-28 23:46:23.314069','24','Facultad object (24)',3,'',12,1),(180,'2023-05-28 23:46:23.316068','22','Facultad object (22)',3,'',12,1),(181,'2023-05-28 23:46:23.319067','21','Facultad object (21)',3,'',12,1),(182,'2023-05-28 23:46:23.320066','20','Facultad object (20)',3,'',12,1),(183,'2023-05-28 23:46:23.323599','19','Facultad object (19)',3,'',12,1),(184,'2023-05-28 23:46:23.326595','18','Facultad object (18)',3,'',12,1),(185,'2023-05-28 23:46:23.328596','17','Facultad object (17)',3,'',12,1),(186,'2023-05-28 23:46:23.330596','16','Facultad object (16)',3,'',12,1),(187,'2023-05-28 23:46:23.333649','15','Facultad object (15)',3,'',12,1),(188,'2023-05-28 23:46:23.336648','14','Facultad object (14)',3,'',12,1),(189,'2023-05-28 23:46:23.339648','13','Facultad object (13)',3,'',12,1),(190,'2023-05-28 23:46:23.341648','12','Facultad object (12)',3,'',12,1),(191,'2023-05-28 23:46:23.343218','11','Facultad object (11)',3,'',12,1),(192,'2023-05-28 23:46:23.346218','10','Facultad object (10)',3,'',12,1),(193,'2023-05-28 23:46:23.348218','9','Facultad object (9)',3,'',12,1),(194,'2023-05-28 23:46:23.351730','8','Facultad object (8)',3,'',12,1),(195,'2023-05-28 23:46:23.354921','7','Facultad object (7)',3,'',12,1),(196,'2023-05-28 23:46:23.360923','6','Facultad object (6)',3,'',12,1),(197,'2023-05-28 23:46:23.362924','5','Facultad object (5)',3,'',12,1),(198,'2023-05-28 23:46:23.365840','4','Facultad object (4)',3,'',12,1),(199,'2023-05-28 23:46:23.367840','3','Facultad object (3)',3,'',12,1),(200,'2023-05-28 23:46:23.370842','2','Facultad object (2)',3,'',12,1),(201,'2023-05-28 23:46:23.375361','1','Facultad object (1)',3,'',12,1),(202,'2023-05-30 23:32:37.783832','1','Estudiante',1,'[{\"added\": {}}]',3,1),(203,'2023-05-30 23:32:48.510966','1','root',2,'[]',4,1),(204,'2023-05-30 23:36:49.620091','1','root',2,'[]',4,1),(205,'2023-05-30 23:37:21.027845','2','Prueba',1,'[{\"added\": {}}]',3,1),(206,'2023-05-30 23:37:30.889056','1','root',2,'[{\"changed\": {\"fields\": [\"Groups\"]}}]',4,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,7 +461,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('pl2cnvxujpm5ohktrhogk1ncpwlvllnr','.eJxVy0sKwjAUheG9ZCwlNw9MHAquI9xXSNAqmHYk7t0KHej0O-d_mYLr0so69Fm6mJMBc_g1Qr7q_Tsgo-jc-THtNqbLjP123h9_WcPRtsalypYRbOUkjFhzjNm6BEdMgSES-UQiwdmqWjOFYD1EJCW3mRfz_gCJtDSO:1q3OeI:O9pZ4Ts7ovtbn3_L5ec8ztnCe7K3_EfK-lo6InPZT0o','2023-06-11 22:14:02.187776'),('u7dy5z5mobprldt4lk9fhqad3qqwfsah','.eJxVjMsOwiAUBf-FtSE8I7h07zeQ-wCpGkhKuzL-u23ShW5n5py3SLAuNa0jz2licRFanH4ZAj1z2wU_oN27pN6WeUK5J_KwQ94659f1aP8OKoy6rU0opAi0KhSYAEr0PioT9BmCI-0RbUBmZ1TJuUR0TlntATOajVkWny__1zhz:1q2hvz:Esp_18aB2459x1vGcHgFgTmD2xodvgyhlZQpRf6ahrw','2023-06-10 00:37:27.623153');
+INSERT INTO `django_session` VALUES ('1op7yepo888mqs66h13oozdeglzy04su','.eJxVy0sKwjAUheG9ZCwlNw9MHAquI9xXSNAqmHYk7t0KHej0O-d_mYLr0so69Fm6mJMBc_g1Qr7q_Tsgo-jc-THtNqbLjP123h9_WcPRtsalypYRbOUkjFhzjNm6BEdMgSES-UQiwdmqWjOFYD1EJCW3mRfz_gCJtDSO:1q48te:XMY_kpJWb8NkW2RR--V_SgX1aoWus_9LxAcRz9qKmFY','2023-06-13 23:36:58.977101'),('ezqfhgqgzf57r9mdovioi1dpaphh36sv','.eJxVy0sKwjAUheG9ZCwlNw9MHAquI9xXSNAqmHYk7t0KHej0O-d_mYLr0so69Fm6mJMBc_g1Qr7q_Tsgo-jc-THtNqbLjP123h9_WcPRtsalypYRbOUkjFhzjNm6BEdMgSES-UQiwdmqWjOFYD1EJCW3mRfz_gCJtDSO:1q43Fb:_NfRGSI7QIGgpBsPvicG5DuyqCjP0n8sIHZyAYkSe88','2023-06-13 17:35:15.182759'),('u7dy5z5mobprldt4lk9fhqad3qqwfsah','.eJxVjMsOwiAUBf-FtSE8I7h07zeQ-wCpGkhKuzL-u23ShW5n5py3SLAuNa0jz2licRFanH4ZAj1z2wU_oN27pN6WeUK5J_KwQ94659f1aP8OKoy6rU0opAi0KhSYAEr0PioT9BmCI-0RbUBmZ1TJuUR0TlntATOajVkWny__1zhz:1q2hvz:Esp_18aB2459x1vGcHgFgTmD2xodvgyhlZQpRf6ahrw','2023-06-10 00:37:27.623153');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -536,8 +534,9 @@ CREATE TABLE `facultad` (
   `Sede_id` int NOT NULL,
   PRIMARY KEY (`Id_Facultad`),
   KEY `Facultad_Sede_id_6a437dd7_fk_Sede_ID_sede` (`Sede_id`),
+  KEY `busqueda_facultad` (`Id_Facultad`,`Nombre`),
   CONSTRAINT `Facultad_Sede_id_6a437dd7_fk_Sede_ID_sede` FOREIGN KEY (`Sede_id`) REFERENCES `sede` (`ID_sede`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +545,7 @@ CREATE TABLE `facultad` (
 
 LOCK TABLES `facultad` WRITE;
 /*!40000 ALTER TABLE `facultad` DISABLE KEYS */;
-INSERT INTO `facultad` VALUES (1,'Ingenieria',1),(2,'Antropología',1),(3,'Arquitectura',1),(4,'Arquitectura',3),(5,'Arquitectura',2),(6,'Artes Plásticas',1),(7,'Artes Plásticas',2),(8,'Cine y Televisión',1),(9,'Diseño Gráfico',1),(10,'Diseño Industrial',1),(11,'Diseño Industrial',6),(12,'Música',1),(13,'Música Instrumental',1),(14,'Construcción',2),(15,'Estudios Literarios',1),(16,'Filología e Idiomas',1),(17,'Filología e Idiomas',1),(18,'Filología e Idiomas',1),(19,'Filosofía',1),(20,'Español y Filología Clásica',1),(21,'Física',1),(22,'Biología',1),(24,'Estadística',8),(25,'Biología',8),(26,'Economía',2),(27,'Economía',1),(28,'Contaduría Pública',1),(29,'Administración de Empresas',1),(30,'Administración de Empresas',6),(31,'Administración de Empresas',3),(32,'Administración de Empresas',3),(33,'Administración de Sistemas Informáticos',3),(34,'Gestión Cultural y Comunicativa',3),(35,'Gestión Cultural y Comunicativa',8),(36,'Medicina',1),(37,'Medicina Veterinaria',1),(38,'Nutrición y Dietética',1),(39,'Fonoaudiología',1),(40,'Terapia Ocupacional',1),(41,'Fisioterapia',1),(42,'Odontología',1),(43,'Zootecnia',2),(44,'Zootecnia',6),(45,'Zootecnia',1),(46,'Ingeniería Agronómica',1),(47,'Ingeniería Agronómica',6),(48,'Ingeniería Agronómica',2),(49,'Enfermería',1),(50,'Derecho',1),(51,'Ciencia Política',2),(52,'Ciencia Política',1),(53,'Ingeniería Administrativa',2),(54,'Ingeniería Agrícola',6),(55,'Ingeniería Agrícola',1),(56,'Ingeniería Agrícola',2),(57,'Ingeniería Agroindustrial',6),(58,'Ingeniería Ambiental',2),(59,'Ingeniería Ambiental',6),(60,'Ingeniería Biológica',2),(61,'Ingeniería Biológica',8),(62,'Ingeniería Civil',2),(63,'Ingeniería Civil',1),(64,'Ingeniería Civil',3),(65,'Ingeniería de Control',2),(66,'Ingeniería de Minas y Metalurgia',2),(67,'Ingeniería de Petróleos',2),(68,'Ingeniería de Sistemas e Informática',2),(69,'Ingeniería de Sistemas y Computación',1),(70,'Ingeniería Eléctrica',2),(71,'Ingeniería Eléctrica',1),(72,'Ingeniería Eléctrica',3),(73,'Ingeniería Electrónica',1),(74,'Ingeniería Electrónica',3),(75,'Ingeniería Física',3),(76,'Ingeniería Física',2),(77,'Ingeniería Forestal',2),(78,'Ingeniería Geológica',2),(79,'Ingeniería Industrial',2),(80,'Ingeniería Industrial',1),(81,'Ingeniería Industrial',3),(82,'Ingeniería Mecánica',2),(83,'Ingeniería Mecánica',1),(84,'Ingeniería Mecatrónica',1),(85,'Ingeniería Mecatrónica',8),(86,'Ingeniería Química',2),(87,'Ingeniería Química',1),(88,'Ingeniería Química',3);
+INSERT INTO `facultad` VALUES (89,'Artes',1),(90,'Artes',2),(91,'Artes',3),(92,'Artes',4),(93,'Artes',5),(94,'Artes',6),(95,'Artes',7),(96,'Artes',8),(97,'Ciencias Humanas',1),(98,'Ciencias Humanas',2),(99,'Ciencias Humanas',3),(100,'Ciencias Humanas',4),(101,'Ciencias Humanas',5),(102,'Ciencias Humanas',6),(103,'Ciencias Humanas',7),(104,'Ciencias Humanas',8),(105,'Ingeneria',1),(106,'Ingeneria',2),(107,'Ingeneria',3),(108,'Ingeneria',4),(109,'Ingeneria',5),(110,'Ingeneria',6),(111,'Ingeneria',7),(112,'Ingeneria',8),(113,'Ciencias',1),(114,'Ciencias',2),(115,'Ciencias',3),(116,'Ciencias',4),(117,'Ciencias',5),(118,'Ciencias',6),(119,'Ciencias',7),(120,'Ciencias',8),(121,'Ciencias Económicas',1),(122,'Ciencias Económicas',2),(123,'Ciencias Económicas',3),(124,'Ciencias Económicas',4),(125,'Ciencias Económicas',5),(126,'Ciencias Económicas',6),(127,'Ciencias Económicas',7),(128,'Ciencias Económicas',8),(129,'Medicina',1),(130,'Odontologia',1),(131,'Medicina Veterinaria y Zootecnia',1),(132,'Medicina Veterinaria y Zootecnia',2),(133,'Medicina Veterinaria y Zootecnia',3),(134,'Ciencias Agrarias',1),(135,'Ciencias Agrarias',2),(136,'Ciencias Agrarias',3),(137,'Enfermeria',1),(138,'Derecho, Ciencias politicas y sociales',1),(139,'Derecho, Ciencias politicas y sociales',2);
 /*!40000 ALTER TABLE `facultad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -609,7 +608,6 @@ CREATE TABLE `historial_academico` (
 
 LOCK TABLES `historial_academico` WRITE;
 /*!40000 ALTER TABLE `historial_academico` DISABLE KEYS */;
-INSERT INTO `historial_academico` VALUES (5,0,0,0,1,1,313133);
 /*!40000 ALTER TABLE `historial_academico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -637,7 +635,6 @@ CREATE TABLE `inscripcion_cancelacion` (
 
 LOCK TABLES `inscripcion_cancelacion` WRITE;
 /*!40000 ALTER TABLE `inscripcion_cancelacion` DISABLE KEYS */;
-INSERT INTO `inscripcion_cancelacion` VALUES (2,2,2,2);
 /*!40000 ALTER TABLE `inscripcion_cancelacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -814,7 +811,6 @@ CREATE TABLE `programa` (
 
 LOCK TABLES `programa` WRITE;
 /*!40000 ALTER TABLE `programa` DISABLE KEYS */;
-INSERT INTO `programa` VALUES (313133,'Ingenieria de sistemas',166,'pregrado',1);
 /*!40000 ALTER TABLE `programa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -875,7 +871,6 @@ CREATE TABLE `resumen_credito` (
 
 LOCK TABLES `resumen_credito` WRITE;
 /*!40000 ALTER TABLE `resumen_credito` DISABLE KEYS */;
-INSERT INTO `resumen_credito` VALUES (8,166,3,0,3,0,5);
 /*!40000 ALTER TABLE `resumen_credito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -904,6 +899,51 @@ INSERT INTO `sede` VALUES (1,'Bogota'),(2,'Medellin'),(3,'Manizales'),(4,'Amazon
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `vst_docente_datos`
+--
+
+DROP TABLE IF EXISTS `vst_docente_datos`;
+/*!50001 DROP VIEW IF EXISTS `vst_docente_datos`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vst_docente_datos` AS SELECT 
+ 1 AS `Documento`,
+ 1 AS `Tipo_Documento`,
+ 1 AS `Nombre`,
+ 1 AS `Apellido`,
+ 1 AS `Correo_Personal`,
+ 1 AS `Correo_institucional`,
+ 1 AS `Telefono`,
+ 1 AS `usuario`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vst_docente_nota`
+--
+
+DROP TABLE IF EXISTS `vst_docente_nota`;
+/*!50001 DROP VIEW IF EXISTS `vst_docente_nota`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vst_docente_nota` AS SELECT 
+ 1 AS `Numero_grupo`,
+ 1 AS `nombre_asignatura`,
+ 1 AS `Codigo`,
+ 1 AS `Dia`,
+ 1 AS `hora`,
+ 1 AS `Edificio`,
+ 1 AS `Salon`,
+ 1 AS `nombre_estudiante`,
+ 1 AS `Apellido`,
+ 1 AS `Documento`,
+ 1 AS `Primer_Corte`,
+ 1 AS `Segundo_Corte`,
+ 1 AS `Tercer_Corte`,
+ 1 AS `Nota_Definitiva`,
+ 1 AS `usuario`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `vst_estuidiante_datos`
 --
 
@@ -927,6 +967,84 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `vst_inscripcion`
+--
+
+DROP TABLE IF EXISTS `vst_inscripcion`;
+/*!50001 DROP VIEW IF EXISTS `vst_inscripcion`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vst_inscripcion` AS SELECT 
+ 1 AS `Plan_de_estudio`,
+ 1 AS `Fecha`,
+ 1 AS `Hora`,
+ 1 AS `userid`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vts_resumen_historial`
+--
+
+DROP TABLE IF EXISTS `vts_resumen_historial`;
+/*!50001 DROP VIEW IF EXISTS `vts_resumen_historial`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vts_resumen_historial` AS SELECT 
+ 1 AS `Nombre`,
+ 1 AS `Creditos`,
+ 1 AS `Tipologia`,
+ 1 AS `Semestre`,
+ 1 AS `Nota_Definitiva`,
+ 1 AS `Aprobada`,
+ 1 AS `Creditos_Adicionales`,
+ 1 AS `Cupo_Creditos`,
+ 1 AS `Disponibles`,
+ 1 AS `Creditos_Doble_titulacion`,
+ 1 AS `Creditos_Exigidos`,
+ 1 AS `Creditos_Aprobados`,
+ 1 AS `Pendientes`,
+ 1 AS `Inscritos`,
+ 1 AS `Cursados`,
+ 1 AS `usuario`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `vst_docente_datos`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vst_docente_datos`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vst_docente_datos` AS select `persona_vinculada`.`Documento` AS `Documento`,`persona_vinculada`.`Tipo_Documento` AS `Tipo_Documento`,`persona_vinculada`.`Nombre` AS `Nombre`,`persona_vinculada`.`Apellido` AS `Apellido`,`persona_vinculada`.`Correo_Personal` AS `Correo_Personal`,`persona_vinculada`.`Correo_institucional` AS `Correo_institucional`,`persona_vinculada`.`Telefono` AS `Telefono`,`persona_vinculada`.`Usuario_id` AS `usuario` from (`persona_vinculada` join `docente` on((`docente`.`Persona_Vinculada_id` = `persona_vinculada`.`Documento`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vst_docente_nota`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vst_docente_nota`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vst_docente_nota` AS select `grupo`.`Numero_grupo` AS `Numero_grupo`,`asignatura`.`Nombre` AS `nombre_asignatura`,`asignatura`.`Codigo` AS `Codigo`,`academico_espacio`.`Dia` AS `Dia`,`academico_espacio`.`Hora` AS `hora`,`academico_espacio`.`Edificio` AS `Edificio`,`academico_espacio`.`Salon` AS `Salon`,`persona_estudiante`.`Nombre` AS `nombre_estudiante`,`persona_estudiante`.`Apellido` AS `Apellido`,`persona_estudiante`.`Documento` AS `Documento`,`notas`.`Primer_Corte` AS `Primer_Corte`,`notas`.`Segundo_Corte` AS `Segundo_Corte`,`notas`.`Tercer_Corte` AS `Tercer_Corte`,`notas`.`Nota_Definitiva` AS `Nota_Definitiva`,`persona_vinculada`.`Usuario_id` AS `usuario` from ((((((((((`persona_vinculada` join `docente` on((`docente`.`Persona_Vinculada_id` = `persona_vinculada`.`Documento`))) join `grupo` on((`docente`.`Id_docente` = `grupo`.`Profesor_id`))) join `academico_espacio` on((`grupo`.`Id_grupo` = `academico_espacio`.`Grupo_id`))) join `asignatura` on((`grupo`.`Asignatura_id` = `asignatura`.`Codigo`))) join `inscripcion_cancelacion_grupo` on((`grupo`.`Id_grupo` = `inscripcion_cancelacion_grupo`.`Grupo_id`))) join `notas` on((`inscripcion_cancelacion_grupo`.`Id` = `notas`.`Inscripcion_id`))) join `notas_historial` on((`notas_historial`.`historial_academico_id` = `notas`.`Id_Nota`))) join `historial_academico` on((`historial_academico`.`Id_Historial` = `notas_historial`.`historial_academico_id`))) join `estudiante` on((`estudiante`.`Id_estudiante` = `historial_academico`.`Estudiante_id`))) join `persona_vinculada` `persona_estudiante` on((`persona_estudiante`.`Documento` = `estudiante`.`Persona_Vinculada_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vst_estuidiante_datos`
 --
 
@@ -943,6 +1061,42 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vst_inscripcion`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vst_inscripcion`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vst_inscripcion` AS select `programa`.`Nombre` AS `Plan_de_estudio`,`cita_inscripcion`.`Fecha` AS `Fecha`,`cita_inscripcion`.`Hora` AS `Hora`,`persona_vinculada`.`Usuario_id` AS `userid` from ((((`persona_vinculada` join `estudiante` on((`estudiante`.`Persona_Vinculada_id` = `persona_vinculada`.`Documento`))) join `historial_academico` on((`estudiante`.`Id_estudiante` = `historial_academico`.`Estudiante_id`))) join `programa` on((`programa`.`Codigo_SNIES` = `historial_academico`.`Programa_id`))) join `cita_inscripcion` on((`historial_academico`.`Id_Historial` = `cita_inscripcion`.`Historial_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vts_resumen_historial`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vts_resumen_historial`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vts_resumen_historial` AS select `asignatura`.`Nombre` AS `Nombre`,`asignatura`.`Creditos` AS `Creditos`,`asignatura`.`Tipologia` AS `Tipologia`,`inscripcion_cancelacion`.`Semestre` AS `Semestre`,`notas`.`Nota_Definitiva` AS `Nota_Definitiva`,`notas`.`Aprobada` AS `Aprobada`,`cupo_credito`.`Creditos_Adicionales` AS `Creditos_Adicionales`,`cupo_credito`.`Cupo_Creditos` AS `Cupo_Creditos`,`cupo_credito`.`Creditos_Disponibles` AS `Disponibles`,`cupo_credito`.`Creditos_Doble_titulacion` AS `Creditos_Doble_titulacion`,`resumen_credito`.`Creditos_Exigidos` AS `Creditos_Exigidos`,`resumen_credito`.`Creditos_Aprobados` AS `Creditos_Aprobados`,`resumen_credito`.`Pendientes` AS `Pendientes`,`resumen_credito`.`Inscritos` AS `Inscritos`,`resumen_credito`.`Cursados` AS `Cursados`,`persona_vinculada`.`Usuario_id` AS `usuario` from (((((((((((`persona_vinculada` join `estudiante` on((`estudiante`.`Persona_Vinculada_id` = `persona_vinculada`.`Documento`))) join `historial_academico` on((`historial_academico`.`Estudiante_id` = `estudiante`.`Id_estudiante`))) join `resumen_credito` on((`resumen_credito`.`Historial_id` = `historial_academico`.`Id_Historial`))) join `cupo_credito` on((`cupo_credito`.`Historial_id` = `historial_academico`.`Id_Historial`))) join `programa` on((`programa`.`Codigo_SNIES` = `historial_academico`.`Programa_id`))) join `notas_historial` on((`notas_historial`.`historial_academico_id` = `historial_academico`.`Id_Historial`))) join `notas` on((`notas`.`Id_Nota` = `notas_historial`.`notas_id`))) join `inscripcion_cancelacion_grupo` on((`inscripcion_cancelacion_grupo`.`Id` = `notas`.`Inscripcion_id`))) join `inscripcion_cancelacion` on((`inscripcion_cancelacion`.`Id_incripcion` = `inscripcion_cancelacion_grupo`.`Inscripcion_id`))) join `grupo` on((`grupo`.`Id_grupo` = `inscripcion_cancelacion_grupo`.`Grupo_id`))) join `asignatura` on((`asignatura`.`Codigo` = `grupo`.`Asignatura_id`))) where (`persona_vinculada`.`Correo_Personal` = current_user()) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -953,4 +1107,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-28 18:44:12
+-- Dump completed on 2023-05-30 19:16:28

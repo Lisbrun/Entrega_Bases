@@ -3,7 +3,7 @@ from .models import *
 # Register your models here.
 @admin.register(Persona_vinculada)
 class Admin_persona(admin.ModelAdmin):
-    exclude=('Correo_institucional',)
+    readonly_fields=('Correo_institucional',)
     
 
 @admin.register(estudiante)
