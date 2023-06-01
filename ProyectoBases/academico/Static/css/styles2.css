@@ -12,19 +12,29 @@
     list-style: none;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    overflow-x: clip;
+}
+
+footer{
+    width: 100vw;
+}
 
 header{
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 20000;
-    width: 96%;
+    width: 100%; /*??????????????*/
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px;
+    
     background-color:var(--background_color) ;
-    border-radius: 20px ;
-    height: 16px;
+    
+    height: 30px 0 30px 0;
 }
 
 .header-contain{
@@ -107,13 +117,6 @@ header{
 }
 
 
-.fondo{
-    height: 100vh;
-    width: 100%;
-    background-image: url(../images/Enfermeria.jpg);
-    background-size:  100% 100%;
-    position: relative;
-}
 .img-contain{
     width: 75px;
     height: 75px;
@@ -216,4 +219,24 @@ header{
     width: 20px;
     height: 20px;
     z-index: 200000;
+}
+
+
+.fondo{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../images/Enfermeria.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.Popup{
+    background-color: aqua;
+    
+    max-width: 50vw;
 }

@@ -9,23 +9,27 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 def proceso(id):
     with connection.cursor() as cursor:
-        cursor.execute("call personavinculada(%s)",[id])
+        cursor.execute("call mostrar_Datos(%s)",[id])
         resultado = cursor.fetchone()
         return resultado
 
 def main(request):
-    user_id = request.user.id
-    resultado =proceso(user_id)
+    
     if request.user.groups.filter(name__in=['Estudiante']):
-        return render(request,'academico/Estudiante.html',{'Datos':resultado})
+        return redirect('Estudiante')
     elif request.user.groups.filter(name__in=['Profesor']):
-        
-        return render(request,'academico/Profesor.html',{'Datos':resultado})
-
+        return redirect('Profesor')
     else: 
         HttpResponse("No tiene permisos para acceder a esta pagina")
 
+def Profesor(request):
+    return render(request,'academico/Profesor.html')
 
+def Estudiante(request):
+    user_id = request.user.id
+    resultado =proceso(user_id)
+    print(resultado)
+    return render(request,'academico/Estudiante.html')
 
 def registro(request):
     if request.method =="POST":
@@ -51,6 +55,8 @@ def salir(request):
 
 def DatosPersonales(request):
     pass
+    
+    
 def Historia_Academica(request):
     pass
 def Calificaciones(request):

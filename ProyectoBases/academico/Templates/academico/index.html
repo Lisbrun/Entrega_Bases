@@ -20,28 +20,39 @@
 </head>
 
 <body>
+    
+    <header class="header">
+        <div class="header-contain">
+            <div class="img-contain">
+                <img src="{% static 'images/logo2.png' %}" alt="">
+            </div>
+
+            {% block content %}
+
+            {% endblock%}
+        </div>
+
+        <div class="logout">
+            <a href="{% url 'salir' %}"> <i class='bx bx-user'></i> </a>
+        </div>
+
+    </header>   
     <div class="fondo">
-        <header class="header">
-            <div class="header-contain">
-                <div class="img-contain">
-                    <img src="{% static 'images/logo2.png' %}" alt="">
-                </div>
+        <div class="Popup" id="Queso">
+            <div>
+                Mscsrroness
+                asjkdhaskjd
+                <aside>as
+                    <datagrid><s><aside><datagrid>sd
 
-                {% block content %}
-
-                {% endblock%}
+                        <aside><a href="d
+                            as
+                            asd"></a></aside>
+                    </datagrid></aside></s></datagrid>
+                </aside>
             </div>
-
-            <div class="logout">
-                <a href="{% url 'salir' %}"> <i class='bx bx-user'></i> </a>
-            </div>
-
-        </header>
+        </div>
     </div>
-
-    </div>
-
-
     <footer>
         <div class="contact">
             <div class="main">

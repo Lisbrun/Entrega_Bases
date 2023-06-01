@@ -3,7 +3,10 @@
     --background_color:rgba(158 , 179,62,100);
     --h2_letras: 'Poppins', sans-serif;
 }
-
+body{
+    display: flex;
+    flex-direction: column;
+}
 *{
     margin: 0;
     padding: 0;

@@ -165,7 +165,7 @@ class Historial_Academico(models.Model):
     Pa = models.FloatField(default=0.0 )
     Estudiante = models.ForeignKey(estudiante,on_delete=models.CASCADE)
     Matriculas = models.IntegerField()
-    Programa = models.OneToOneField(Programa,on_delete=models.CASCADE)
+    Programa = models.ForeignKey(Programa,on_delete=models.CASCADE)
     
     class Meta:
         db_table='Historial_Academico'
