@@ -119,15 +119,21 @@ header{
 }
 
 
+
 .img-contain{
-    width: 75px;
-    height: 75px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
+.img-contain >h2{
+    color: #fff;
+    font-size: 1.5em;
+}
 .img-contain img { 
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 75px;
 }
 
 

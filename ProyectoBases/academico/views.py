@@ -38,6 +38,13 @@ def Crear_Inscripcion(id):
     with connection.cursor() as cursor:
         cursor.execute("call Crear_Inscripcion(%s)",[id])  
     
+def inscripcion_cancelacion(id):
+    with connection.cursor() as cursor:
+        cursor.execute("call obtener_inscripcion(%s)",[id])
+        resultado = cursor.fetchone()
+        return resultado
+        
+
 def main(request):
     if request.user.groups.filter(name__in=['Estudiante']):
         return redirect('Estudiante')
@@ -111,5 +118,6 @@ def Calificaciones(request):
 
 
 def Inscripion(request,id_cita):
-    return render (request,'academico/inscripcion/Inscripcion.html')
+    resultado2 = inscripcion_cancelacion(id_cita)
+    return render (request,'academico/inscripcion/Inscripcion.html', {"resultado":resultado2})
     
