@@ -4,6 +4,7 @@
     --background_color:rgba(158 , 179,62,100);
     --h2_letras: 'Poppins', sans-serif;
     --h3_letras : 'Open Sans', sans-serif;
+    --footer: #181818;
 }
 
 *{
@@ -241,7 +242,7 @@ header{
     padding: 30px 40px;
     border-radius: 20px;
     max-width: 50vw;
-    max-height: 65vh;
+    max-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,13 +252,11 @@ header{
 }
 
 
-.Popup h2{
+.Popup> h2{
     margin-bottom: 30px;
     font-family: var(--h2_letras);
     font-size: 1.5rem;
     font-weight: 600;
-
-
 }
 
 .info-personal{
@@ -307,7 +306,7 @@ header{
 }
 
 
-.
+
 .info-texts > h5{
     font-family: var(--h3_letras);
     font-size: 1.5rem;
@@ -349,4 +348,91 @@ header{
     transition: transform .3s;
     color: #fff;
     cursor: pointer;
+}
+
+
+.container-inscripcion{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-height: auto;
+}
+
+.container-inscripcion > h3{
+    font-family: var(--h3_letras);
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.info-inscripcion{
+    min-width: 500px;
+}
+.container-inscripcion  .info-carrera{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-inscripcion  .info-carrera > select{
+    flex-grow: 1;
+}
+
+.info-inscripcion > h3{
+    font-family: var(--h3_letras);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.info-inscripcion-info{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 20px 0 20px;
+}
+.info-inscripcion-info >p{
+    font-family: var(--h3_letras);
+    font-size: .8rem;
+    letter-spacing: 1.2px;
+}
+.container-info >p{
+    margin-bottom: 5px;
+    color : #000;
+    font-family: var(--h3_letras);
+    font-size: .9rem;
+    letter-spacing: 1.2px;
+}
+.container-submit > a{
+    color : #000;
+    padding: 10px 15px;
+    background-color: var(--background_color);
+    border-radius: 20px;
+}
+
+.container-submit > a:hover{
+    color: #fff;
+}
+
+.info-carrera > h3{
+    font-family: var(--h3_letras);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.info-carrera > button{
+    color : #fff;
+    padding: 10px 15px;
+    background-color: var(--footer);
+    border-radius: 20px;
+}
+.info-carrera > button:hover{
+    cursor: pointer;
+}
+
+.info-carrera > select{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
 }

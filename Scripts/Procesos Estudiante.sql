@@ -1,7 +1,8 @@
 -- Vista datos personales docente
 Drop view if exists vst_Docente_datos;
 Create view vst_Docente_datos as
-SELECT Documento, Tipo_Documento, persona_vinculada.Nombre, persona_vinculada.Apellido, Correo_Personal, Correo_institucional, Telefono, 
+SELECT Documento, Tipo_Documento, persona_vinculada.Nombre, persona_vinculada.Apellido
+, Correo_Personal, Correo_institucional, Telefono, 
 	   persona_vinculada.Usuario_id AS usuario
        from persona_vinculada
        join docente on (Persona_Vinculada_id = Documento)

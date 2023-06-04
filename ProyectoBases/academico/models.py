@@ -43,7 +43,9 @@ class estudiante (models.Model):
         db_table ='Estudiante'
         verbose_name = 'Estudiante'
         verbose_name_plural= 'Estudiantes'
-        
+    
+    def __str__(self):
+        return "Nombre: {} ".format(self.Persona_Vinculada.Nombre)
         
         
         
@@ -172,6 +174,8 @@ class Historial_Academico(models.Model):
         verbose_name = 'Historial_Academico'
         verbose_name_plural = 'Historiales_Academicos'
         
+    def __str__(self):
+        return "Historial de "+self.Estudiante.Persona_Vinculada.Nombre+" "+self.Estudiante.Persona_Vinculada.Apellido
         
 class Cupo_Creditos(models.Model):
     Creditos_Adicionales = models.IntegerField(default=0)
@@ -212,10 +216,13 @@ class Cita_Inscripcion (models.Model):
         verbose_name = 'Cita_Inscripcion'
         verbose_name_plural = 'Citas_Inscripcion'
         
+    def __str__(self) -> str:
+        return "Cita de "+self.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Historial.Estudiante.Persona_Vinculada.Apellido
+        
 class Inscripcion_cancelacion(models.Model):
     Id_incripcion = models.AutoField(primary_key=True,unique=True)
-    Creditos_Disponibles = models.IntegerField()
-    Semestre = models.IntegerField()
+    Creditos_Disponibles = models.IntegerField(null=True, blank=True)
+    Semestre = models.IntegerField(null=True, blank=True)
     Cita = models.OneToOneField(Cita_Inscripcion,on_delete=models.CASCADE)
     class Meta:
         db_table='Inscripcion_cancelacion'
@@ -277,3 +284,13 @@ class Pago_Semestre(models.Model):
         verbose_name_plural = 'Pagos_Semestre'
         
         
+
+class Prerequisito(models.Model):
+    Id_Prerequisito = models.AutoField(primary_key=True,unique=True)
+    Materia = models.ForeignKey(Asignatura,on_delete=models.CASCADE)
+    Prerequisito = models.ForeignKey(Asignatura,on_delete=models.CASCADE,related_name='Prerequisito')
+    
+    class Meta:
+        db_table = 'Prerequisito'
+        verbose_name = 'Prerequisito'
+        verbose_name_plural = 'Prerequisitos'

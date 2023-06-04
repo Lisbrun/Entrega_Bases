@@ -5,6 +5,8 @@ from django.contrib.auth import login,logout, authenticate
 from django.http import HttpResponse    
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
+from datetime import date
+
 #trae user
 # Create your views here.
 def procesoEstudiante(id):
@@ -17,8 +19,26 @@ def actualizarestudiante(id,direccion,telefono,correo,estrato,ciudad):
     with connection.cursor() as cursor:
         cursor.execute("call Actualizar_Datos(%s,%s,%s,%s,%s,%s)",[id,correo,telefono,estrato,ciudad,direccion])
         
-def main(request):
+        
+def mostrarCitas(id):
+    with connection.cursor() as cursor:
+        cursor.execute("call mostrar_proximas_citas(%s)",[id])
+        resultado = cursor.fetchone()
+        return resultado
     
+    
+def mostrar_proximas_citas(id):
+    with connection.cursor() as cursor:
+        cursor.execute("call mostrar_registro_citas(%s)",[id])
+        results = cursor.fetchall()
+    return results
+    
+    
+def Crear_Inscripcion(id):
+    with connection.cursor() as cursor:
+        cursor.execute("call Crear_Inscripcion(%s)",[id])  
+    
+def main(request):
     if request.user.groups.filter(name__in=['Estudiante']):
         return redirect('Estudiante')
     elif request.user.groups.filter(name__in=['Profesor']):
@@ -29,8 +49,9 @@ def main(request):
 def Profesor(request):
     return render(request,'academico/Profesor.html')
 
+
+
 def Estudiante(request):
-    
     return render(request,'academico/Estudiante.html')
 
 def registro(request):
@@ -72,11 +93,22 @@ def DatosPersonales(request):
 
     
 def mod_estudiante(request):
-    
-    
     return render (request,'academico/modPersonales.html')    
+    
+    
+def CitaInscripcion(request):
+    citas =mostrarCitas(request.user.id)
+    proximas_citas = mostrar_proximas_citas(request.user.id)
+    Fecha_actual = date.today()
+    print(Fecha_actual)
+    
+    return render (request, 'academico/CitaInscripcion.html', {"citas":citas, "proximas_citas":proximas_citas,"Fecha_actual":Fecha_actual})
     
 def Historia_Academica(request):
     pass
 def Calificaciones(request):
     pass
+
+
+def Inscripion(request,id_cita):
+    Crear_Inscripcion(id_cita)
