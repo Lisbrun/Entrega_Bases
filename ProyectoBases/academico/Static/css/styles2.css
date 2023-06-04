@@ -29,14 +29,15 @@ header{
     position: relative;
     top: 0;
     z-index: 20000;
-    width: 100%; /*??????????????*/
+    width: 100%; 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
     background-color:var(--background_color) ;
-    
     height: 30px 0 30px 0;
+}
+header >.header-cambio{
+    background-color: var(--footer);
 }
 
 .header-contain{
@@ -441,4 +442,65 @@ header{
     border: none;
     outline: none;
     border-bottom: 1px solid gray;
+}
+
+
+.section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 50vh;
+}
+
+.container-ins{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-height: auto;
+    padding: 25px 20px;
+    border-radius: 20px;
+}
+
+
+
+.container-ins > h3{
+    font-family: var(--h3_letras);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.container-ins > button{
+    color : #fff;
+    padding: 10px 15px;
+    background-color: var(--background_color);
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.container-programa{
+    padding: 20px 10px;
+    border: #464545 1px solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+.container-programa > a{
+    color : #fff;
+    padding: 10px 15px;
+    background-color: var(--background_color);
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.container-programa > a:hover{
+    color: #fff;
+    transform: scale(1.08);
+    transition: transform .3s;
 }

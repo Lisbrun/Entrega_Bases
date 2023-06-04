@@ -1,1 +1,21 @@
 {% extends 'academico/inscripcion/baseInscripcion.html' %}
+{% load static %}
+{% block header %}
+
+<h2>{{resultado.0}} | {{resultado.1}}</h2>
+{% endblock %}
+{% block Section %}
+
+    <div class="container-ins">
+        <h3>Bienvenido al sistema de inscripciones</h3>
+        <p>A continuacion se muestra el programa el cual va inscribir asignaturas</p>
+        <div class="container-programa">
+            <div class="container-programa-texts">
+                <h3>{{resultado.1}}</h3>
+                <p>Facultad:{{resultado.3}}</p>
+            </div>
+            <a href="{% url 'Inscripcion_Materias' %}">Continuar</a>
+        </div>
+        
+    </div>
+{% endblock %}

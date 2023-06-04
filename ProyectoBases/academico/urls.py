@@ -12,6 +12,7 @@ urlpatterns = [
     path('ModPersonales/',mod_estudiante,name='modestudiante'),
     path('CitaInscripcion/',CitaInscripcion,name='CitaInscripcion'),
     path('Inscripcion/<int:id_cita>/',Inscripion,name='Inscribir'),
+    path ('Inscripcion_Materias',Inscripcion_Materias, name='Inscripcion_Materias'),
     path ('Historia_Academica, Historia_Academica',Historia_Academica,name='Historia_Academica'),
     path ('Calificaciones',Calificaciones, name='Calificaciones'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -28,7 +28,8 @@
         <div class="header-contain">
             <div class="img-contain">
                 <img src="{% static 'images/logo2.png' %}" alt="">
-                <h2>{{resultado.0}} | {{resultado.1}}</h2>
+                {% block header %} 
+                {% endblock %}
             </div>
         </div>
         <div class="logout">
@@ -36,8 +37,9 @@
         </div>
     </header>
 
-    <section class="section"
-
+    <section class="section">
+        {% block Section %}
+        {% endblock %}
     </section>
 </body>
 

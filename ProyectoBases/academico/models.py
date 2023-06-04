@@ -124,6 +124,8 @@ class Programa(models.Model):
     Grado_licenciatura= models.CharField(max_length=60,choices=OPCIONES_GRADO)
     Facultad = models.ForeignKey(Facultad,on_delete=models.CASCADE)
     
+    def __str__(self):
+        return "Nombre: {} ".format(self.Nombre)
     class Meta: 
         db_table ='Programa'
         verbose_name = 'Programa'

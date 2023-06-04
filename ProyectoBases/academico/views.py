@@ -107,7 +107,6 @@ def CitaInscripcion(request):
     citas =mostrarCitas(request.user.id)
     proximas_citas = mostrar_proximas_citas(request.user.id)
     Fecha_actual = date.today()
-    print(Fecha_actual)
     
     return render (request, 'academico/CitaInscripcion.html', {"citas":citas, "proximas_citas":proximas_citas,"Fecha_actual":Fecha_actual})
     
@@ -118,6 +117,12 @@ def Calificaciones(request):
 
 
 def Inscripion(request,id_cita):
+    #Crear_Inscripcion(id_cita)
     resultado2 = inscripcion_cancelacion(id_cita)
+    render (request,'academico/inscripcion/baseInscripcion.html', {"resultado":resultado2})
     return render (request,'academico/inscripcion/inscripcion.html', {"resultado":resultado2})
     
+    
+def Inscripcion_Materias(request):
+    
+    return render (request,'academico/inscripcion/Materias.html')
