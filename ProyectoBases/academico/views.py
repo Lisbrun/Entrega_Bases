@@ -111,4 +111,5 @@ def Calificaciones(request):
 
 
 def Inscripion(request,id_cita):
-    Crear_Inscripcion(id_cita)
+    return render (request,'academico/inscripcion/Inscripcion.html')
+    

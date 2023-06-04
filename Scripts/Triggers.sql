@@ -144,4 +144,30 @@ BEGIN
 END $$
 DELIMITER ;
 
+-- Asignar un periodo academico
+drop trigger  Asignar_periodo;
+DELIMITER $$
+CREATE TRIGGER Asignar_periodo
+BEFORE INSERT ON inscripcion_cancelacion
+FOR EACH ROW
+BEGIN
+    DECLARE mes_actual INT;
+    DECLARE disponibles varchar(30);
+    SELECT cupo_credito.Creditos_Disponibles INTO disponibles FROM cita_inscripcion
+    INNER JOIN historial_academico ON cita_inscripcion.Historial_id = historial_academico.Id_Historial
+    INNER JOIN cupo_credito ON historial_academico.Id_Historial = cupo_credito.Historial_id where cita_inscripcion.Id_cita=new.Cita_id;
+    
+    SET mes_actual = MONTH(CURDATE());
+    IF mes_actual < 6 THEN 
+        SET new.Semestre = CONCAT(YEAR(CURDATE()), 1);
+        SET new.Creditos_Disponibles = disponibles;
+    ELSE 
+        SET new.Semestre = CONCAT(YEAR(CURDATE()), 2);
+        SET new.Creditos_Disponibles = disponibles;
+    END IF;
+END $$
+DELIMITER ;
+
+
+drop trigger Asignar_periodo;
 
