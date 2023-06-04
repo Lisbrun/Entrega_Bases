@@ -119,5 +119,5 @@ def Calificaciones(request):
 
 def Inscripion(request,id_cita):
     resultado2 = inscripcion_cancelacion(id_cita)
-    return render (request,'academico/inscripcion/Inscripcion.html', {"resultado":resultado2})
+    return render (request,'academico/inscripcion/inscripcion.html', {"resultado":resultado2})
     

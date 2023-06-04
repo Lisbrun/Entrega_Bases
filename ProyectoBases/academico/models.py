@@ -19,9 +19,6 @@ class Persona_vinculada(models.Model):
     Fecha_Vinculacion = models.DateField(null=False,blank=False)
 
 
-    def save (self,*args, **kwargs):
-        self.Correo_institucional=f"{self.Nombre}@unal.edu.co"
-        super().save(*args, **kwargs)
         
     class Meta: 
         db_table = 'Persona_vinculada'
