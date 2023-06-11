@@ -238,8 +238,10 @@ header>.header-cambio {
 
 
 .fondo {
-    height: 100vh;
     width: 100vw;
+    min-height: 100vh;
+    max-height: auto;
+    box-sizing: border-box;
     background-image: url(../images/Enfermeria.jpg);
     background-size: cover;
     display: flex;
@@ -248,6 +250,7 @@ header>.header-cambio {
     justify-content: center;
     align-items: center;
     justify-items: center;
+    padding-top: 50px;
 }
 
 
@@ -256,7 +259,7 @@ header>.header-cambio {
     padding: 30px 40px;
     border-radius: 20px;
     max-width: 50vw;
-    max-height: 100vh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -369,6 +372,7 @@ header>.header-cambio {
 
 
 .container-inscripcion {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -551,6 +555,7 @@ header>.header-cambio {
     min-height: auto;
     border-radius: 20px;
     margin-left: 25px;
+    justify-content: center;
 }
 
 
@@ -961,7 +966,7 @@ resumen-credi {
     background-color: var(--background_color);
     border: none;
     color: white;
-    padding: 4px 4px;
+    padding: 4px 6px;
     margin-bottom: 5px;
     text-align: center;
     text-decoration: none;
@@ -969,13 +974,16 @@ resumen-credi {
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+    font-family: var(--h3_letras);
+    font-size: 1rem;
+
 }
 
 .submit-button:hover {
     background-color: #45a049;
 }
 
-.container-grupos{
+.container-grupos {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -984,7 +992,7 @@ resumen-credi {
     height: 100%;
 }
 
-.grupo-card{
+.grupo-card {
     width: 75%;
     display: flex;
     flex-direction: row;
@@ -992,7 +1000,8 @@ resumen-credi {
     align-items: center;
     border-left: 4px solid var(--background_color);
 }
-.card-texts{
+
+.card-texts {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1000,57 +1009,221 @@ resumen-credi {
     gap: 5px;
     margin-left: 5px;
 }
-.card-texts h3{
+
+.card-texts h3 {
     font-family: var(--h3_letras);
     font-size: .95rem;
     font-weight: 700;
 }
-.card-texts p{
+
+.card-texts p {
     font-family: var(--h3_letras);
     font-size: .9rem;
     font-weight: 400;
 }
 
-.grupo-header{
+.card-texts a {
+
+    text-decoration: none;
+    font-family: var(--h3_letras);
+    font-size: .9rem;
+    font-weight: 400;
+    color: var(--background_color);
+    background-color: transparent;
+    border: 1px solid var(--background_color);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.card-texts a:hover {
+    background-color: var(--background_color);
+    color: #fff;
+    border: 1px solid var(--background_color);
+    transition: transform .3s;
+    transform: scale(1.1);
+}
+
+.grupo-header {
     padding: 10px 40px;
     background-color: var(--background_color);
     color: #fff;
     border: none;
     border-radius: 10px;
 }
-.grupo-header >h4{
+
+.grupo-header>h4 {
     font-family: var(--h3_letras);
     font-size: .95rem;
     font-weight: 700;
 }
 
+.grupo-header {
+    padding: 10px 40px;
+    background-color: var(--background_color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
 
+.grupo-header>h4 {
+    font-family: var(--h3_letras);
+    font-size: .95rem;
+    font-weight: 700;
+}
 
-.container-inscripcion {
-    width: 40%;
-    margin: 20px;
-  }
-  
-  .container-inscripcion table {
+.container-grupos2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+}
+
+.container-grupos2 table {
     width: 200px;
     border-collapse: collapse;
     border: 1px solid #ccc;
-  }
-  
-  .container-inscripcion th,
-  .container-inscripcion td {
+    border-radius: 30px;
+}
+
+.container-grupos2 th,
+.container-grupos2 td {
     padding: 10px;
     text-align: left;
-  }
-  
-  .container-inscripcion th {
+}
+
+.container-grupos2 th {
     background-color: #f2f2f2;
-  }
-  
-  .container-inscripcion tbody tr:nth-child(even) {
+    text-align: center;
+    font-family: var(--h3_letras);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.container-grupos2 td {
+    font-family: var(--h3_letras);
+    font-weight: 400;
+    font-size: .9rem;
+}
+
+.container-grupos2 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  .container-inscripcion tbody tr:hover {
+}
+
+.container-grupos2 tbody tr:hover {
     background-color: #e2e2e2;
-  }
+}
+
+#tipologia {
+    font-family: var(--h3_letras);
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #fff;
+}
+.tipologia{
+    align-self: center;
+    background-color: var(--background_color);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 10px;
+}
+.container-cancelaciones{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.cancelaciones-div{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding-left: 8px;
+    border-left: 4px solid var(--background_color);
+}
+
+.div-texts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+}
+.div-texts h3{
+    font-family: var(--h3_letras);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.div-texts p{
+    font-family: var(--h3_letras);
+    font-size: .9rem;
+    font-weight: 400;
+}
+.div-texts form button{
+    font-family: var(--h3_letras);
+    font-size: .9rem;
+    font-weight: 400;
+    color: #fff;
+    background-color: #C0392B ;
+    border: 1px solid var(--background_color);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+.div-texts form button:hover{
+    transition: .4s;
+    transform: scale(1.1);
+}
+.container-title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+    text-align: center;
+}
+
+.container-title h3{
+    font-family: var(--h3_letras);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    background-color: var(--background_color);
+    border-radius: 10px;
+    color: #fff;
+}
+
+.container-title p {
+    font-family: var(--h3_letras);
+    font-size: .9rem;
+    font-weight: 400;
+    color: #000;
+}
+.p-cancelacion{
+    text-align: center;
+
+}
+.container-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.container-button a {
+    text-decoration: none;
+    font-family: var(--h3_letras);
+    font-size: .9rem;
+    font-weight: 400;
+    color: #fff;
+    padding: 5px 10px;
+    background-color: var(--background_color);
+    border: 1px solid var(--background_color);
+    border-radius: 5px;
+}

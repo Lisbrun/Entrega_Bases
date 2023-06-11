@@ -8,7 +8,9 @@
 {% block Section %}
 <div class="container-max">
     <div class="container-total">
-
+        <div class="tipologia">
+            <h4 id="tipologia">Tipologia de asignaturas</h4>
+        </div>
         <div class="container-menu">
             <label for="menu-toggle">Disciplinar Obligatoria</label>
             <input type="checkbox" id="menu-toggle" />
@@ -131,7 +133,7 @@
     </div>
 
     <div class="container-grupos">
-        {% if grupos is None %}
+        {% if grupos.0 is None %}
         {%else %}
         <div class="grupo-header">
             <h4>Grupos </h4>
@@ -163,7 +165,7 @@
         {% endif %}
     </div>
     {% if request.session.inscripcion.items %}
-    <div class="container-inscripcion">
+    <div class="container-grupos2">
         <table>
             <thead>
                 <tr>
@@ -189,6 +191,12 @@
                 <tr>
                     <td colspan="2">Total Creditos</td>
                     <td>{{suma}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center;"> <form action="" method="POST"> {%  csrf_token %}
+                        <input type="hidden" name="inscrito" value="Inscripcion">
+                        <button type="submit" class="submit-button">Inscribir</button>
+                    </form></td>
                 </tr>
             </tfoot>
         </table>

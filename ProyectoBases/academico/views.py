@@ -202,6 +202,22 @@ def info_inscripcion(id_grupo):
         cursor.execute("call obtener_infoinscripcion(%s)",[id_grupo])
         resultado = cursor.fetchone()
         return resultado
+    
+
+
+def informacion_cancelacion(id_inscripcion):
+    with connection.cursor() as cursor:
+        cursor.execute("call mostrar_idgrupo_asignatura_docente_creditos(%s)",[id_inscripcion])
+        resultado = cursor.fetchall()
+        return resultado
+    
+
+def cancelar_materia(id_inscripcion,id_grupo):
+    with connection.cursor() as cursor:
+        cursor.execute("call Eliminar_inscripcion(%s,%s)",[id_inscripcion,id_grupo])
+        resultado = cursor.fetchall()
+        return resultado
+    
 # ------------------------ vistas -----------------------------#
 
 
@@ -314,12 +330,28 @@ def Calificaciones(request):
     return render(request, 'academico/calificaciones.html', {"semestre": periodos})
 
 
-def Inscripion(request, id_cita):
+def Inscripion(request, id):
     #Crear_Inscripcion(id_cita)
-    resultado2 = inscripcion_cancelacion(id_cita)
-    print(resultado2)
-    return render(request, 'academico/inscripcion/inscripcion.html', {"resultado": resultado2, "id_cita": id_cita})
+    resultado2 = inscripcion_cancelacion(id)
+    return render(request, 'academico/inscripcion/inscripcion.html', {"resultado": resultado2, "id_cita": id})
 
+def cancelaciones(request, id):
+    
+    resultado2 = inscripcion_cancelacion(id)
+    id_inscripcion = obtener_idinscripcion(id)
+    materias_cancelacion = informacion_cancelacion(id_inscripcion)
+    if request.method =="POST":
+        materia = request.POST.get('materia')
+        cancelar = cancelar_materia(id_inscripcion,materia)
+        return redirect('Cancelaciones', id)
+        
+    if not materias_cancelacion:
+        return redirect ('Inscripcion_Materias', id)
+    return render(request, 'academico/inscripcion/cancelaciones.html', {
+        "resultado": resultado2,
+        "materias_cancelacion": materias_cancelacion,
+        "id":id,
+        })
 
 def Inscripcion_Materias(request, id):
     eleccion =[]
@@ -342,12 +374,18 @@ def Inscripcion_Materias(request, id):
     for inscripciones in eleccion:
         ultimo = inscripciones[-1]
         suma += ultimo
-        
-    print(id_inscripcion)
     
     if request.method =="POST":
         asignatura_ID = request.POST.get('id_asignatura')
+        valor = request.POST.get('inscrito')
         grupos = obtener_grupos(asignatura_ID)
+        if valor == 'Inscripcion':
+            with connection.cursor() as cursor:
+                for tupla in eleccion:
+                    valor = tupla[0]
+                    cursor.execute("CALL Insc_cance_grupo(%s, %s)",(valor, id_inscripcion))
+            return redirect('Estudiante')
+            
         return render(request, 'academico/inscripcion/Materias.html', {
             "materias": materias,
             "optativas": optativas,
@@ -362,6 +400,8 @@ def Inscripcion_Materias(request, id):
             "id_citaa": id_citaa,
             "eleccion": eleccion,
             })
+        
+        
         
     return render(request, 'academico/inscripcion/Materias.html', {
         "materias": materias,
