@@ -7,6 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from datetime import date
 from inscripcion.Inscripcion import Inscripcion
+from django.db import IntegrityError
+
 
 # trae user
 # Create your views here.
@@ -236,7 +238,7 @@ def Profesor(request):
 
 def Estudiante(request):
     
-    return render(request, 'academico/Estudiante.html')
+    return render(request, 'academico/estudiante2.html')
 
 
 def registro(request):
@@ -331,7 +333,10 @@ def Calificaciones(request):
 
 
 def Inscripion(request, id):
-    #Crear_Inscripcion(id_cita)
+    try:
+        Crear_Inscripcion(id)
+    except IntegrityError:
+        pass
     resultado2 = inscripcion_cancelacion(id)
     return render(request, 'academico/inscripcion/inscripcion.html', {"resultado": resultado2, "id_cita": id})
 
@@ -384,6 +389,8 @@ def Inscripcion_Materias(request, id):
                 for tupla in eleccion:
                     valor = tupla[0]
                     cursor.execute("CALL Insc_cance_grupo(%s, %s)",(valor, id_inscripcion))
+            if 'inscripcion' in request.session:
+                del request.session['inscripcion']
             return redirect('Estudiante')
             
         return render(request, 'academico/inscripcion/Materias.html', {
