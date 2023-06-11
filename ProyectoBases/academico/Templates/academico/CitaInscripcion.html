@@ -6,15 +6,16 @@
     <h3>Cita Inscripcion</h3>
     <div class="info-carrera">
         <h3>Plan de estudios</h3>
-        <form action="" method="POST"></form>
-        <select id="fruits" name="fruits">
-            <option value="apple">Manzana</option>
-            <option value="banana">Banana</option>
-            <option value="orange">Naranja</option>
+        <form action="{% url 'CitaInscripcion' %}" method="POST" class="form-cita"> {% csrf_token %}
+        <select id="" name="fruits" >
+            <option value="#" selected>Selecciona un programa </option>
+            {% for plan in programas %}
+            <option value="{{plan.1}}">{{plan.1}}</option>
+            {% endfor %}
         </select>
 
         <button type="submit">Actualizar</button>
-
+    </form>
     </div>
 
     <div class="info-inscripcion">

@@ -4,3 +4,199 @@
 {% block header %}
 <h2>{{resultado.0}} | {{resultado.1}}</h2>
 {% endblock %}
+
+{% block Section %}
+<div class="container-max">
+    <div class="container-total">
+
+        <div class="container-menu">
+            <label for="menu-toggle">Disciplinar Obligatoria</label>
+            <input type="checkbox" id="menu-toggle" />
+            {% for materia in materias %}
+            <div id="trickmenu">
+
+
+                <div class="trickmenu-texts">
+                    <h3>{{materia.0}}</h3>
+                    <p>{{materia.5}} </p>
+                </div>
+
+                <div class="trickmenu-creditos">
+                    <h3>Creditos</h3>
+                    <p>{{materia.6}}</p>
+                    <form action="" method="POST">{% csrf_token %}
+                        <input type="hidden" name="id_asignatura" value="{{materia.2}}">
+                        <button class="submit-button">mirar grupos</button>
+                    </form>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="container-menu">
+            <label for="menu-toggle2">Disciplinar Optativa</label>
+            <input type="checkbox" id="menu-toggle2" />
+            {% for materia in optativas %}
+            <div id="trickmenu2">
+                <div class="trickmenu-texts">
+                    <h3>{{materia.0}}</h3>
+                    <p>{{materia.5}}</p>
+                </div>
+
+                <div class="trickmenu-creditos">
+                    <h3>Creditos</h3>
+                    <p>{{materia.6}}</p>
+                    <form action="" method="POST">{% csrf_token %}
+                        <input type="hidden" name="id_asignatura" value="{{materia.2}}">
+                        <button class="submit-button">mirar grupos</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="container-menu">
+            <label for="menu-toggle3">Fundamental Obligatoria</label>
+            <input type="checkbox" id="menu-toggle3" />
+            {% for materias in fundamentalobli %}
+            <div id="trickmenu3">
+                <div class="trickmenu-texts">
+                    <h3>{{materias.0}}</h3>
+                    <p>{{materias.5}}</p>
+                </div>
+
+                <div class="trickmenu-creditos">
+                    <h3>Creditos</h3>
+                    <p>{{materias.6}}</p>
+                    <form action="" method="POST">{% csrf_token %}
+                        <input type="hidden" name="id_asignatura" value="{{materia.2}}">
+                        <button class="submit-button">mirar grupos</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+        <div class="container-menu">
+            <label for="menu-toggle4">Fundamental Optativa</label>
+            <input type="checkbox" id="menu-toggle4" />
+            {% for materia in funopta %}
+            <div id="trickmenu4">
+                <div class="trickmenu-texts">
+                    <h3>{{materia.0}}</h3>
+                    <p>{{materia.5}}</p>
+                </div>
+
+                <div class="trickmenu-creditos">
+                    <h3>Creditos</h3>
+                    <p>{{materia.6}}</p>
+                    <form action="" method="POST">{% csrf_token %}
+                        <input type="hidden" name="id_asignatura" value="{{materia.2}}">
+                        <button class="submit-button">mirar grupos</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+        <div class="container-menu">
+            <label for="menu-toggle5">Nivelacion</label>
+            <input type="checkbox" id="menu-toggle5" />
+            {% for materia in nivelacion %}
+            <div id="trickmenu5">
+                <div class="trickmenu-texts">
+                    <h3>{{materia.0}}</h3>
+                    <p>{{materia.5}}</p>
+                </div>
+
+                <div class="trickmenu-creditos">
+                    <h3>Creditos</h3>
+                    <p>{{materia.6}}</p>
+                    <form action="" method="POST">{% csrf_token %}
+                        <input type="hidden" name="id_asignatura" value="{{materia.2}}">
+                        <button class="submit-button">mirar grupos</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container-grupos">
+        {% if grupos is None %}
+        {%else %}
+        <div class="grupo-header">
+            <h4>Grupos </h4>
+        </div>
+        {% for grupo in grupos %}
+        <div class="grupo-card">
+            <div class="card-texts">
+                <h3>{{grupo.1}} {{grupo.0}} </h3>
+                <p>Cupos: {{grupo.2}}</p>
+            </div>
+            <div class="card-texts">
+                <h3>Edificio:{{grupo.3}} </h3>
+                <p>Horario: {{grupo.4}}</p>
+            </div>
+            <div class="card-texts">
+                <a
+                    href="{% url 'inscripcion:agregar' inscripcion_id=id_inscripcion.0 grupo_id=grupo.1 id_cita=id_citaa %}">
+                    <i class='bx bx-plus'> Añadir</i>
+                </a>
+
+
+
+                <a
+                    href="{% url 'inscripcion:eliminar' inscripcion_id=id_inscripcion.0 grupo_id=grupo.1 id_cita=id_citaa %}">
+                    <i class='bx bx-minus'> Eliminar</i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% if request.session.inscripcion.items %}
+    <div class="container-inscripcion">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">Grupos Inscritos</th>
+                </tr>
+                <tr>
+                    <th>Grupo</th>
+                    <th>Asignatura</th>
+                    <th>Creditos</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for eleccion1 in eleccion %}
+                <tr>
+                    <td>{{eleccion1.0}}</td>
+                    <td>{{eleccion1.1}}</td>
+                    <td>{{eleccion1.2}}</td>
+                <tr>
+                    {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total Creditos</td>
+                    <td>{{suma}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+{% endblock %}

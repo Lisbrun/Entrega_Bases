@@ -1,0 +1,108 @@
+{% extends 'academico/Estudiante.html ' %}
+{% load static %}
+
+
+{% block modinfo %}
+<div class="container-inscripcion">
+    <h3>Historial Academico</h3>
+    <div class="info-carrera">
+        <h3>Plan de estudios</h3>
+        <form action="{% url 'Historia_Academica' %}" method="POST" class="form-cita"> {% csrf_token %}
+            <select id="" name="Programas">
+                <option value="#" selected>Selecciona un programa </option>
+                {% for plan in programas %}
+                <option value="{{plan.1}}">{{plan.1}}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Actualizar</button>
+        </form>
+    </div>
+    <h4 id="Resumen">Resumen</h4>
+
+    {% if not papa %}
+
+    <p>Selecciona un programa para ver tus notas</p>
+
+    {% else %}
+    <div class="historial-Notas">
+        <div class="historial-notas">
+            <h4>Pregrado PAPA</h4>
+            <p>{{papa.0}}</p>
+        </div>
+
+        <div class="historial-notas">
+            <h4>Pregrado PA</h4>
+            <p>{{pa.0}}</p>
+        </div>
+
+
+        <div class="historial-notas">
+            <h4>Pregrado PAPI</h4>
+            <p>{{papi.0}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not asignatura %}
+    {% else %}
+    <h4 id="Resumen">Asignaturas</h4>
+    <div class="tabla_notas">
+        <table>
+            <thead>
+                <tr>
+                    <th>Asignatura</th>
+                    <th>Creditos</th>
+                    <th>Tipo</th>
+                    <th>Academico</th>
+                    <th>Calificacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asignatura in asignatura %}
+                <tr>
+                    <td>{{asignatura.0}}</td>
+                    <td>{{asignatura.1}}</td>
+                    <td>{{asignatura.2}}</td>
+                    <td>{{asignatura.3}}</td>
+                    <td>{{asignatura.4}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    {% if not asignatura %}
+    {% else %}
+    <h4 id="Resumen">Cupo Creditos</h4>
+        <div class="creditos-card">
+            <div class="card-cupo">
+                <h5>Creditos Adicionales</h5>
+                <p>{{cupo_creditos.0}}</p>
+            </div>
+
+            <div class="card-cupo">
+                <h5>Cupo Creditos</h5>
+                <p>{{cupo_creditos.1}}</p>
+            </div>
+
+            <div class="card-cupo">
+                <h5>Creditos disponibles</h5>
+                <p>{{cupo_creditos.2}}</p>
+            </div>
+            
+            <div class="card-cupo">
+                <h5>Creditos Doble Titulacion</h5>
+                <p>{{cupo_creditos.3}}</p>
+            </div>
+
+            <div class="card-cupo">
+                <h5>Porcentaje de avance</h5>
+                <p>{{porcentaje_avance}}%</p>
+            </div>
+        </div>
+        
+    {% endif %}
+</div>
+
+{% endblock %}

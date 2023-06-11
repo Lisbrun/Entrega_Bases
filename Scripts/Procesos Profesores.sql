@@ -11,6 +11,9 @@ programa.Nombre  As Programa, persona_vinculada.Usuario_id as userid
        join historial_academico on (historial_academico.Estudiante_id= estudiante.Id_estudiante) 
        join programa on (programa.Codigo_SNIES=historial_academico.Programa_id)
 
+
+
+
 -- mostrar_datos
 DELIMITER $$
 CREATE PROCEDURE mostrar_Datos(in idusuario int)
@@ -47,7 +50,7 @@ CREATE VIEW vts_resumen_Historial AS
 SELECT  asignatura.Nombre, Creditos, Tipologia,Semestre , Nota_Definitiva,Aprobada,Creditos_Adicionales,Cupo_Creditos,
 cupo_credito.Creditos_Disponibles as Disponibles, Creditos_Doble_titulacion,resumen_credito.Creditos_Exigidos,
 resumen_credito.Creditos_Aprobados,resumen_credito.Pendientes,resumen_credito.Inscritos,resumen_credito.Cursados,
-persona_vinculada.Usuario_id AS usuario
+persona_vinculada.Usuario_id AS usuario, programa.Nombre as nomprograma
        from persona_vinculada
        join estudiante on (Persona_Vinculada_id = Documento)
        join historial_academico on (historial_academico.Estudiante_id= estudiante.Id_estudiante) 
@@ -59,7 +62,19 @@ persona_vinculada.Usuario_id AS usuario
        join inscripcion_cancelacion_grupo on (inscripcion_cancelacion_grupo.Id=notas.Inscripcion_id )
        join inscripcion_cancelacion on (inscripcion_cancelacion.Id_incripcion=inscripcion_cancelacion_grupo.Inscripcion_id)
        join grupo on (grupo.Id_grupo=inscripcion_cancelacion_grupo.Grupo_id)
-       join asignatura on (asignatura.Codigo=grupo.Asignatura_id)
+       join asignatura on (asignatura.Codigo=grupo.Asignatura_id);
+
+-- Resumen Asignaturas
+DELIMITER $$
+CREATE PROCEDURE mostar_asignaturas(in usuarioid int, in programain varchar(100))
+	BEGIN
+		SELECT Nombre, Creditos, Tipologia,Semestre , Nota_Definitiva,Aprobada FROM vts_resumen_Historial
+        where usuario=usuarioid and nomprograma=programain;
+	END $$
+DELIMITER ;
+call mostar_asignaturas(11, "Ingenieria Agronomica");
+drop procedure mostar_asignaturas;
+
 
 -- mostrar historiar
 DELIMITER $$
@@ -71,36 +86,31 @@ DELIMITER ;
 
 -- PAPA
 DELIMITER $$
-CREATE PROCEDURE mostar_papa(in usuarioid int)
+CREATE PROCEDURE mostar_papa(in usuarioid int, in programain varchar(100))
 	BEGIN
-		SELECT Papa FROM Vst_Estuidiante_Datos where Vst_Estuidiante_Datos.usuario=usuarioid;
+		SELECT Papa FROM Vst_Estuidiante_Datos where userid=usuarioid and Programa=programain;
 	END $$
 DELIMITER ;
 
+ q
 -- PA
 DELIMITER $$
-CREATE PROCEDURE mostar_Pa(in usuarioid int)
+CREATE PROCEDURE mostar_Pa(in usuarioid int,in  programain varchar(100))
 	BEGIN
-		SELECT  Pa FROM Vst_Estuidiante_Datos where Vst_Estuidiante_Datos.usuario=usuarioid;
+		SELECT  Pa FROM Vst_Estuidiante_Datos where userid=usuarioid  and Programa= programain;
 	END $$
 DELIMITER ;
 
 -- PAPI
 DELIMITER $$
-CREATE PROCEDURE mostar_Papi(in usuarioid int)
+CREATE PROCEDURE mostar_Papi(in usuarioid int,in  programain varchar(100))
 	BEGIN
-		SELECT  Papi FROM Vst_Estuidiante_Datos where Vst_Estuidiante_Datos.usuario=usuarioid;
+		SELECT  Papi FROM Vst_Estuidiante_Datos where userid=usuarioid  and Programa= programain;
 	END $$
 DELIMITER ;
        
--- Resumen Asignaturas
-DELIMITER $$
-CREATE PROCEDURE mostar_asignaturas(in usuarioid int)
-	BEGIN
-		SELECT Nombre, Creditos, Tipologia,Semestre , Nota_Definitiva,Aprobada FROM vts_resumen_Historial
-        where vts_resumen_Historial.usuario=usuarioid;
-	END $$
-DELIMITER ;
+
+call mostar_asignaturas(11);
 
 -- Resumen Creditos
 DELIMITER $$
@@ -193,27 +203,40 @@ Create view vst_inscripcion as
 Select programa.Nombre as programa,cita_inscripcion.Id_cita as idcita, facultad.Nombre as facultad, Fecha, Hora, persona_vinculada.Usuario_id as userid
 	from persona_vinculada
     join estudiante on (Persona_Vinculada_id=Documento)
-    join historial_academico on (Id_estudiante = Estudiante_id)
+    join historial_academico on (estudiante.Id_estudiante = historial_academico.Estudiante_id)
     join programa on (Codigo_SNIES = historial_academico.Programa_id)
     join cita_inscripcion on (Id_Historial= Historial_id)
     join facultad on (facultad.Id_Facultad=programa.Facultad_id);
     
+ 
+
+-- obtener los programas 
+Drop view if exists programas_inscritos;
+Create view programas_inscritos as
+select persona_vinculada.Usuario_id as userid,programa.Nombre from persona_vinculada 
+		 join estudiante on estudiante.Persona_Vinculada_id=persona_vinculada.Documento
+		 join historial_academico on historial_academico.Estudiante_id= estudiante.Id_estudiante
+		 join programa on programa.Codigo_SNIES=historial_academico.Programa_id;
+
 -- Procedimiento almacenado para consulta
+drop procedure mostrar_Plan_estudio;
 DElimiter $$
 create procedure mostrar_Plan_estudio(in usuarioid int)
 	Begin
-		select Plan_de_estudio from vst_inscripcion
-        where vst_inscripcion.userid=usuarioid;
+		select * from programas_inscritos where userid = usuarioid;
 	end $$
 delimiter ;
-    
+
+ call mostrar_Plan_estudio(11);
+
 -- Proximas Citas    
 Delimiter $$
-create procedure mostrar_proximas_citas(in usuarioid int)
+create procedure mostrar_proximas_citas(in usuarioid int,in programa_seleccionado varchar(100))
 	Begin
 		DECLARE fecha_actual DATE;
         SET fecha_actual = CURDATE();
-		select programa,facultad,fecha, Hora,idcita from vst_inscripcion WHERE fecha >= fecha_actual and userid=usuarioid;
+		select programa,facultad,fecha, Hora,idcita from vst_inscripcion WHERE fecha >= fecha_actual 
+        and userid=usuarioid and programa =programa_seleccionado ;
 	end $$
 delimiter ;
 
@@ -221,15 +244,18 @@ drop procedure mostrar_proximas_citas;
 
 -- Registro citas
 DElimiter $$
-create procedure mostrar_registro_citas(in usuarioid int)
+create procedure mostrar_registro_citas(in usuarioid int, in programa_seleccionado varchar(100))
 	Begin
 		DECLARE fecha_actual DATE;
         SET fecha_actual = CURDATE();
 		select programa,facultad,Fecha,Hora from vst_inscripcion 
-        WHERE fecha < fecha_actual  and userid=usuarioid;
+        WHERE fecha < fecha_actual  and userid=usuarioid
+        and programa =programa_seleccionado ;
+        
 	end $$
 delimiter ;
 
+drop procedure mostrar_registro_citas;
 
 -- Crear Inscripcion 
 DElimiter $$
@@ -241,3 +267,108 @@ delimiter ;
 
 
 
+-- Vista cita de inscripcion 
+Drop view if exists Inscripcion;
+Create view Inscripcion as
+Select Semestre,programa.Nombre, Cita_id as idcita , facultad.Nombre as "nom" from inscripcion_cancelacion
+inner join cita_inscripcion on cita_inscripcion.Id_cita=inscripcion_cancelacion.Cita_id
+inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id
+inner join programa on programa.Codigo_SNIES=historial_academico.Programa_id
+inner join facultad on facultad.Id_Facultad= programa.Facultad_id
+;
+
+Delimiter $$
+create procedure obtener_inscripcion (in id_Inscripcion int)
+	Begin
+		select * from Inscripcion where idcita=id_Inscripcion;
+	end $$
+delimiter ;
+
+call obtener_inscripcion(11);
+select * from Inscripcion;
+
+
+
+-- Materias por cursar
+drop view if exists Materias_Cursar;
+create View Materias_Cursar as 
+SELECT asignatura.Nombre, asignatura.Programa_id, asignatura.Codigo,persona_vinculada.Usuario_id as userid, historial_academico.Id_Historial as id_historial, asignatura.Tipologia as tipologia, asignatura.Creditos
+FROM persona_vinculada
+inner join estudiante on estudiante.Persona_Vinculada_id=persona_vinculada.Documento
+inner join historial_academico on historial_academico.Estudiante_id=estudiante.Id_estudiante 
+INNER JOIN programa ON historial_academico.Programa_id = programa.Codigo_SNIES
+INNER JOIN asignatura ON programa.Codigo_SNIES = asignatura.Programa_id
+WHERE asignatura.Codigo NOT IN (
+    select asignatura.Codigo from historial_academico 
+inner join notas_historial on historial_academico_id=notas_historial.historial_academico_id
+inner join notas on notas.Id_Nota=notas_historial.notas_id
+inner join inscripcion_cancelacion_grupo on inscripcion_cancelacion_grupo.Id=notas.Inscripcion_id
+inner join grupo on grupo.Id_grupo= inscripcion_cancelacion_grupo.Grupo_id 
+inner join asignatura on asignatura.Codigo=grupo.Asignatura_id where notas.Nota_Definitiva>=3);
+
+
+-- procedimiento filtrar por usuario y historial 
+Delimiter $$
+create procedure Filtrar_Materias (in usuario int, in id_cita int)
+	Begin
+    declare idhistorial int ;
+    select historial_academico.Id_Historial into idhistorial from cita_inscripcion 
+    inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id where cita_inscripcion.Id_cita=id_cita;
+		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'DISCIPLINAR OBLIGATORIA';
+	end $$
+delimiter ;
+
+Delimiter $$
+create procedure Filtrar_Materias_optativas (in usuario int, in id_cita int)
+	Begin
+    declare idhistorial int ;
+    select historial_academico.Id_Historial into idhistorial from cita_inscripcion 
+    inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id where cita_inscripcion.Id_cita=id_cita;
+		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'DISCIPLINAR OPTATIVA';
+	end $$
+delimiter ;
+
+Delimiter $$
+create procedure Filtrar_Materias_nivelacion (in usuario int, in id_cita int)
+	Begin
+    declare idhistorial int ;
+    select historial_academico.Id_Historial into idhistorial from cita_inscripcion 
+    inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id where cita_inscripcion.Id_cita=id_cita;
+		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'NIVELACION';
+	end $$
+delimiter ;
+
+
+
+Delimiter $$
+create procedure Filtrar_Materias_grado (in usuario int, in id_cita int)
+	Begin
+    declare idhistorial int ;
+    select historial_academico.Id_Historial into idhistorial from cita_inscripcion 
+    inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id where cita_inscripcion.Id_cita=id_cita;
+		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'Trabajo de Grado';
+	end $$
+delimiter ;
+
+
+Delimiter $$
+create procedure Filtrar_Materias_funobli (in usuario int, in id_cita int)
+	Begin
+    declare idhistorial int ;
+    select historial_academico.Id_Historial into idhistorial from cita_inscripcion 
+    inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id where cita_inscripcion.Id_cita=id_cita;
+		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'FUND. OBLIGATORIA';
+	end $$
+delimiter ;
+
+call Filtrar_Materias_funobli(11,8);
+
+Delimiter $$
+create procedure Filtrar_Materias_funopta (in usuario int, in id_cita int)
+	Begin
+    declare idhistorial int ;
+    select historial_academico.Id_Historial into idhistorial from cita_inscripcion 
+    inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id where cita_inscripcion.Id_cita=id_cita;
+		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'FUND. OPTATIVA';
+	end $$
+delimiter ;

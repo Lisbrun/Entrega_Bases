@@ -76,3 +76,5 @@ CREATE PROCEDURE Actualizar_Notas(IN usuarioid INT, IN insert_primer_corte INT, 
     WHERE vst_Docente_nota.usuario=usuarioid;
 	END $$
 DELIMITER ;
+
+describe sede;

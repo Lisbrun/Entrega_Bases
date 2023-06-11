@@ -46,7 +46,7 @@ class admin_residencia(admin.ModelAdmin):
 
 @admin.register(Grupo)
 class admin_grupo(admin.ModelAdmin):
-    pass
+    search_fields=('Asignatura__Nombre',)
 
 @admin.register(Historial_Academico)
 class admin_historial(admin.ModelAdmin):
@@ -74,6 +74,7 @@ class admin_espacio(admin.ModelAdmin):
 
 @admin.register(Inscripcion_cancelacion_grupo)
 class admin_inscripcioncancelaciongrupo(admin.ModelAdmin):
+    
     pass
 
 @admin.register(Notas)

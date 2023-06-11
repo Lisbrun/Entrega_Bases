@@ -145,6 +145,8 @@ class Asignatura(models.Model):
         verbose_name = 'Asignatura'
         verbose_name_plural = 'ASignaturas'
         
+    def __str__(self):
+        return "Nombre: {}  codigo:{}".format(self.Nombre,self.Codigo)
         
 class Grupo(models.Model):
     Id_grupo = models.AutoField(primary_key=True,unique=True)
@@ -157,6 +159,9 @@ class Grupo(models.Model):
         db_table ='Grupo'
         verbose_name = 'Grupo'
         verbose_name_plural= 'Grupos'
+        
+    def __str__(self) -> str:
+        return ("Grupo "+str(self.Numero_grupo)+" de "+self.Asignatura.Nombre)
         
         
 class Historial_Academico(models.Model):
@@ -174,7 +179,7 @@ class Historial_Academico(models.Model):
         verbose_name_plural = 'Historiales_Academicos'
         
     def __str__(self):
-        return "Historial de "+self.Estudiante.Persona_Vinculada.Nombre+" "+self.Estudiante.Persona_Vinculada.Apellido
+        return "Historial de "+self.Estudiante.Persona_Vinculada.Nombre+" "+self.Estudiante.Persona_Vinculada.Apellido +" en "+self.Programa.Nombre
         
 class Cupo_Creditos(models.Model):
     Creditos_Adicionales = models.IntegerField(default=0)
@@ -228,6 +233,8 @@ class Inscripcion_cancelacion(models.Model):
         verbose_name = 'Inscripcion_cancelacion'
         verbose_name_plural = 'Inscripciones_cancelaciones'
 
+    def __str__(self):
+        return "Inscripcion de "+self.Cita.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Cita.Historial.Estudiante.Persona_Vinculada.Apellido+" en el semestre "+str(self.Semestre)
 class Inscripcion_cancelacion_grupo(models.Model):
         Id= models.AutoField(primary_key=True,unique=True)
         Inscripcion= models.ForeignKey(Inscripcion_cancelacion,on_delete=models.CASCADE)
@@ -238,6 +245,8 @@ class Inscripcion_cancelacion_grupo(models.Model):
             verbose_name = 'Inscripcion_cancelacion_grupo'
             verbose_name_plural = 'Inscripcion_cancelacion_grupos'      
 
+        def __str__(self):
+            return "Inscripcion de "+self.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Apellido+" en el grupo "+str(self.Grupo.Numero_grupo)+" de "+self.Grupo.Asignatura.Nombre+" en el semestre "+str(self.Inscripcion.Semestre)
 class Espacio(models.Model):
     Id_espacio = models.AutoField(primary_key=True,unique=True)
     Dia = models.CharField(max_length=100)

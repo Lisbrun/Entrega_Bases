@@ -46,8 +46,6 @@ BEGIN
     end if;
 END $$
 DELIMITER ;
-drop trigger Aprobacion;
-
 
 
 -- Si un estudiante saca mas de 3  aprueba la materia le aumenta los creditos *2 de la materia y si la pierde le quita esos creditos 
@@ -75,6 +73,7 @@ BEGIN
     end if;
 END $$
 DELIMITER ;
+drop trigger Modificacion_Creditos;
 
 -- inscritos :)
 DELIMITER $$
@@ -93,7 +92,6 @@ BEGIN
        inner join historial_academico his on his.Id_Historial=cita.Historial_id where inscripcion_grupo.Id=new.Id;
        
         update resumen_credito set resumen_credito.Inscritos= resumen_credito.Inscritos+Creditoss where resumen_credito.Historial_id=valorfks;
-        
         UPDATE grupo SET Cupos = Cupos - 1 WHERE grupo.Id_grupo = NEW.grupo_id;
 
 END $$
