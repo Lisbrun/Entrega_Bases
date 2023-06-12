@@ -23,7 +23,7 @@ def procesoEstudiante(id):
 def actualizarestudiante(id, direccion, telefono, correo, estrato, ciudad):
     with connection.cursor() as cursor:
         cursor.execute("call Actualizar_Datos(%s,%s,%s,%s,%s,%s)", [
-                       id, correo, telefono, estrato, ciudad, direccion])
+                    id, correo, telefono, estrato, ciudad, direccion])
 
 
 def mostrar_plan_estudio(id):
@@ -285,7 +285,6 @@ def DatosPersonales(request):
 
 
 def mod_estudiante(request):
-
     return render(request, 'academico/modPersonales.html')
 
 
@@ -310,7 +309,7 @@ def Historia_Academica(request):
         papa = PAPA(request.user.id, programa)
         asignatura = asignaturas(request.user.id, programa)
         cupo_credito = cupo_creditos(request.user.id, programa)
-        porcentaje_avance = (round(cupo_credito[4]/cupo_credito[5], 2))*100
+        porcentaje_avance = (round(cupo_credito[4]/cupo_credito[5],2))*100
         return render(request, 'academico/Historia_Academica.html', {
             "programas": programas,
             "pa": pa, "papi": papi, 
