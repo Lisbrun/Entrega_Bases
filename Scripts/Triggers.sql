@@ -73,7 +73,7 @@ BEGIN
     end if;
 END $$
 DELIMITER ;
-drop trigger Modificacion_Creditos;
+drop trigger Inscritos;
 
 -- inscritos :)
 DELIMITER $$
@@ -81,24 +81,52 @@ CREATE TRIGGER Inscritos
 AFTER INSERT ON inscripcion_cancelacion_grupo
 FOR EACH ROW
 BEGIN
-	declare creditoss int;
-    declare valorfks int;
+	declare creditos int;
+    declare historialid int;
     
-		select asignatura.Creditos INTO creditoss from  inscripcion_cancelacion_grupo as inscripcion inner join grupo on inscripcion.Grupo_id=grupo.Id_grupo 
-        inner join asignatura on Asignatura_id=grupo.Asignatura_id where inscripcion.Id= new.Id;
+		select min(asignatura.Creditos) into creditos from inscripcion_cancelacion_grupo 
+		inner join grupo on (inscripcion_cancelacion_grupo.Grupo_id=grupo.Id_grupo)
+		inner join asignatura on (grupo.Asignatura_id=asignatura.Codigo)
+        where inscripcion_cancelacion_grupo.Grupo_id=new.Grupo_id;
         
-       select Id_Historial into valorfks  from  inscripcion_cancelacion_grupo inscripcion_grupo inner join inscripcion_cancelacion as inscripcion2 
-       on inscripcion_grupo.Inscripcion_id= inscripcion2.Id_incripcion inner join cita_inscripcion as cita on inscripcion2.Cita_id=cita.Id_cita
-       inner join historial_academico his on his.Id_Historial=cita.Historial_id where inscripcion_grupo.Id=new.Id;
+        select distinct(historial_academico.Id_Historial) into historialid from inscripcion_cancelacion_grupo
+        inner join inscripcion_cancelacion on (inscripcion_cancelacion.Id_incripcion=inscripcion_cancelacion_grupo.Inscripcion_id)
+        inner join cita_inscripcion on (cita_inscripcion.Id_cita=inscripcion_cancelacion.Cita_id)
+        inner join historial_academico on (historial_academico.Id_Historial=cita_inscripcion.Historial_id)
+        where inscripcion_cancelacion_grupo.Inscripcion_id=new.Inscripcion_id;
        
-        update resumen_credito set resumen_credito.Inscritos= resumen_credito.Inscritos+Creditoss where resumen_credito.Historial_id=valorfks;
-        UPDATE grupo SET Cupos = Cupos - 1 WHERE grupo.Id_grupo = NEW.grupo_id;
+        update resumen_credito set resumen_credito.Inscritos= resumen_credito.Inscritos+creditos 
+        where resumen_credito.Historial_id=historialid;
 
 END $$
 DELIMITER ;
 
-show triggers;
-DROP TRIGGER Inscritos;
+drop trigger Inscritos_eliminar;
+DELIMITER $$
+CREATE TRIGGER Inscritos_eliminar
+BEFORE DELETE ON inscripcion_cancelacion_grupo
+FOR EACH ROW
+BEGIN
+	declare creditos int;
+    declare historialid int;
+    
+		select min(asignatura.Creditos) into creditos from inscripcion_cancelacion_grupo 
+		inner join grupo on (inscripcion_cancelacion_grupo.Grupo_id=grupo.Id_grupo)
+		inner join asignatura on (grupo.Asignatura_id=asignatura.Codigo)
+        where inscripcion_cancelacion_grupo.Grupo_id=old.Grupo_id;
+        
+        select distinct(historial_academico.Id_Historial) into historialid from inscripcion_cancelacion_grupo
+        inner join inscripcion_cancelacion on (inscripcion_cancelacion.Id_incripcion=inscripcion_cancelacion_grupo.Inscripcion_id)
+        inner join cita_inscripcion on (cita_inscripcion.Id_cita=inscripcion_cancelacion.Cita_id)
+        inner join historial_academico on (historial_academico.Id_Historial=cita_inscripcion.Historial_id)
+        where inscripcion_cancelacion_grupo.Inscripcion_id=old.Inscripcion_id;
+       
+        update resumen_credito set resumen_credito.Inscritos= resumen_credito.Inscritos-creditos 
+        where resumen_credito.Historial_id=historialid;
+
+END $$
+DELIMITER ;
+
 
 
 
@@ -167,5 +195,43 @@ END $$
 DELIMITER ;
 
 
-drop trigger Asignar_periodo;
+-- Trigger creacion Nota
+drop trigger Creacion_tablaNota;
+DELIMITER $$
+CREATE TRIGGER Creacion_tablaNota
+AFTER INSERT ON inscripcion_cancelacion_grupo
+FOR EACH ROW
+BEGIN
+    insert into notas(notas.Primer_Corte,notas.Segundo_Corte,notas.Tercer_Corte,notas.Aprobada,notas.Inscripcion_id,notas.Nota_Definitiva)
+    values (0,0,0,False,new.Id,0);
+    
+END $$
+DELIMITER ;
 
+
+-- Trigger Nota-Historial
+
+drop trigger Nota_Historial;
+DELIMITER $$
+CREATE TRIGGER Nota_Historial
+AFTER INSERT ON notas
+FOR EACH ROW
+BEGIN
+	declare id_Historiall int ;
+	select historial_academico.Id_Historial into id_Historiall from notas 
+    inner join inscripcion_cancelacion_grupo on (notas.Inscripcion_id=inscripcion_cancelacion_grupo.Id)
+    inner join inscripcion_cancelacion on (inscripcion_cancelacion.Id_incripcion= inscripcion_cancelacion_grupo.Inscripcion_id)
+    inner join cita_inscripcion on (cita_inscripcion.Id_cita = inscripcion_cancelacion.Cita_id)
+    inner join historial_academico on (historial_academico.Id_Historial=cita_inscripcion.Historial_id)
+    where notas.Inscripcion_id=new.Inscripcion_id;
+    insert into notas_historial(notas_historial.historial_academico_id,notas_historial.notas_id)
+    values (id_Historiall,new.Id_Nota);
+    
+END $$
+DELIMITER ;
+
+ALTER TABLE notas DROP FOREIGN KEY Notas_Inscripcion_id_a2464d71_fk_Inscripci;
+ALTER TABLE notas ADD CONSTRAINT Notas_Inscripcion_id_a2464d71_fk_Inscripci FOREIGN KEY (Inscripcion_id) REFERENCES inscripcion_cancelacion_grupo (Id) ON DELETE CASCADE;
+
+ALTER TABLE notas_historial DROP FOREIGN KEY Notas_Historial_notas_id_96dc0ade_fk_Notas_Id_Nota;
+ALTER TABLE notas_historial ADD CONSTRAINT Notas_Historial_notas_id_96dc0ade_fk_Notas_Id_Nota FOREIGN KEY (notas_id) REFERENCES notas (Id_Nota) ON DELETE CASCADE;

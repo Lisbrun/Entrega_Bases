@@ -44,42 +44,88 @@ SET DEFAULT ROLE Profesor To 'Carlos'@'Localhost';
 
 DROP ROLE IF EXISTS Administrador;
 CREATE ROLE Administrador;
-GRANT EXECUTE ON PROCEDURE mostrar_Datos To Administrador;
-    GRANT EXECUTE ON PROCEDURE Actualizar_Daatos To Administrador;
-	GRANT EXECUTE ON PROCEDURE mostar_Historial To Administrador;
-    GRANT EXECUTE ON PROCEDURE mostar_papa To Administrador;
-    GRANT EXECUTE ON PROCEDURE mostar_Pa To Administrador;
-	GRANT EXECUTE ON PROCEDURE mostar_asignaturas To Administrador;
-	GRANT EXECUTE ON PROCEDURE mostar_creditos To Administrador;
-    GRANT EXECUTE ON PROCEDURE mostar_cupo To Administrador;
-	GRANT EXECUTE ON PROCEDURE mostar_Calificaciones To Administrador;
-    GRANT EXECUTE ON PROCEDURE mostrar_Plan_estudio To Administrador;
-    GRANT EXECUTE ON PROCEDURE mostrar_proximas_citas To Administrador;
-    GRANT EXECUTE ON PROCEDURE mostrar_registro_citas To Administrador;
-    GRANT EXECUTE ON PROCEDURE personavinculada To Administrador;
+	GRANT EXECUTE ON PROCEDURE mostrar_Datos To Administrador;
+    GRANT EXECUTE ON PROCEDURE Actualizar_Datos To Administrador ;
+	GRANT EXECUTE ON PROCEDURE mostar_asignaturas To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Periodo_Academico To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Semestres To Administrador ;
+	GRANT EXECUTE ON PROCEDURE Notas_Asignaturas To Administrador ;
+	GRANT EXECUTE ON PROCEDURE mostar_Historial To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostar_papa To Administrador ;
+	GRANT EXECUTE ON PROCEDURE mostar_Pa To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostar_Papi To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostar_creditos To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostar_cupo To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostar_Calificaciones To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Buscador TO Administrador;
+    GRANT EXECUTE ON PROCEDURE mostrar_Plan_estudio To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostrar_proximas_citas To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostrar_registro_citas To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Crear_Inscripcion To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_inscripcion To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_idinscripcion To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_optativas To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_nivelacion To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_funobli To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_funopta To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_sedes To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_facultades To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_tipologias To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_programas To Administrador ;
+    GRANT EXECUTE ON PROCEDURE obtener_infoinscripcion To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Insc_cance_grupo To Administrador ;
+    GRANT EXECUTE ON PROCEDURE Eliminar_inscripcion To Administrador ;
+    GRANT EXECUTE ON PROCEDURE mostrar_idgrupo_asignatura_docente_creditos To Administrador ;
     GRANT EXECUTE ON PROCEDURE mostrar_Datos_Docente To Administrador;
     GRANT EXECUTE ON PROCEDURE Actualizar_DatosActualizar_Datos To Administrador;
     GRANT EXECUTE ON PROCEDURE Vista_general_grupos To Administrador;
      GRANT EXECUTE ON PROCEDURE Vista_especifica_grupo To Administrador;
      GRANT EXECUTE ON PROCEDURE Actualizar_Notas To Administrador;
-
+    
+    
+    
+    
 
 DROP ROLE IF EXISTS Estudiante;
 CREATE ROLE Estudiante;
 	GRANT EXECUTE ON PROCEDURE mostrar_Datos To Estudiante;
     GRANT EXECUTE ON PROCEDURE Actualizar_Datos To Estudiante ;
+	GRANT EXECUTE ON PROCEDURE mostar_asignaturas To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Periodo_Academico To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Semestres To Estudiante ;
+	GRANT EXECUTE ON PROCEDURE Notas_Asignaturas To Estudiante ;
 	GRANT EXECUTE ON PROCEDURE mostar_Historial To Estudiante ;
     GRANT EXECUTE ON PROCEDURE mostar_papa To Estudiante ;
-    GRANT EXECUTE ON PROCEDURE mostar_Pa To Estudiante ;
-	GRANT EXECUTE ON PROCEDURE mostar_asignaturas To Estudiante ;
-	GRANT EXECUTE ON PROCEDURE mostar_creditos To Estudiante ;
+	GRANT EXECUTE ON PROCEDURE mostar_Pa To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE mostar_Papi To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE mostar_creditos To Estudiante ;
     GRANT EXECUTE ON PROCEDURE mostar_cupo To Estudiante ;
-	GRANT EXECUTE ON PROCEDURE mostar_Calificaciones To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE mostar_Calificaciones To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Buscador TO Estudiante;
     GRANT EXECUTE ON PROCEDURE mostrar_Plan_estudio To Estudiante ;
     GRANT EXECUTE ON PROCEDURE mostrar_proximas_citas To Estudiante ;
     GRANT EXECUTE ON PROCEDURE mostrar_registro_citas To Estudiante ;
-    GRANT EXECUTE ON PROCEDURE personavinculada To Estudiante ;
-    REVOKE EXECUTE ON PROCEDURE personavinculada FROM Estudiante;
+    GRANT EXECUTE ON PROCEDURE Crear_Inscripcion To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_inscripcion To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_idinscripcion To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_optativas To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_nivelacion To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_funobli To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Filtrar_Materias_funopta To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_sedes To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_facultades To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_tipologias To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_programas To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE obtener_infoinscripcion To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Insc_cance_grupo To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE Eliminar_inscripcion To Estudiante ;
+    GRANT EXECUTE ON PROCEDURE mostrar_idgrupo_asignatura_docente_creditos To Estudiante ;
+    
+    
+    
+    
     
 
 DROP ROLE IF EXISTS Profesor;

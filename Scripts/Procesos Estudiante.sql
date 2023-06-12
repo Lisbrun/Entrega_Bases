@@ -361,7 +361,7 @@ inner join asignatura on asignatura.Codigo=grupo.Asignatura_id where notas.Nota_
 
 
 
-drop view if exists 
+
 
 -- procedimiento filtrar por usuario y historial 
 Delimiter $$
@@ -373,6 +373,7 @@ create procedure Filtrar_Materias (in usuario int, in id_cita int)
 		select * from Materias_Cursar where userid=usuario and id_historial=idhistorial and  tipologia = 'DISCIPLINAR OBLIGATORIA';
 	end $$
 delimiter ;
+
 
 Delimiter $$
 create procedure Filtrar_Materias_optativas (in usuario int, in id_cita int)
@@ -460,6 +461,7 @@ create procedure obtener_programas ()
     select programa.Nombre from programa;
 	end $$
 delimiter ;
+
 
 
 
