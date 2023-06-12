@@ -240,9 +240,8 @@ def main(request):
 def Profesor(request):
     return render(request, 'academico/Profesor.html')
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def Estudiante(request):
-    
     return render(request, 'academico/estudiante2.html')
 
 
@@ -262,12 +261,12 @@ def registro(request):
     form = AuthenticationForm()
     return render(request, 'academico/login.html', {'form': form})
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def salir(request):
     logout(request)
     return redirect('inicio')
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def DatosPersonales(request):
     if request.method == "POST":
         Direccion = request.POST['Direccion']
@@ -283,11 +282,11 @@ def DatosPersonales(request):
     resultado = procesoEstudiante(user_id)
     return render(request, 'academico/DatosPersonales.html', {"resultado": resultado})
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def mod_estudiante(request):
     return render(request, 'academico/modPersonales.html')
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def CitaInscripcion(request):
     programas = mostrar_plan_estudio(request.user.id)
     if request.method == "POST":
@@ -299,7 +298,7 @@ def CitaInscripcion(request):
 
     return render(request, 'academico/CitaInscripcion.html', {"programas": programas})
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def Historia_Academica(request):
     programas = mostrar_plan_estudio(request.user.id)
     if request.method == "POST":
@@ -321,7 +320,7 @@ def Historia_Academica(request):
             })
     return render(request, 'academico/Historia_Academica.html', {"programas": programas})
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def Calificaciones(request):
     periodos = Semestre(request.user.id)
     if request.method == "POST":
@@ -335,7 +334,7 @@ def Calificaciones(request):
 
     return render(request, 'academico/calificaciones.html', {"semestre": periodos})
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def Inscripion(request, id):
     try:
         Crear_Inscripcion(id)
@@ -343,7 +342,7 @@ def Inscripion(request, id):
         pass
     resultado2 = inscripcion_cancelacion(id)
     return render(request, 'academico/inscripcion/inscripcion.html', {"resultado": resultado2, "id_cita": id})
-
+@login_required(login_url='http://127.0.0.1:8000')
 def cancelaciones(request, id):
     
     resultado2 = inscripcion_cancelacion(id)
@@ -361,7 +360,8 @@ def cancelaciones(request, id):
         "materias_cancelacion": materias_cancelacion,
         "id":id,
         })
-
+    
+@login_required(login_url='http://127.0.0.1:8000')
 def Inscripcion_Materias(request, id):
     eleccion =[]
     suma = 0
@@ -431,7 +431,7 @@ def Inscripcion_Materias(request, id):
         "disponibles": disponibles,
         })
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def Buscador_cursos(request):
     sede = sedes()
     facultad = facultades()
