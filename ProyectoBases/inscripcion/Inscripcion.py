@@ -9,7 +9,7 @@ class Inscripcion():
 
     def agregar(self, inscripcion, grupo):
         inscripcion =   str(inscripcion)
-        if ( inscripcion not in self.inscripcion.keys()):
+        if (inscripcion not in self.inscripcion.keys()):
             self.inscripcion[inscripcion] = [grupo]
         elif (grupo not in self.inscripcion.get(inscripcion)):
             self.inscripcion[inscripcion].append(grupo)

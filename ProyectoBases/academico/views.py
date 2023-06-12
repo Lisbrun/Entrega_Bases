@@ -8,10 +8,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from datetime import date
 from inscripcion.Inscripcion import Inscripcion
 from django.db import IntegrityError
+from django.http import HttpResponse
 
 
-# trae user
-# Create your views here.
 
 
 def procesoEstudiante(id):
@@ -220,6 +219,13 @@ def cancelar_materia(id_inscripcion,id_grupo):
         resultado = cursor.fetchall()
         return resultado
     
+    
+    
+def traer_disponibles(id_cita):
+    with connection.cursor() as cursor:
+        cursor.execute("call de_id_cita_a_creditos_disponibles(%s)",[id_cita])
+        resultado = cursor.fetchone()
+        return resultado
 # ------------------------ vistas -----------------------------#
 
 
@@ -371,7 +377,9 @@ def Inscripcion_Materias(request, id):
     funopta = obtener_materias_funopta(request.user.id, id)
     resultado2 = inscripcion_cancelacion(id)
     id_inscripcion = obtener_idinscripcion(id)
+    disponibles= traer_disponibles(id_inscripcion)
     diccionario = request.session.get('inscripcion', {})
+    print(disponibles)
     for key, value in diccionario.items():
         for value in value:
             resultadoins =info_inscripcion(value)
@@ -406,6 +414,8 @@ def Inscripcion_Materias(request, id):
             "id_inscripcion": id_inscripcion,
             "id_citaa": id_citaa,
             "eleccion": eleccion,
+            "suma": suma,
+            "disponibles": disponibles,
             })
         
         
@@ -420,6 +430,7 @@ def Inscripcion_Materias(request, id):
         "resultado": resultado2,
         "eleccion": eleccion,
         "suma": suma,
+        "disponibles": disponibles,
         })
 
 

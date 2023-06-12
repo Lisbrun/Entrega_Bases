@@ -194,8 +194,9 @@ class Cupo_Creditos(models.Model):
         verbose_name = 'Cupo_Credito'
         verbose_name_plural= 'Cupo_Creditos'
         
-        
-        
+    def __str__(self):
+        return "Cupo de creditos de "+self.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Historial.Estudiante.Persona_Vinculada.Apellido +" en "+self.Historial.Programa.Nombre
+    
 class Resumen_Creditos(models.Model):
     Creditos_Exigidos = models.IntegerField(null=True)
     Creditos_Aprobados = models.IntegerField(null=True)
@@ -208,7 +209,9 @@ class Resumen_Creditos(models.Model):
         db_table ='Resumen_Credito'
         verbose_name = 'Resumen_Credito'
         verbose_name_plural= 'Resumen_Creditos'
-        
+    
+    def __str__(self) :
+        return "Resumen deP creditos de "+self.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Historial.Estudiante.Persona_Vinculada.Apellido +" en "+self.Historial.Programa.Nombre
         
 class Cita_Inscripcion (models.Model):
     Id_cita = models.AutoField(primary_key=True,unique=True)
@@ -234,7 +237,7 @@ class Inscripcion_cancelacion(models.Model):
         verbose_name_plural = 'Inscripciones_cancelaciones'
 
     def __str__(self):
-        return "Inscripcion de "+self.Cita.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Cita.Historial.Estudiante.Persona_Vinculada.Apellido+" en el semestre "+str(self.Semestre)
+        return "Inscripcion de "+self.Cita.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Cita.Historial.Estudiante.Persona_Vinculada.Apellido+" en el semestre "+str(self.Semestre)+ "programa "+self.Cita.Historial.Programa.Nombre
 class Inscripcion_cancelacion_grupo(models.Model):
         Id= models.AutoField(primary_key=True,unique=True)
         Inscripcion= models.ForeignKey(Inscripcion_cancelacion,on_delete=models.CASCADE)
@@ -272,13 +275,10 @@ class Notas(models.Model):
     Aprobada = models.BooleanField()
     Inscripcion= models.ForeignKey(Inscripcion_cancelacion_grupo,on_delete=models.CASCADE)
     Historial = models.ManyToManyField(Historial_Academico)
-
     class Meta:
         db_table = 'Notas'
         verbose_name = 'Nota'
         verbose_name_plural = 'Notas'
-        
-
 
 class Pago_Semestre(models.Model):
     Id_Pago = models.AutoField(primary_key=True,unique=True)

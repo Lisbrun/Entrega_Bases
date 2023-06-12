@@ -552,10 +552,11 @@ header>.header-cambio {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-height: auto;
+    height: 100%;
     border-radius: 20px;
     margin-left: 25px;
-    justify-content: center;
+    justify-content: flex-start;
+
 }
 
 

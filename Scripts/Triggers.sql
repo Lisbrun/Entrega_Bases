@@ -47,7 +47,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-
+drop trigger Modificacion_Creditos;
 -- Si un estudiante saca mas de 3  aprueba la materia le aumenta los creditos *2 de la materia y si la pierde le quita esos creditos 
 DELIMITER $$
 CREATE TRIGGER Modificacion_Creditos
@@ -58,26 +58,29 @@ BEGIN
     declare valorfk int;
     if new.Nota_Definitiva>=3  then
     
-		select asignatura.Creditos INTO creditos from notas inner join inscripcion_cancelacion_grupo as inscripcion on notas.Inscripcion_id=inscripcion.Id 
-		inner join grupo on inscripcion.Grupo_id=grupo.Id_grupo inner join asignatura on Asignatura_id=grupo.Asignatura_id where notas.Id_Nota= new.Id_Nota;
+		select min(asignatura.Creditos) INTO creditos from notas 
+        inner join inscripcion_cancelacion_grupo as inscripcion on notas.Inscripcion_id=inscripcion.Id 
+		inner join grupo on inscripcion.Grupo_id=grupo.Id_grupo 
+        inner join asignatura on Asignatura_id=grupo.Asignatura_id 
+        where notas.Id_Nota= new.Id_Nota;
         
-       select his.Id_Historial into valorfk  from notas inner join inscripcion_cancelacion_grupo as inscripcion_grupo on notas.Inscripcion_id=inscripcion_grupo.Id 
-	inner join inscripcion_cancelacion inscripcion on inscripcion.Id_incripcion=inscripcion_grupo.Inscripcion_id inner join cita_inscripcion cita
-	on cita.Id_cita=inscripcion.Cita_id inner join historial_academico his on his.Id_Historial= cita.Historial_id where notas.Id_Nota= new.Id_Nota;
-    
-        update resumen_credito set resumen_credito.Creditos_Aprobados=creditos where resumen_credito.Historial_id=valorfk;
+       select his.Id_Historial into valorfk  from notas 
+       inner join inscripcion_cancelacion_grupo as inscripcion_grupo on notas.Inscripcion_id=inscripcion_grupo.Id 
+		inner join inscripcion_cancelacion inscripcion on inscripcion.Id_incripcion=inscripcion_grupo.Inscripcion_id
+		inner join cita_inscripcion cita on cita.Id_cita=inscripcion.Cita_id 
+        inner join historial_academico his on his.Id_Historial= cita.Historial_id where notas.Id_Nota= new.Id_Nota;
+        update resumen_credito set resumen_credito.Creditos_Aprobados=resumen_credito.Creditos_Aprobados+creditos where resumen_credito.Historial_id=valorfk;
         update cupo_credito set cupo_credito.Creditos_Disponibles= cupo_credito.Creditos_Disponibles+ (creditos*2) where cupo_credito.Historial_id=valorfk;
-	else 
-		update cupo_credito set cupo_credito.Creditos_Disponibles= cupo_credito.Creditos_Disponibles- creditos*2 where cupo_credito.Historial_id=valorfk;
-    
+        
     end if;
 END $$
 DELIMITER ;
-drop trigger Inscritos;
+
+
 
 -- inscritos :)
 DELIMITER $$
-CREATE TRIGGER Inscritos
+CREATE TRIGGER Disponibles
 AFTER INSERT ON inscripcion_cancelacion_grupo
 FOR EACH ROW
 BEGIN
@@ -95,11 +98,18 @@ BEGIN
         inner join historial_academico on (historial_academico.Id_Historial=cita_inscripcion.Historial_id)
         where inscripcion_cancelacion_grupo.Inscripcion_id=new.Inscripcion_id;
        
+        update cupo_credito set cupo_credito.Creditos_Disponibles= cupo_credito.Creditos_Disponibles-creditos where cupo_credito.Historial_id=historialid;
         update resumen_credito set resumen_credito.Inscritos= resumen_credito.Inscritos+creditos 
         where resumen_credito.Historial_id=historialid;
-
 END $$
 DELIMITER ;
+
+
+
+
+
+
+
 
 drop trigger Inscritos_eliminar;
 DELIMITER $$
@@ -169,7 +179,7 @@ BEGIN
     END IF;
 END $$
 DELIMITER ;
-
+drop trigger Asignar_periodo;
 -- Asignar un periodo academico
 drop trigger  Asignar_periodo;
 DELIMITER $$
@@ -208,10 +218,8 @@ BEGIN
 END $$
 DELIMITER ;
 
-
 -- Trigger Nota-Historial
 
-drop trigger Nota_Historial;
 DELIMITER $$
 CREATE TRIGGER Nota_Historial
 AFTER INSERT ON notas

@@ -166,7 +166,7 @@
     </div>
     {% if request.session.inscripcion.items %}
     <div class="container-grupos2">
-        <table>
+        <table>s
             <thead>
                 <tr>
                     <th colspan="3">Grupos Inscritos</th>
@@ -193,11 +193,17 @@
                     <td>{{suma}}</td>
                 </tr>
                 <tr>
+                    {% if disponibles.0 < suma %}
+                    <td colspan="3">Los creditos elegidos superan los creditos disponibles </td>
+                    {% else %}
                     <td colspan="3" style="text-align: center;"> <form action="" method="POST"> {%  csrf_token %}
                         <input type="hidden" name="inscrito" value="Inscripcion">
                         <button type="submit" class="submit-button">Inscribir</button>
                     </form></td>
+                    
+                    {%endif %}
                 </tr>
+
             </tfoot>
         </table>
     </div>
