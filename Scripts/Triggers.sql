@@ -47,35 +47,37 @@ BEGIN
 END $$
 DELIMITER ;
 
-drop trigger Modificacion_Creditos;
+
 -- Si un estudiante saca mas de 3  aprueba la materia le aumenta los creditos *2 de la materia y si la pierde le quita esos creditos 
+DROP TRIGGER Modificacion_Creditos;
 DELIMITER $$
 CREATE TRIGGER Modificacion_Creditos
-BEFORE UPDATE ON notas
+After UPDATE ON notas
 FOR EACH ROW
 BEGIN
 	declare creditos int;
     declare valorfk int;
-    if new.Nota_Definitiva>=3  then
+    if new.Nota_Definitiva>=3 then
     
-		select min(asignatura.Creditos) INTO creditos from notas 
-        inner join inscripcion_cancelacion_grupo as inscripcion on notas.Inscripcion_id=inscripcion.Id 
-		inner join grupo on inscripcion.Grupo_id=grupo.Id_grupo 
-        inner join asignatura on Asignatura_id=grupo.Asignatura_id 
+		select min(asignatura.Creditos) INTO creditos 
+        from notas 
+        join inscripcion_cancelacion_grupo as inscripcion on notas.Inscripcion_id=inscripcion.Id 
+		join grupo on inscripcion.Grupo_id=grupo.Id_grupo 
+        join asignatura on grupo.Asignatura_id=asignatura.Codigo 
         where notas.Id_Nota= new.Id_Nota;
         
-       select his.Id_Historial into valorfk  from notas 
-       inner join inscripcion_cancelacion_grupo as inscripcion_grupo on notas.Inscripcion_id=inscripcion_grupo.Id 
-		inner join inscripcion_cancelacion inscripcion on inscripcion.Id_incripcion=inscripcion_grupo.Inscripcion_id
-		inner join cita_inscripcion cita on cita.Id_cita=inscripcion.Cita_id 
-        inner join historial_academico his on his.Id_Historial= cita.Historial_id where notas.Id_Nota= new.Id_Nota;
-        update resumen_credito set resumen_credito.Creditos_Aprobados=resumen_credito.Creditos_Aprobados+creditos where resumen_credito.Historial_id=valorfk;
-        update cupo_credito set cupo_credito.Creditos_Disponibles= cupo_credito.Creditos_Disponibles+ (creditos*2) where cupo_credito.Historial_id=valorfk;
+       select distinct(historial_academico.Id_Historial) into valorfk  
+       from historial_academico
+       inner join notas_historial on (historial_academico.Id_Historial= notas_historial.historial_academico_id)
+	   inner join notas on (notas_historial.notas_id= notas.Id_Nota )
+	   where notas.Id_Nota= new.Id_Nota;
+
+        update resumen_credito set resumen_credito.Creditos_Aprobados = resumen_credito.Creditos_Aprobados + creditos where resumen_credito.Historial_id=valorfk;
+        update cupo_credito set cupo_credito.Creditos_Disponibles = cupo_credito.Creditos_Disponibles+ (creditos*2) where cupo_credito.Historial_id=valorfk;
         
     end if;
 END $$
 DELIMITER ;
-
 
 
 -- inscritos :)
@@ -237,6 +239,9 @@ BEGIN
     
 END $$
 DELIMITER ;
+
+
+
 
 ALTER TABLE notas DROP FOREIGN KEY Notas_Inscripcion_id_a2464d71_fk_Inscripci;
 ALTER TABLE notas ADD CONSTRAINT Notas_Inscripcion_id_a2464d71_fk_Inscripci FOREIGN KEY (Inscripcion_id) REFERENCES inscripcion_cancelacion_grupo (Id) ON DELETE CASCADE;

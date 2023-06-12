@@ -181,16 +181,26 @@ DELIMITER ;
 drop view if exists vts_buscador_cursos;
 CREATE VIEW  vts_buscador_cursos AS
 SELECT sede.Nombre AS Sede, facultad.Nombre AS Facultad, programa.Codigo_SNIES, programa.Nombre AS programa,
-asignatura.Codigo, asignatura.Nombre As asignatura, asignatura.Creditos, asignatura.Tipologia, grupo.Numero_grupo,
-grupo.Cupos,persona_vinculada.Nombre AS Profesor
-	from sede
-    join facultad on (sede.ID_sede=facultad.Sede_id)
-	join programa on (facultad.Id_Facultad=programa.Facultad_id)
-    join asignatura on (programa.Codigo_SNIES=asignatura.Programa_id)
-    join grupo on (asignatura.Codigo=grupo.Asignatura_id)
-    join docente on (grupo.Profesor_id=docente.Id_docente)
-    join persona_vinculada on (persona_vinculada.Documento=docente.Persona_Vinculada_id);
+asignatura.Codigo, asignatura.Nombre AS asignatura, asignatura.Creditos, asignatura.Tipologia, grupo.Numero_grupo,
+grupo.Cupos, persona_vinculada.Nombre AS Profesor, prerequisito.Prerequisito_id AS prerequisito,
+prereq_asignatura.Codigo AS codigo_prerequisito, prereq_asignatura.Nombre AS prerequisito_asignatura
 
+FROM sedes
+JOIN facultad ON (sede.ID_sede = facultad.Sede_id)
+JOIN programa ON (facultad.Id_Facultad = programa.Facultad_id)
+JOIN asignatura ON (programa.Codigo_SNIES = asignatura.Programa_id)
+JOIN grupo ON (asignatura.Codigo = grupo.Asignatura_id)
+JOIN docente ON (grupo.Profesor_id = docente.Id_docente)
+JOIN persona_vinculada ON (persona_vinculada.Documento = docente.Persona_Vinculada_id)
+LEFT JOIN prerequisito ON (asignatura.Codigo = prerequisito.Materia_id)
+LEFT JOIN asignatura AS prereq_asignatura ON (prerequisito.Prerequisito_id = prereq_asignatura.Codigo);
+
+
+
+    
+drop procedure Buscador;
+   
+call Buscador ('Bogota','Ingeneria','Ingenieria de sistemas y computacion',null,null,null);
 -- Buscador
 DELIMITER $$
 CREATE PROCEDURE Buscador(in nom_sede varchar(60), in nom_facultad varchar(120), in nom_programa varchar(100),
@@ -202,26 +212,26 @@ CREATE PROCEDURE Buscador(in nom_sede varchar(60), in nom_facultad varchar(120),
     ELSEIF nom_sede IS NOT NULL AND nom_facultad IS NOT NULL AND nom_programa IS NOT NULL AND Tipologia_p 
     IS NULL AND creditos_p IS NULL AND nombre_a IS NULL THEN
     
-		SELECT Codigo,asignatura,Creditos,Tipologia from vts_buscador_cursos Where Sede=nom_sede 
+		SELECT Codigo,asignatura,Creditos,Tipologia,prerequisito_asignatura from vts_buscador_cursos Where Sede=nom_sede 
         AND Facultad=nom_facultad AND programa=nom_programa;
 	
     ELSEIF nom_sede IS NOT NULL AND nom_facultad IS NOT NULL AND nom_programa IS NOT NULL AND Tipologia_p 
     IS NOT NULL AND creditos_p IS NULL AND nombre_a IS NULL THEN
     
-		SELECT Codigo,asignatura,Creditos,Tipologia from vts_buscador_cursos Where Sede=nom_sede 
+		SELECT Codigo,asignatura,Creditos,Tipologia,prerequisito_asignatura from vts_buscador_cursos Where Sede=nom_sede 
         AND Facultad=nom_facultad AND programa=nom_programa AND Tipologia=Tipologia_p;
 	
     ELSEIF nom_sede IS NOT NULL AND nom_facultad IS NOT NULL AND nom_programa IS NOT NULL AND Tipologia_p 
     IS NOT NULL AND creditos_p IS not NULL AND nombre_a IS NULL THEN
     
-		SELECT Codigo,asignatura,Creditos,Tipologia from vts_buscador_cursos Where Sede=nom_sede 
+		SELECT Codigo,asignatura,Creditos,Tipologia,prerequisito_asignatura from vts_buscador_cursos Where Sede=nom_sede 
         AND Facultad=nom_facultad AND programa=nom_programa AND Tipologia=Tipologia_p
         AND Creditos=creditos_p;
         
 	ELSEIF nom_sede IS NOT NULL AND nom_facultad IS NOT NULL AND nom_programa IS NOT NULL AND Tipologia_p 
     IS NOT NULL AND creditos_p IS not NULL AND nombre_a  IS NOT NULL THEN
     
-		SELECT Codigo,asignatura,Creditos,Tipologia from vts_buscador_cursos Where Sede=nom_sede 
+		SELECT Codigo,asignatura,Creditos,Tipologia,prerequisito_asignatura from vts_buscador_cursos Where Sede=nom_sede 
         AND Facultad=nom_facultad AND programa=nom_programa AND Tipologia=Tipologia_p
         AND Creditos=creditos_p AND asignatura=nombre_a;
 	END IF;
@@ -537,3 +547,16 @@ DELIMITER ;
 
 call mostrar_idgrupo_asignatura_docente_creditos(23);
 
+
+DELIMITER //
+CREATE PROCEDURE de_id_cita_a_creditos_disponibles(
+  IN p_id_cita INT
+)
+BEGIN
+	select Creditos_Disponibles from cita_inscripcion join historial_academico on (Id_Historial= cita_inscripcion.Historial_id) 
+    join cupo_credito on (Id_Historial = cupo_credito.Historial_id)
+    where Id_cita=p_id_cita;
+END //
+DELIMITER ;
+
+call de_id_cita_a_creditos_disponibles(14)

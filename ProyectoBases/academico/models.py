@@ -279,6 +279,9 @@ class Notas(models.Model):
         db_table = 'Notas'
         verbose_name = 'Nota'
         verbose_name_plural = 'Notas'
+    
+    def __str__(self):
+        return "Nota " + str(self.Id_Nota) + " de " + self.Inscripcion.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Nombre + " " + self.Inscripcion.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Apellido + " en el grupo " + str(self.Inscripcion.Grupo.Numero_grupo) + " de " + self.Inscripcion.Grupo.Asignatura.Nombre + " en el semestre " + str(self.Inscripcion.Inscripcion.Semestre)
 
 class Pago_Semestre(models.Model):
     Id_Pago = models.AutoField(primary_key=True,unique=True)

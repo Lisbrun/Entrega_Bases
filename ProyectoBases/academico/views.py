@@ -128,7 +128,6 @@ def asignaturas(id, historial):
         resultado = cursor.fetchall()
         return resultado
 
-
 def cupo_creditos(id, historial):
     with connection.cursor() as cursor:
         cursor.execute("call mostar_cupo(%s,%s)", [id, historial])
@@ -449,13 +448,16 @@ def Buscador_cursos(request):
             try:
                 creditos_in = int(creditos_in)
             except ValueError:
-                # Manejar el caso en el que el valor no sea numérico
+            
                 creditos_in = None
         else:
             creditos_in = None
         nombre_in = request.POST.get('Nombre')
         if nombre_in=="":
             nombre_in = None
+        
+        if tipologia_in=='#':
+            tipologia_in = None
             
         cursos = Buscador(sede_in, facultad_in, programa_in,
                         tipologia_in, creditos_in, nombre_in)
