@@ -436,7 +436,10 @@ header>.header-cambio {
 }
 
 .container-submit>a:hover {
+    transition: transform .4s;
+    transform: scale(1.08);
     color: #fff;
+
 }
 
 .info-carrera>h3 {

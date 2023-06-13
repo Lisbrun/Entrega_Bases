@@ -42,7 +42,7 @@ CREATE PROCEDURE Actualizar_Datos(in usuarioid int,IN Correo_Personal_u  varchar
 	END $$
 DELIMITER ;
 
-drop procedure Actualizar_Datos;
+
 
 -- Historial academico
 drop view if exists vts_resumen_historial;
@@ -83,9 +83,9 @@ CREATE PROCEDURE Periodo_Academico(in usuarioid int, in programain varchar(100))
         where usuario=usuarioid and nomprograma=programain;
 	END $$
 DELIMITER ;
-describe inscripcion_cancelacion;
 
-drop procedure Semestres;
+
+
 -- Traer todos los semestres
 DELIMITER $$
 CREATE PROCEDURE Semestres(in usuarioid int)
@@ -199,8 +199,6 @@ LEFT JOIN asignatura AS prereq_asignatura ON (prerequisito.Prerequisito_id = pre
 
     
 drop procedure Buscador;
-   
-call Buscador ('Bogota','Ingeneria','Ingenieria de sistemas y computacion',null,null,null);
 -- Buscador
 DELIMITER $$
 CREATE PROCEDURE Buscador(in nom_sede varchar(60), in nom_facultad varchar(120), in nom_programa varchar(100),
@@ -313,25 +311,6 @@ delimiter ;
 
 
 
--- Crear Inscripcion 
-DElimiter $$
-create procedure Crear_Inscripcion(in id_Inscripcion int)
-	Begin
-		insert into inscripcion_cancelacion(Cita_id) values (id_Inscripcion);
-	end $$
-delimiter ;
-
-
-
--- Vista cita de inscripcion 
-Drop view if exists Inscripcion;
-Create view Inscripcion as
-Select Semestre,programa.Nombre, Cita_id as idcita , facultad.Nombre as "nom" from inscripcion_cancelacion
-inner join cita_inscripcion on cita_inscripcion.Id_cita=inscripcion_cancelacion.Cita_id
-inner join historial_academico on historial_academico.Id_Historial=cita_inscripcion.Historial_id
-inner join programa on programa.Codigo_SNIES=historial_academico.Programa_id
-inner join facultad on facultad.Id_Facultad= programa.Facultad_id
-;
 
 Delimiter $$
 create procedure obtener_inscripcion (in id_Inscripcion int)
@@ -503,31 +482,60 @@ create procedure obtener_infoinscripcion(in id_grupoin int)
 delimiter ;
 
 
--- Insc_cance_grupo
+
 DELIMITER //
 CREATE PROCEDURE Insc_cance_grupo(
-  IN p_grupo int,
-  IN p_inscripcion_ID int
+  IN p_grupo INT,
+  IN p_inscripcion_ID INT
 )
 BEGIN
-  INSERT INTO inscripcion_cancelacion_grupo (Grupo_id, Inscripcion_id)
-  VALUES (p_grupo,p_inscripcion_ID );
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Se produjo un error, la transacción se ha revertido.';
+    END;
+
+    START TRANSACTION;
+
+    -- Realiza la inserción en la tabla "inscripcion_cancelacion_grupo"
+    INSERT INTO inscripcion_cancelacion_grupo (Grupo_id, Inscripcion_id)
+    VALUES (p_grupo, p_inscripcion_ID);
+
+    COMMIT;
+
+    SELECT 'La transacción se ha completado correctamente.';
 END //
+
 DELIMITER ;
 
-Delimiter $$
-create procedure Eliminar_inscripcion(in id_inscripcionin int, in id_grupoin int)
-	Begin
-		delete from inscripcion_cancelacion_grupo where 
-        inscripcion_cancelacion_grupo.Grupo_id=id_grupoin and
-        inscripcion_cancelacion_grupo.Inscripcion_id=id_inscripcionin;
-	end $$
-delimiter ;
+
+-- Eliminar Inscripcion
+DELIMITER $$
+
+CREATE PROCEDURE Eliminar_inscripcion(IN id_inscripcionin INT, IN id_grupoin INT)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Se produjo un error, la transacción se ha revertido.';
+    END;
+
+    START TRANSACTION;
+
+    -- Realiza la eliminación en la tabla "inscripcion_cancelacion_grupo"
+    DELETE FROM inscripcion_cancelacion_grupo 
+    WHERE inscripcion_cancelacion_grupo.Grupo_id = id_grupoin 
+    AND inscripcion_cancelacion_grupo.Inscripcion_id = id_inscripcionin;
+
+    COMMIT;
+
+    SELECT 'La transacción se ha completado correctamente.';
+END $$
+DELIMITER ;
 
 
 
-
--- Mostrar Grupos
+-- Mostrar Grupos cancelacion
 DELIMITER //
 CREATE PROCEDURE mostrar_idgrupo_asignatura_docente_creditos(
   IN p_Inscripcion_id int
@@ -545,8 +553,6 @@ BEGIN
 END //
 DELIMITER ;
 
-call mostrar_idgrupo_asignatura_docente_creditos(23);
-
 
 DELIMITER //
 CREATE PROCEDURE de_id_cita_a_creditos_disponibles(
@@ -559,4 +565,3 @@ BEGIN
 END //
 DELIMITER ;
 
-call de_id_cita_a_creditos_disponibles(14)

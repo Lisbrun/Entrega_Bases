@@ -21,7 +21,7 @@ def procesoEstudiante(id):
 
 
 def actualizarestudiante(id, direccion, telefono, correo, estrato, ciudad):
-    with connection.cursor() as cursor:
+    with connection.cursor() as cursor:                                                                                                                                                                                                                         
         cursor.execute("call Actualizar_Datos(%s,%s,%s,%s,%s,%s)", [
                     id, correo, telefono, estrato, ciudad, direccion])
 
@@ -236,7 +236,7 @@ def main(request):
     else:
         HttpResponse("No tiene permisos para acceder a esta pagina")
 
-
+@login_required(login_url='http://127.0.0.1:8000')
 def Profesor(request):
     return render(request, 'academico/Profesor.html')
 
@@ -261,7 +261,7 @@ def registro(request):
     form = AuthenticationForm()
     return render(request, 'academico/login.html', {'form': form})
 
-@login_required(login_url='http://127.0.0.1:8000')
+
 def salir(request):
     logout(request)
     return redirect('inicio')
@@ -342,6 +342,9 @@ def Inscripion(request, id):
         pass
     resultado2 = inscripcion_cancelacion(id)
     return render(request, 'academico/inscripcion/inscripcion.html', {"resultado": resultado2, "id_cita": id})
+
+
+
 @login_required(login_url='http://127.0.0.1:8000')
 def cancelaciones(request, id):
     
@@ -377,7 +380,6 @@ def Inscripcion_Materias(request, id):
     id_inscripcion = obtener_idinscripcion(id)
     disponibles= traer_disponibles(id_inscripcion)
     diccionario = request.session.get('inscripcion', {})
-    print(disponibles)
     for key, value in diccionario.items():
         for value in value:
             resultadoins =info_inscripcion(value)
@@ -451,6 +453,7 @@ def Buscador_cursos(request):
                 creditos_in = None
         else:
             creditos_in = None
+            
         nombre_in = request.POST.get('Nombre')
         if nombre_in=="":
             nombre_in = None
