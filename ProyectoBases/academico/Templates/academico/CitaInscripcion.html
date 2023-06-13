@@ -1,0 +1,57 @@
+{% extends 'academico/Estudiante.html ' %}
+{% load static %}
+
+{% block modinfo %}
+<div class="container-inscripcion">
+    <h3>Cita Inscripcion</h3>
+    <div class="info-carrera">
+        <h3>Plan de estudios</h3>
+        <form action="{% url 'CitaInscripcion' %}" method="POST" class="form-cita"> {% csrf_token %}
+        <select id="" name="fruits" >
+            <option value="#" selected>Selecciona un programa </option>
+            {% for plan in programas %}
+            <option value="{{plan.1}}">{{plan.1}}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Actualizar</button>
+    </form>
+    </div>
+
+    <div class="info-inscripcion">
+        <h3>Proximas Citas</h3>
+        <div class="info-inscripcion-info">
+            {% if not citas %}
+
+            <p>No tienes Citas el dia de hoy {{Fecha_actual}}</p>
+            {% else %}
+                <div class="container-info">
+                    <p>Programa:{{citas.0}} </p>
+                    <p>Facultad: {{citas.1}} </p>
+                    <p>Fecha/Hora: {{citas.2}} {{citas.3}}</p>
+
+                </div>
+                <div class="container-submit">
+                    <a href="{% url 'Inscribir' citas.4 %}">Acceder</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="info-inscripcion">
+        <h3>Registro Citas</h3>
+        {% for citas in proximas_citas%}
+        <div class="info-inscripcion-info">
+            <div class="container-info">
+                <p>Programa:{{citas.0}}</p>
+                <p>Fecha/Hora: {{citas.2}} {{citas.3}}</p>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+</div>
+{% endblock %}

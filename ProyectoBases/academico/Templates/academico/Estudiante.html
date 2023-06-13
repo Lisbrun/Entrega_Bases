@@ -1,0 +1,49 @@
+{% extends "academico/index.html" %}
+
+{% load static %}
+{% block content %}
+
+<ul class="menu-horizontal">
+    <li>
+        <a href="{% url 'DatosPersonales' %}">Datos Personales</a>
+    </li>
+
+    <li>
+        <a href="">Informacion Academica</a>
+        <ul class="menu-vertical">
+            <li><a href="{% url 'Historia_Academica' %} ">Historia Academica</a></li>
+            <li><a href="{% url 'Notas' %}">Calificaciones</a></li>
+        </ul>
+    </li>
+
+
+
+    <li>
+        <a >Buscador de cursos</a>
+        <ul class="menu-vertical">
+            <li><a href="{% url 'Buscador' %}">Buscador de Cursos</a></li>
+        </ul>
+    </li>
+
+
+    <li>
+        <a href="">Procesos de inscripcion </a>
+        <ul class="menu-vertical">
+            <li><a href="{% url 'CitaInscripcion' %}">Cita Inscripcion</a></li>
+
+        </ul>
+    </li>
+</ul>
+
+{% endblock %}
+
+{% block informacion %}
+<div class="fondo">
+<div class="Popup">
+        {% block modinfo %}
+
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

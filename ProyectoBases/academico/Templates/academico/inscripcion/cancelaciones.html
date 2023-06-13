@@ -1,0 +1,38 @@
+{% extends 'academico/inscripcion/baseInscripcion.html' %}
+{% load static %}
+{% block header %}
+
+<h2>{{resultado.0}} | {{resultado.1}}</h2>
+{% endblock %}
+
+
+{% block Section %}
+    <div class="container-ins">
+        <div class="container-title">
+
+            <h3>Bienvenido al sistema de cancelaciones</h3>
+            <p class="">A continuacion se mostraran las materias inscritas actualmente</p>
+        </div>
+        <div class="container-cancelaciones">
+            {% for materia in materias_cancelacion %}
+            <div class="cancelaciones-div">
+                <div class="div-texts">
+                    <h3>{{materia.0}} {{materia.2}} </h3>
+                    <p>{{materia.1}}</p>
+                    <p>Creditos: {{materia.3}}</p>
+                </div>
+                <div class="div-texts">
+                    <form action="" method="POST"> {% csrf_token %}
+                        <input type="hidden" name="materia" value="{{materia.0}}">
+                        <button type="submit" class="">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="container-button">
+            <a href="{% url 'Inscripcion_Materias' id %}">Siguiente </a>
+        </div>
+
+    </div>
+{% endblock %}

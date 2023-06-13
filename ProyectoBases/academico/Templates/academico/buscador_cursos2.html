@@ -1,0 +1,21 @@
+{% extends 'academico/Estudiante.html ' %}
+{% load static %}
+
+{% block modinfo %}
+<div class="container-inscripcion">
+    {% for plan in cursos %}
+    <div class="container-cursos">
+        <div class="cursos-txt">
+            <h4>{{plan.1}} {{plan.0}}</h4>
+            <p>{{plan.3}}</p>
+            <p>Prerequisito:{{plan.4}}</p>
+        </div>
+
+        <div class="cursos-creditos">
+            <h4>Creditos</h4>
+            <p>{{plan.2}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

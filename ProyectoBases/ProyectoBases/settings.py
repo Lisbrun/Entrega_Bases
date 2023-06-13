@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phone_field',
     'academico',
+    'inscripcion',
     
 ]
 
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'ProyectoBases.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR , 'Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,40 @@
+{% extends "academico/Estudiante.html" %}
+
+{% load static %}
+
+
+{% block modinfo %}
+
+<h2>{{resultado.2}} {{resultado.3}}</h2>
+
+<div class="info-personal">
+    <div class="info-img">
+        <img src="{% static 'Images/Usuario2.jpg' %}" alt="">
+    </div>
+    <div class="info-texts">
+        <h4>Documento:</h4>
+        <h4>Telefono:</h4>
+        <h4>Direccion:</h4>
+        <h4>Correo Institucional:</h4>
+        <h4>Correo Personal:</h4>
+        <h4>Programa Academico:</h4>
+    </div>
+
+    <div class="info-texts">
+        <p>{{resultado.0}}</p>
+        <p>{{resultado.6}}</p>
+        <p>{{resultado.9}}</p>
+        <p>{{resultado.5}}</p>
+        <p>{{resultado.4}}</p>
+        <p>{{resultado.10}}</p>
+
+
+
+    </div>
+</div>
+<form action="{% url 'modestudiante' %}">
+    <div class="button">
+        <button type="submit" >ACTUALIZAR</button>
+    </div>
+</form>
+{% endblock %}

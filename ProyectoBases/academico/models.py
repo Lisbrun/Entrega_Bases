@@ -19,9 +19,6 @@ class Persona_vinculada(models.Model):
     Fecha_Vinculacion = models.DateField(null=False,blank=False)
 
 
-    def save (self,*args, **kwargs):
-        self.Correo_institucional=f"{self.Nombre}@unal.edu.co"
-        super().save(*args, **kwargs)
         
     class Meta: 
         db_table = 'Persona_vinculada'
@@ -43,7 +40,9 @@ class estudiante (models.Model):
         db_table ='Estudiante'
         verbose_name = 'Estudiante'
         verbose_name_plural= 'Estudiantes'
-        
+    
+    def __str__(self):
+        return "Nombre: {} ".format(self.Persona_Vinculada.Nombre)
         
         
         
@@ -125,6 +124,8 @@ class Programa(models.Model):
     Grado_licenciatura= models.CharField(max_length=60,choices=OPCIONES_GRADO)
     Facultad = models.ForeignKey(Facultad,on_delete=models.CASCADE)
     
+    def __str__(self):
+        return "Nombre: {} ".format(self.Nombre)
     class Meta: 
         db_table ='Programa'
         verbose_name = 'Programa'
@@ -144,6 +145,8 @@ class Asignatura(models.Model):
         verbose_name = 'Asignatura'
         verbose_name_plural = 'ASignaturas'
         
+    def __str__(self):
+        return "Nombre: {}  codigo:{}".format(self.Nombre,self.Codigo)
         
 class Grupo(models.Model):
     Id_grupo = models.AutoField(primary_key=True,unique=True)
@@ -157,6 +160,9 @@ class Grupo(models.Model):
         verbose_name = 'Grupo'
         verbose_name_plural= 'Grupos'
         
+    def __str__(self) -> str:
+        return ("Grupo "+str(self.Numero_grupo)+" de "+self.Asignatura.Nombre)
+        
         
 class Historial_Academico(models.Model):
     Id_Historial = models.AutoField(primary_key=True,unique=True)
@@ -165,13 +171,15 @@ class Historial_Academico(models.Model):
     Pa = models.FloatField(default=0.0 )
     Estudiante = models.ForeignKey(estudiante,on_delete=models.CASCADE)
     Matriculas = models.IntegerField()
-    Programa = models.OneToOneField(Programa,on_delete=models.CASCADE)
+    Programa = models.ForeignKey(Programa,on_delete=models.CASCADE)
     
     class Meta:
         db_table='Historial_Academico'
         verbose_name = 'Historial_Academico'
         verbose_name_plural = 'Historiales_Academicos'
         
+    def __str__(self):
+        return "Historial de "+self.Estudiante.Persona_Vinculada.Nombre+" "+self.Estudiante.Persona_Vinculada.Apellido +" en "+self.Programa.Nombre
         
 class Cupo_Creditos(models.Model):
     Creditos_Adicionales = models.IntegerField(default=0)
@@ -186,8 +194,9 @@ class Cupo_Creditos(models.Model):
         verbose_name = 'Cupo_Credito'
         verbose_name_plural= 'Cupo_Creditos'
         
-        
-        
+    def __str__(self):
+        return "Cupo de creditos de "+self.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Historial.Estudiante.Persona_Vinculada.Apellido +" en "+self.Historial.Programa.Nombre
+    
 class Resumen_Creditos(models.Model):
     Creditos_Exigidos = models.IntegerField(null=True)
     Creditos_Aprobados = models.IntegerField(null=True)
@@ -200,7 +209,9 @@ class Resumen_Creditos(models.Model):
         db_table ='Resumen_Credito'
         verbose_name = 'Resumen_Credito'
         verbose_name_plural= 'Resumen_Creditos'
-        
+    
+    def __str__(self) :
+        return "Resumen deP creditos de "+self.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Historial.Estudiante.Persona_Vinculada.Apellido +" en "+self.Historial.Programa.Nombre
         
 class Cita_Inscripcion (models.Model):
     Id_cita = models.AutoField(primary_key=True,unique=True)
@@ -212,16 +223,21 @@ class Cita_Inscripcion (models.Model):
         verbose_name = 'Cita_Inscripcion'
         verbose_name_plural = 'Citas_Inscripcion'
         
+    def __str__(self) -> str:
+        return "Cita de "+self.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Historial.Estudiante.Persona_Vinculada.Apellido
+        
 class Inscripcion_cancelacion(models.Model):
     Id_incripcion = models.AutoField(primary_key=True,unique=True)
-    Creditos_Disponibles = models.IntegerField()
-    Semestre = models.IntegerField()
+    Creditos_Disponibles = models.IntegerField(null=True, blank=True)
+    Semestre = models.IntegerField(null=True, blank=True)
     Cita = models.OneToOneField(Cita_Inscripcion,on_delete=models.CASCADE)
     class Meta:
         db_table='Inscripcion_cancelacion'
         verbose_name = 'Inscripcion_cancelacion'
         verbose_name_plural = 'Inscripciones_cancelaciones'
 
+    def __str__(self):
+        return "Inscripcion de "+self.Cita.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Cita.Historial.Estudiante.Persona_Vinculada.Apellido+" en el semestre "+str(self.Semestre)+ "programa "+self.Cita.Historial.Programa.Nombre
 class Inscripcion_cancelacion_grupo(models.Model):
         Id= models.AutoField(primary_key=True,unique=True)
         Inscripcion= models.ForeignKey(Inscripcion_cancelacion,on_delete=models.CASCADE)
@@ -232,6 +248,8 @@ class Inscripcion_cancelacion_grupo(models.Model):
             verbose_name = 'Inscripcion_cancelacion_grupo'
             verbose_name_plural = 'Inscripcion_cancelacion_grupos'      
 
+        def __str__(self):
+            return "Inscripcion de "+self.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Nombre+" "+self.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Apellido+" en el grupo "+str(self.Grupo.Numero_grupo)+" de "+self.Grupo.Asignatura.Nombre+" en el semestre "+str(self.Inscripcion.Semestre)
 class Espacio(models.Model):
     Id_espacio = models.AutoField(primary_key=True,unique=True)
     Dia = models.CharField(max_length=100)
@@ -257,13 +275,13 @@ class Notas(models.Model):
     Aprobada = models.BooleanField()
     Inscripcion= models.ForeignKey(Inscripcion_cancelacion_grupo,on_delete=models.CASCADE)
     Historial = models.ManyToManyField(Historial_Academico)
-
     class Meta:
         db_table = 'Notas'
         verbose_name = 'Nota'
         verbose_name_plural = 'Notas'
-        
-
+    
+    def __str__(self):
+        return "Nota " + str(self.Id_Nota) + " de " + self.Inscripcion.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Nombre + " " + self.Inscripcion.Inscripcion.Cita.Historial.Estudiante.Persona_Vinculada.Apellido + " en el grupo " + str(self.Inscripcion.Grupo.Numero_grupo) + " de " + self.Inscripcion.Grupo.Asignatura.Nombre + " en el semestre " + str(self.Inscripcion.Inscripcion.Semestre)
 
 class Pago_Semestre(models.Model):
     Id_Pago = models.AutoField(primary_key=True,unique=True)
@@ -277,3 +295,13 @@ class Pago_Semestre(models.Model):
         verbose_name_plural = 'Pagos_Semestre'
         
         
+
+class Prerequisito(models.Model):
+    Id_Prerequisito = models.AutoField(primary_key=True,unique=True)
+    Materia = models.ForeignKey(Asignatura,on_delete=models.CASCADE)
+    Prerequisito = models.ForeignKey(Asignatura,on_delete=models.CASCADE,related_name='Prerequisito')
+    
+    class Meta:
+        db_table = 'Prerequisito'
+        verbose_name = 'Prerequisito'
+        verbose_name_plural = 'Prerequisitos'
